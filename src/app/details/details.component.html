@@ -1,0 +1,512 @@
+<section class="pro-details-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5 col-md-4 col-lg-3">
+        <div class="pro-detial-box">
+          <a href="javascript:void(0)" class="thumbnail" (click)="CartService.setAllTracks([product],'tracks', 0)">
+            <img src="{{product.productImage}}" />
+          </a>
+          <a class="play-video" href="javascript:void(0)" (click)="CartService.setAllTracks([product],'tracks', 0)">
+            <i class="fa fa-play-circle-o"></i>
+          </a>
+        </div>
+      </div>
+      <div class="col-sm-7 col-md-5 col-lg-4 detail-dec">
+        <h3>{{product.name}}</h3>
+        <p>{{product.track_type}} by <span><a routerLink="/p/{{CartService.getSellerProfileUrl(product)}}">{{product.artistname}}</a></span></p> 
+        <ul class="list-inline details-list">
+          <li class="bpm">BPM</li>
+          <li>{{product.BPM}}</li>
+          <li><img src="assets/images/play-iocn.png" /> {{product.total_playes}}</li>
+          <li><img src="assets/images/clock-ion.png" /> {{product.release_date | date}}</li>
+        </ul>
+        <!--<p>Prod by dannyebtracks team</p>-->
+        <ul class="list-inline detail-like">
+          <li><a href="javascript:void(0)" (click)="dataService.likeunLike(product,0,0,'detail')"><i class="fa"
+                [ngClass]="(product.isIamLiking)?'fa-heart':'fa-heart-o'"></i> {{product.likeCount}}</a></li>
+          <li><a href="javascript:void(0)"><img src="assets/images/view-iocn.png" /> {{product.fans}}</a></li>
+          <!--<li><a href="javascript:void(0)"><img src="assets/images/chat-iocn.png" /> {{data.length}}</a></li>-->
+        </ul>
+        <ul class="list-inline detail-btn productdetail">
+          <li>
+            <a class="btn btn-default black-btn" href="javascript:void(0)"
+                (click)="open_close_modal(1,0,1,product)"><img src="assets/images/share-icon0.png"> Rs.
+                {{product.price}}</a>
+          </li>
+          <li>
+            <div class="download-btn" *ngIf="product.download_options!='1'">
+              <ng-container *ngIf="product.require_downloaders == 1 || product.require_downloaders == 2">
+              <a href="javascript:void(0)" (click)="open_close_modal_download(1,0,1,product)"  ><img src="assets/images/download-icon.png" />
+              </a> <span>Free</span>
+              </ng-container>
+
+              <ng-container *ngIf="!product.require_downloaders">
+              <a href="javascript:void(0)" (click)="downloadFile(product,0)" download="{{product.audio}}"><img src="assets/images/download-icon.png" />
+              </a> <span>Free</span>
+              </ng-container>
+
+            </div>
+          </li>
+          <li>
+            <div class="share-btn ml5">
+              <a href="javascript:void(0)" (click)="open_close_modal_share(1,0,1,product)"><img src="assets/images/share-icon.png" /></a>
+
+            </div>
+          </li>
+          <li><a class="btn btn-default black-btn" (click)="open_close_modal_playlist(1,0,1,product)"><img src="assets/images/plus.png" /> Add to Playlist</a></li>
+        </ul>
+      </div>
+      <div class="clearfix visible-sm"></div>
+      <div class="col-sm-12 col-md-3 col-lg-5">
+        <form class="detail-comment">
+          <img src="assets/images/music-bass.png" />
+          <div class="form-group">
+            <textarea rows="4" class="form-control" placeholder="Write a comment..." #comment id="commentBox"
+              maxlength="255"></textarea>
+          </div>
+          <button type="button" class="btn btn-warning burlywood-btn"
+            (click)="postComment(comment.value,product.id)">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="wrap bg-black">
+  <div class="container">
+    <div class="pro-detail-dec">
+      <h3>Description</h3>
+      <p>{{product?.description}}</p>
+    </div>
+    <div class="pro-detail-dec" *ngIf="youtubeLinks && youtubeLinks.length>0">
+      <h3>Videos</h3>
+      <div class="row">
+        <div class="col-md-6" *ngFor="let video of youtubeLinks; let i=index;">
+          <div class="upload_youtube_video" *ngIf="!!video">
+
+            <!-- <i *ngIf="thumbnail_url==''" class="fa fa-youtube-play"></i>
+                  <img *ngIf="thumbnail_url" src="{{thumbnail_url}}" alt="">
+                  <video *ngIf="thumbnail_url" src="{{youtubeLink}}"></video> -->
+            <iframe width="100%" height="260" [src]="video" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="replay-ans">
+      <h3>Comments</h3>
+      <div class="commentsDiv">
+
+        <div class="media" *ngFor="let comment of comments; let i = index">
+          <div class="media-left">
+            <div class="replay-user-img"><img src="{{comment.customer_image}}" /></div>
+          </div>
+          <div class="media-body">
+            <h5>{{comment.customer_name}} <span class="upadte-days">{{comment.created_at | dateAgo}}</span></h5>
+            <p>{{comment.comment}}</p>
+            <ul class="list-inline replay-like">
+              <li><a href="javascript:void(0)"><img src="assets/images/replay-arrow.png" />{{comment.shareCount}}</a>
+              </li>
+              <li><a href="javascript:void(0)" (click)="dataService.likeunLike(comment,i,6,'list')"><i class="fa"
+                    [ngClass]="(comment.isIamLiking)?'fa-heart':'fa-heart-o'"></i> {{comment.likeCount}}</a></li>
+              <li *ngIf="comment.loginUser==comment.user_id"><a href="javascript:void(0)"
+                  (click)="deleteComment(comment,i)">Delete</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="listing-table" *ngIf="relatedTracks && relatedTracks.length>0">
+      <h3>RELATED BEATS</h3>
+      <div class="">
+        <div class="table" id="results">
+          <div class="table_row" *ngFor="let relatedTrack of relatedTracks; let i=index;">
+			<div class="table_small">
+              <div class="table_cell">Item</div>
+              <div class="table_cell"><img [src]="relatedTrack?.image" (click)="CartService.setAllTracks(relatedTracks,'tracks', i)" class="playerCursor item-table-img img-responsive"  alt="">
+					<div class="playhover">
+						<a href="javascript:void(0)" (click)="CartService.setAllTracks(relatedTracks,'tracks', i)"><i class="fa fa-play-circle-o"></i></a>
+					</div>
+				</div>
+            </div>
+            <div class="table_small">
+              <div class="table_cell"></div>
+              <div class="table_cell cart-tile">
+                <h5>{{relatedTrack.name}}</h5>
+                <p>by <a routerLink="/p/{{CartService.getSellerProfileUrl(product)}}">{{relatedTrack.artist_name}}</a></p>
+              </div>
+            </div>
+            <div class="table_small">
+              <div class="table_cell"></div>
+              <div class="table_cell">{{relatedTrack?.track_type}}</div>
+            </div>
+            <div class="table_small">
+              <div class="table_cell"></div>
+              <div class="table_cell">{{relatedTrack?.BPM}} BPM</div>
+            </div>
+            <div class="table_small">
+              <div class="table_cell"></div>
+              <div class="table_cell">{{relatedTrack?.total_playes}} plays</div>
+            </div>
+            <div class="table_small">
+              <div class="table_cell"></div>
+              <div class="table_cell">
+                <div class="download-btn" *ngIf="relatedTrack.download_options!='1'">
+                  <ng-container *ngIf="relatedTrack.require_downloaders == 1 || relatedTrack.require_downloaders == 2">
+                    <a href="javascript:void(0)" (click)="open_close_modal_download(1,0,1,relatedTrack)"><img
+                        src="assets/images/download-icon.png" />
+                    </a> Free
+                  </ng-container>
+
+                  <ng-container *ngIf="!relatedTrack.require_downloaders">
+                    <a href="javascript:void(0)" (click)="downloadFile(relatedTrack,i)"
+                      download="{{relatedTrack.audio}}"><img src="assets/images/download-icon.png" />
+                    </a> Free
+                  </ng-container>
+
+                </div>
+                <div class="share-btn ml5">
+                  <a href="javascript:void(0)" (click)="open_close_modal_share(1,0,1,relatedTrack)"><img src="assets/images/share-icon.png" /></a>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="table_small">
+              <div class="table_cell"></div>
+              <div class="table_cell">
+                <div class="listint-shopping-btn"><a href="javascript:void(0)" (click)="open_close_modal(1,0,1,relatedTrack)" *ngIf="relatedTrack.price"><img
+                      src="assets/images/share-icon0.png" /> {{currency}} {{relatedTrack?.price}}</a>
+                </div>
+                <div class="dropdown listing-table-drop">
+                  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img
+                      src="assets/images/navgation-dot.png" /></button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="javascript:void(0)" (click)="likeunLike(relatedTrack,i)"> {{ relatedTrack.isIamLiking ? 'Undo
+                        Like' : 'Like'}}</a></li>
+                    <li><a href="javascript:void(0)">Repost</a></li>
+                    <li><a routerLink="/details/{{CartService.getDetailsUrl(relatedTrack)}}" (click)="goToTrack()">Comments</a></li>
+                    <li><a href="javascript:void(0)" (click)="open_close_modal_playlist(1,0,1,relatedTrack)">Add to
+                        playlist</a></li>
+                    <li *ngIf="relatedTrack.download_options!='1'">
+                      <ng-container *ngIf="relatedTrack.require_downloaders == 1 || relatedTrack.require_downloaders == 2">
+                        <a href="javascript:void(0)" (click)="open_close_modal_download(1,0,1,relatedTrack)">Free download
+                        </a>
+                      </ng-container>
+
+                      <ng-container *ngIf="!relatedTrack.require_downloaders">
+                        <a href="javascript:void(0)" (click)="downloadFile(relatedTrack,i)" download="{{relatedTrack.audio}}">Free
+                          download
+                        </a>
+                      </ng-container>
+                    </li>
+                    <li><a routerLink="/details/{{CartService.getDetailsUrl(relatedTrack)}}" (click)="goToTrack()">Go to track</a></li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Feeds section -->
+<div id="myModalprocess1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Choose license type</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-md-3">
+                <!--<img class="item-table-img img-responsive" src="{{selected_product.artist_image}}" alt="">-->
+				<img class="item-table-img img-responsive" src="{{selected_product.image}}" alt="">
+            </div>
+            <div class="col-md-9 lncsDiv">
+                <div class="panel panel-default" *ngFor="let license of licenses ">
+                    <div class="panel-heading">
+                        <div class="row">
+							<div class="col-sm-8 col-xs-7">{{license.name}}<br>
+							<span>
+							{{license.license_for_wav}} {{license.license_for_stems}} 
+								<ng-container *ngIf="license.license_for_mp3">
+									{{license.license_for_mp3}} ({{license.untagged}} {{license.untagged_with}})
+								</ng-container >
+							</span>
+							</div>
+							<div class="col-sm-4 col-xs-5 txt-rgt">
+								<div class="listint-shopping-btn addTocartInModal">
+									<a href="javascript:void(0)" (click)="add_to_cart2(1,selected_product,license.id)"><img src="assets/images/share-icon0.png" /> {{currency}} {{license.default_track_price}}</a>
+								</div>
+							</div>
+						</div>
+                    </div>
+
+                    <div class="panel-body" *ngIf="license.features">
+                        <a href="#demo{{license.id}}" class="btn btn-info" data-toggle="collapse">See usage terms</a>
+                        <div id="demo{{license.id}}" class="collapse">
+                            <div class="row">
+                                <div class="col-md-12" *ngIf="license.distribution_copies">
+                                    <p>NUMBER OF DISTRIBUTION COPIES {{license.distribution_copies}}</p>
+                                </div>
+                                <div class="col-md-6" *ngIf="license.free_downloads">
+                                    <p>NUMBER OF FREE DOWNLOADS {{license.free_downloads}}</p>
+                                </div>
+
+                                <div class="col-md-6" *ngIf="license.audio_streams">
+                                    <p>NUMBER OF AUDIO STREAMS {{license.audio_streams}}</p>
+                                </div>
+
+                                <div class="col-md-6" *ngIf="license.music_video">
+                                    <p>NUMBER OF MUSIC VIDEOS {{license.music_video}}</p>
+                                </div>
+
+                                <div class="col-md-6" *ngIf="license.non_monetized_video_streams">
+                                    <p>NUMBER OF NON-MONETIZED VIDEO STREAMS {{license.non_monetized_video_streams}}</p>
+                                </div>
+
+                                <div class="col-md-6" *ngIf="license.monetized_video_streams">
+                                    <p>NUMBER OF MONETIZED VIDEO STREAMS {{license.monetized_video_streams}}</p>
+                                </div>
+            
+            <div class="col-md-6" *ngIf="license.broadcasting_right">
+                                    <p>BROADCASTING RIGHTS {{license.broadcasting_right}}</p>
+                                </div>
+
+                                <div class="col-md-6" *ngIf="license.radio_stations">
+                                    <p>NUMBER OF RADIO STATIONS {{license.radio_stations}}</p>
+                                </div>
+
+                                <div class="col-md-6" *ngIf="license.allow_profit">
+                                    <p>ALLOW FOR PROFIT PERFORMANCES {{license.allow_profit}}</p>
+                                </div>
+
+                                <div class="col-md-6" *ngIf="license.not_profit">
+                                    <p>NOT FOR PROFIT PERFORMANCES {{license.not_profit}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<p>You can also:</p>
+        <p>Negotiate the Price</p>-->
+    </div>
+      <!-- <div class="modal-body">
+        <div class="row">
+          <div class="col-md-3">
+            <img class="item-table-img img-responsive" src="{{selected_product.artist_image}}" alt="">
+          </div>
+          <div class="col-md-9 lncsDiv">
+            <div class="panel panel-default" *ngFor="let license of licenses ">
+              <div class="panel-heading">{{license.name}}
+                <br>
+                <span>MP3</span>
+                <div class="listint-shopping-btn addTocartInModal">
+                  <a (click)="add_to_cart2(1,selected_product,license.id)"><img src="assets/images/share-icon0.png" />
+                    {{currency}} {{selected_product.price+license.default_track_price}}</a>
+                </div>
+              </div>
+
+              <div class="panel-body">
+                <a href="#demo{{license.id}}" class="btn btn-info" data-toggle="collapse">See usage terms</a>
+                <div id="demo{{license.id}}" class="collapse">
+                  <div class="row">
+                    <div class="col-md-6">
+                      Used for Music Recording
+                    </div>
+                    <div class="col-md-6">
+                      Distribute up to 3000 copies
+                    </div>
+
+                    <div class="col-md-6">
+                      250000 Online Audio Streams
+                    </div>
+
+                    <div class="col-md-6">
+                      Music Video
+                    </div>
+
+                    <div class="col-md-6">
+                      For Profit Live Performances
+                    </div>
+
+                    <div class="col-md-6">
+                      Radio Broadcasting rights (2 Stations)
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p>You can also:</p>
+        <p>Negotiate the Price</p>
+      </div> -->
+
+    </div>
+
+  </div>
+</div>
+
+<!-- Download Modal -->
+<div id="myModalDownload1" class="modal fade" role="dialog" *ngIf="selected_product_download">
+  <div class="modal-dialog modal-sm pop_center">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Download {{selected_product_download.name}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="button-mainclass">
+          <div *ngIf="selected_product_download.require_downloaders==1" class="track_form_editer mb10">
+            <form [formGroup]="downloadForm" (ngSubmit)="downloaderEmail(selected_product_download,1)">
+              <div class="dwnload_input">
+                <input type="text" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" class="form-control"
+                  placeholder="Email" formControlName="email" />
+                <button class="btn">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                  Submit
+                </button>
+              </div>
+              <div *ngIf="!df_success && submitted && df.email.errors" class="invalid-feedback">
+                <div *ngIf="df.email.errors.required">Email is required</div>
+              </div>
+              <div *ngIf="df.email.errors && df.email.errors.pattern">
+                Email is invalid
+              </div>
+              <div *ngIf="df_success">
+                Data Recorded Successfully
+              </div>
+
+            </form>
+          </div>
+          <button *ngIf="selected_product_download.social_twitter==1" class="btn btn-block twitter_btn bg_twitter mb10"
+            type="submit"> Follow with Twitter </button>
+          <button *ngIf="selected_product_download.social_sound==1" class="btn btn-block twitter_btn bg_red mb10"
+            type="submit"> Follow with Soundcloud </button>
+
+          <ng-container *ngIf="selected_product_download.isIamFollowing==true">
+            <a href="javascript:void(0)" (click)="downloadFile(selected_product_download,1)">You already followed
+              trillions</a>
+          </ng-container>
+
+          <ng-container *ngIf="selected_product_download.isIamFollowing==false">
+            <button *ngIf="selected_product_download.social_trill==1" class="btn btn-block twitter_btn bg_twitter mb10"
+              type="button" (click)="followapi(selected_product_download,1)"> Follow with Trillions </button>
+          </ng-container>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Playlist Modal -->
+<div id="myModalPlaylist1" class="modal fade" role="dialog" *ngIf="selected_product_playlist">
+  <div class="modal-dialog pop_center_playlist">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Playlist {{selected_product_playlist.name}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="button-mainclass">
+          <div class="track_form_editer existing_playlist mb10">
+            <form *ngIf="playlistTitle?.length>0" [formGroup]="updatePlaylistForm"
+              (ngSubmit)="updatePlaylist(selected_product_playlist)">
+              <h2>Add to Existing Playlist</h2>
+              <ul class="playlist_popup_ul">
+                <li class="" *ngFor="let row of playlistTitle ; let i=index">
+                  <label class="box1 playListtitlemain">
+                    <!--<input type="radio" formControlName="selectedPlaylist" value="{{row.id}}" />-->
+                    <input type="checkbox" [id]="'checkbox' +row.id" 
+                      (change)="onCheckboxChange($event)" value="{{row.id}}" /> {{row.name | uppercase}}
+                    <span class="checkmark"></span>
+                  </label>
+                </li>
+              </ul>
+              <div class="row ">
+                <div class="col-md-8 col-xs-12">
+                  <div class="dwnload_input">
+                    <input type="hidden" formControlName="selectedTrackId" value="{{selected_product_playlist.id}}" />
+                    <button class="btn">
+                      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                      Submit
+                    </button>
+                  </div>
+                  <div
+                    *ngIf="!upf_success && submitted && this.updatePlaylistForm.controls['selectedPlaylist'].errors?.required"
+                    class="invalid-feedback mt5">
+                    <div class="redclass">Playlist is required, select atleast one value.</div>
+                  </div>
+                </div>
+
+              </div>
+
+            </form>
+            <form [formGroup]="createPlaylistForm" (ngSubmit)="createPlaylist(selected_product_playlist)">
+              <h2 class="mt20">Create New Playlist</h2>
+              <div class="dwnload_input">
+                <input type="text" class="form-control" placeholder="Playlist Name" formControlName="playlistName" />
+                <input type="hidden" formControlName="selectedTrackId" value="{{selected_product_playlist.id}}" />
+                <button class="btn">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                  Submit
+                </button>
+              </div>
+              <div *ngIf="!cpf_success && csubmitted && cpf.playlistName.errors" class="invalid-feedback mt5">
+                <div class="redclass" *ngIf="cpf.playlistName.errors.required">Playlist Name is required</div>
+              </div>
+              <div *ngIf="(cpf_success && csubmitted) || (upf_success && submitted)">
+                Data Recorded Successfully
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<!-- Share Modal -->
+<div id="myModalshare1" class="modal fade" role="dialog" *ngIf="selected_product_share">
+  <div class="modal-dialog modal-sm pop_center">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Share {{selected_product_share.name}}</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          <share-buttons
+            [include]="['facebook','twitter','linkedin','pinterest','reddit','mix','vk','telegram','messenger','whatsapp','xing','line','sms','email','copy']"
+            [show]="9" [size]="1" [url]=selected_product_share.artist_image [image]=selected_product_share.artist_image
+            [autoSetMeta]="false"></share-buttons>
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</div>

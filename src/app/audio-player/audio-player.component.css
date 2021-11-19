@@ -1,0 +1,151 @@
+.main-toolbar {
+    justify-content: center;
+    
+    
+  }
+  .spacer {
+    flex: 1 1 auto;
+  }
+  .toolbar-btn {
+    font-size: 16px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  .song-list{
+    height: 200px;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+  /* .mat-icon {
+    height: 60px !important;
+    width: 60px !important;
+    font-size: 6px !important;
+  } */
+  
+
+  .media-footer .spacer {
+    width: 100%;
+  }
+  .media-footer mat-toolbar-row {
+      color: white;
+  }
+  .time-slider .mat-slider-track-wrapper {
+    background-color: white !important;
+  }
+  .volume-slider .mat-slider-thumb {
+    background-color: white;
+  }
+  .media-footer .time-slider {
+    /* width: 100% !important; */
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 88%;
+  }
+  /* .media-action-bar .mat-icon {
+    height: 48px !important;
+    width: 48px !important;
+    font-size: 48px !important;
+  } */
+  .media-footer .media-action-bar {
+    width: 100%;
+    padding: 2.5rem;
+    justify-content: center;
+    
+  }
+  .media-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: black;
+    height: 120px;
+ }
+ .audio-play-main {
+    position: fixed;
+    bottom: 0;
+    z-index: 9999999;
+    background: white;
+    width: 100%;
+ }
+ .volume-slider {
+    position: absolute;
+    top: -14px;
+    /* right: 30px; */
+ }
+ .audio-button {
+    position: absolute;
+    /* bottom: 14px; */
+    left: 30%;
+ }
+ .play-list {
+    position: absolute;
+    bottom: 90px;
+    background: black;
+    right: 40px;
+    width: 35%;
+    color: white;
+    padding: 10px;
+ }
+ /* .playlist-img img {
+     height: 50px;
+     width: 50px;
+ } */
+ .playlist-itm {
+     padding: 10px
+ }
+ .audio-button span {
+     padding: 20px;
+     cursor: pointer;
+ }
+ .audio-button span .fa {
+    color: white;
+ }
+ .playlist-close {
+     color: white;
+ }
+ .play-list-head {
+    padding: 10px;
+ }
+ .play-list-head h3 {
+    display: inline;
+ }
+ .play-list-head i {
+     float: right;
+ }
+ .playlist-hum{
+    position: relative;
+    right: -40%;
+ }
+ .play-indx {
+     color: white;
+ }
+ .play-indx span {
+    color: darkgray;
+    position: relative;
+    top: 25px;
+ }
+ .isShuffle {
+     color: red !important;
+ }
+ .isRepeat {
+    color: red !important;
+ }
+ .track-details {
+    padding-left: 35px;
+ }
+ .track-img img {
+    height: 50px;
+    width: 60px;
+ }
+ .track-title {
+     color: white;
+ }
+ .close-player {
+   height: 20px;
+   position: absolute;
+   bottom: 110px;
+   right: 40px;
+   color: white;
+   padding: 10px;
+   z-index: 1;
+ }

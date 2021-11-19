@@ -1,0 +1,188 @@
+<div class="upload_new_pic">
+<div id="uploadArtWork" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{currentModalTitle}}</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
+                                <li [ngClass]="(myActiveTab==0)?'active':''" (click)="changeMytab(0)"><a href="#myfile" data-toggle="tab"><span class="fa fa-file"></span> My File </a></li>
+                                <li [ngClass]="(myActiveTab==1)?'active':''" (click)="changeMytab(1)"><a href="#upload-file" data-toggle="tab"><span class="fa fa-key"></span> Upload File </a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="col-sm-9">
+                        <div class="tab-content">
+                          
+
+                            <div  id="myfile" class="tab-pane fade" [ngClass]="(myActiveTab==0)?'in active':''">
+                                <div class="row">
+                                    <div class="main_box_for_youtube_list" *ngFor="let imgrow of alluploaded">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
+                                            <div class="youtube_vide0_list">
+                                                <i class="fa fa-picture-o"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+                                            <div class="youtube_vide0_list">
+                                                <img src="{{imagePath}}{{imgrow.image}}" class="MyFileUplaodsSection">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="youtube_vide0_list">
+                                                <a href="javascript:void(0);" class="selecbtn btn-xs" (click)="SelectImage(imgrow)">Select </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            
+                            <div  id="upload-file" class="tab-pane fade" [ngClass]="(myActiveTab==1)?'in active':''">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3>Upload File</h3>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="dropzone-wrapper">
+                                            <div class="dropzone-desc">
+                                                <img src="assets/images/upload-file-icon.png" alt="">
+                                                <p>Choose an image file or drag it here.</p>
+                                            </div>
+                                            <input type="file" #fileInput (change)="fileChangeEvent($event)" id="customFile" name="filename" class="file-upload dropzone">
+
+                                        </div>
+                                        <div class="upload_file">
+                                            <h1>Upload files from your computer (or drag them here)</h1>
+
+
+                                            <div class="fileUpload btn btn--browse">
+                                                <span>Select File</span>
+                                                <input type="file" class="upload" #fileInput (change)="fileChangeEvent($event)" id="customFile" name="filename">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="CropPhoto" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal Image content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Crop Image</h4>
+            </div>
+            <div class="modal-body">
+                <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+                <button type="submit" class="cancel_btn" data-dismiss="modal" aria-label="Close">Cancel</button>
+                <button type="submit" class="btn btn-primary" (click)="saveImage()">Save</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="">
+            <app-audio-player *ngIf="msaapPlaylist?.length > 0 " [trackLists]="msaapPlaylist" [playingIndex]="playingIndex"></app-audio-player>
+            <!-- <div class="mp3player" *ngIf="msaapPlaylist?.length > 0 ">
+                <ngx-audio-player #player *ngIf="msaapPlaylist?.length > 0 " [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="true" muted="muted" [displayPlaylist]="msaapDisplayPlayList" [pageSizeOptions]="msaapPageSizeOptions" (trackEnded)="onEnded($event)"
+                    [displayVolumeControls]="msaapDisplayVolumeControls" [displayRepeatControls]="msaapDisplayRepeatControls" [disablePositionSlider]="msaapDisablePositionSlider" [displayArtist]="msaapDisplayArtist" [displayDuration]="msaapDisplayDuration"
+                    [expanded]="true">
+
+                </ngx-audio-player>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-2">
+                <h3>Quick Links</h3>
+                <ul class="list-unstyled fotr-menu">
+                    <li><a routerLink="/"> Home</a></li>
+
+                    <li *ngFor="let prow of pages | slice:0:1"><a routerLink="/pages/{{prow.pageurl}}"> {{prow.title}}</a></li>
+                    <li><a routerLink="/pages/contact-us"> Contact us</a></li>
+                    <li><a routerLink="/account"> My Account</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <h3>Customised Services</h3>
+                <ul class="list-unstyled fotr-menu">
+                    <li *ngFor="let prow of pages | slice:1:5"><a routerLink="/pages/{{prow.pageurl}}"> {{prow.title}}</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <h3>Social Accounts</h3>
+                <ul class="list-inline hdr-social-link">
+
+                    <li><a href="{{settings.facebook_url}}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="{{settings.twiter_url}}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="{{settings.linkedin_url}}" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+                <h3>Pay Using</h3>
+                <ul class="list-inline payment-icon">
+                    <li>
+                        <a href="javascript:void(0)"><img src="assets/images/pay-pal.png"></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="assets/images/mastercart.png"></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="assets/images/discover.png"></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="assets/images/visa.png"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <h3>Subscribe to Newsletter</h3>
+                <!-- <p>Subscribe to our newsletter and get
+    10% off your first purchase</p> -->
+                <div class="foter-search">
+                    <form class="navbar-form" (submit)="subscribe()" [formGroup]="subcriptionForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" formControlName="email" placeholder="Your email address">
+                        </div>
+                        <button type="submit" class="btn btn-danger">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="cpyrgt-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <p>Copyrights © 2020, Trill Icons | All Rights Reserved </p>
+                </div>
+                <div class="col-sm-4 txt-rgt">
+                    <p>Powered By <a href="https://www.b2cinfosolutions.com/" target="_blank"> B2C Info Solutions</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>

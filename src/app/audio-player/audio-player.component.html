@@ -1,0 +1,127 @@
+<div class="audio-play-main" id="accordionExample" *ngIf="files && files.length>0">
+    <div class="close-player" (click)="onClosePlayer()">
+        <i aria-hidden="true" class="playlist-close fa fa-times fa-lg" style="cursor: pointer;"></i>
+    </div>
+    <!-- <mat-toolbar color="primary" class="main-toolbar">
+        <span>Personal Radio</span>
+    </mat-toolbar> -->
+    <div class="content">
+        <!-- <div class="logo">a
+          <img src="assets/image1.jpg" alt="Shibaji Debnath" width="260px">
+        </div> -->
+        <div color="primary" class="play-list" [hidden]="isShowPlayList">
+            <div class="play-list-head">
+                <h3>Playlist</h3>
+                <i (click)="openPlayList()" style="cursor: pointer;" class="playlist-close fa fa-times fa-lg"
+                    aria-hidden="true"></i>
+            </div>
+
+            <div class="song-list">
+                <div class="row playlist-itm" *ngFor="let file of files; let i = index" (click)="openFile(i)">
+                    <!-- <mat-icon color="primary" mat-list-icon="">music_note</mat-icon> -->
+                    <div class="col-sm-1 play-indx">
+                        <span *ngIf="currentFile.index === i && !state?.error"><i class="fa fa-play-circle-o fa-lg"
+                                aria-hidden="true"></i></span>
+                        <span *ngIf="currentFile.index === i && state?.error">{{i+1}}</span>
+                    </div>
+                    <div class="col-sm-3 playlist-img">
+                        <img [src]="file.image ? file.image : 'assets/images/pro-img0.jpg'" alt="">
+                    </div>
+                    <div class="col-sm-8">
+                        <h4>{{ file.title }}</h4>
+                        <h5>by {{ file.artist }}</h5>
+                    </div>
+
+                    <!-- <mat-icon color="primary" *ngIf="currentFile.index === i && !state?.error">volume_up</mat-icon> -->
+                    <!-- <h6 *ngIf="currentFile.index === i && state?.error">ERROR</h6> -->
+                    <!-- <mat-divider></mat-divider> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="media-footer">
+        <!-- <mat-toolbar color="primary"> -->
+        <mat-toolbar-row>
+            {{ state?.readableCurrentTime }}
+            <mat-slider class="time-slider" min="0" [max]="state?.duration" step="1" [value]="state?.currentTime"
+                (input)="onSliderChangeEnd($event)" [disabled]="state?.error || currentFile?.index === undefined">
+            </mat-slider>
+            {{ state?.readableDuration }}
+        </mat-toolbar-row>
+        <div class="row">
+            <div class="col-sm-4 row track-details">
+                <div class="col-sm-3 track-img">
+                    <img [src]="files[currentFile.index]?.image ? files[currentFile.index]?.image : 'assets/images/pro-img0.jpg'"
+                        alt="">
+                </div>
+                <div class="col-sm-5 track-title">
+                    <h5>{{ files[currentFile.index]?.title }}</h5>
+                    <h6>by {{ files[currentFile.index]?.artist }}</h6>
+                </div>
+                <div class="col-sm-4" *ngIf="files[currentFile.index]?.price">
+                    <div class="listint-shopping-btn">
+                        <a><img src="assets/images/share-icon0.png">
+                            $ {{files[currentFile.index].price}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8 audio-button">
+                <span (click)="shuffle()">
+                    <i class="fa fa-random fa-lg" [ngClass]="{'isShuffle':isRandomPlay}" aria-hidden="true"></i>
+                </span>
+                <span (click)="previous()">
+                    <i class="fa fa-step-backward fa-lg" aria-hidden="true"></i>
+                    <!-- <mat-icon mat-list-icon="">skip_previous</mat-icon> -->
+                </span>
+                <span (click)="play()" *ngIf="!state?.playing">
+                    <i class="fa fa-play-circle-o fa-lg" aria-hidden="true"></i>
+                    <!-- <mat-icon mat-list-icon="">play_circle_filled</mat-icon> -->
+                </span>
+                <span (click)="pause()" *ngIf="state?.playing">
+                    <i class="fa fa-pause-circle-o fa-lg" aria-hidden="true"></i>
+                    <!-- <mat-icon mat-list-icon="">pause</mat-icon> -->
+                </span>
+                <span (click)="next()">
+                    <i class="fa fa-step-forward fa-lg" aria-hidden="true"></i>
+                    <!-- <mat-icon mat-list-icon="">skip_next</mat-icon> -->
+                </span>
+
+                <span (click)="onRepeat()">
+                    <i class="fa fa-retweet fa-lg" [ngClass]="{'isRepeat':isRepeat}" aria-hidden="true"></i>
+                </span>
+                <span class="spacer"></span>
+                <!-- <mat-icon>volume_up</mat-icon> -->
+                <span><i class="fa fa-volume-up fa-lg" aria-hidden="true"></i></span>
+                <mat-slider class="volume-slider" min="0" max="1" step="0.01" [value]="state?.volume"
+                    (input)="onVolumeChange($event)"></mat-slider>
+                <span class="playlist-hum" (click)="openPlayList()">
+                    <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+
+        <!-- <mat-toolbar-row cols="2" class="media-action-bar">
+  
+            <button mat-button=""  (click)="previous()">
+              <mat-icon mat-list-icon="">skip_previous</mat-icon>
+            </button>
+            <button mat-button="" (click)="play()" [disabled]="state?.error" *ngIf="!state?.playing">
+              <mat-icon mat-list-icon="">play_circle_filled</mat-icon>
+            </button>
+            <button mat-button="" (click)="pause()" *ngIf="state?.playing">
+              <mat-icon mat-list-icon="">pause</mat-icon>
+            </button>
+            <button mat-button=""  (click)="next()">
+              <mat-icon mat-list-icon="">skip_next</mat-icon>
+            </button>
+  
+          <span class="spacer"></span>
+          <mat-icon>volume_up</mat-icon>
+          <mat-slider class="time-slider" min="0" max="1" step="0.01" [value]="state?.volume" (input)="onVolumeChange($event)"></mat-slider>
+         
+        </mat-toolbar-row> -->
+        <!-- </mat-toolbar> -->
+    </div>
+</div>

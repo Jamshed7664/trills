@@ -1,0 +1,83 @@
+
+
+<section class="form_section">
+	<div class="container-fluid">
+		<div class="row">
+	        <div class="col-lg-push-4 col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                <div class="form_box">
+                    <h2>Sign Up</h2>
+                    <form method="post"  [formGroup]="reg_form" (ngSubmit)="registration($event)">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Your Name" formControlName="name">
+                                    <span class="redclass" *ngIf="reg_form.touched && reg_form?.controls.name?.errors?.required">
+                                       Name is required
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Mobile Number">
+                                </div>
+                            </div>
+                        </div>
+                         <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Enter email Id" formControlName="email">
+                                    <span class="redclass" *ngIf="reg_form.touched && reg_form?.controls.email?.errors?.required">
+                                      Email is required
+                                    </span>                    
+                            
+                <span class="redclass" *ngIf="reg_form.touched && reg_form?.controls.email?.errors?.email">
+                    Enter a valid email
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Password" formControlName="password">
+                                    <span class="redclass" *ngIf="reg_form.touched && reg_form?.controls.password?.errors?.required">
+                                        Password is required
+                                     </span>
+                                     <span class="redclass" *ngIf="reg_form.touched && reg_form?.controls.password?.errors?.pattern"> 
+                                         Password should be 6 digit
+                                     </span>   
+                                </div>
+                            </div>
+                              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Confirm Password">
+                                </div>
+                                  <label class="box1"> Now I have read and agree to the <a href="#">Terms of Conditions &</a> <a href="#">Privacy policy</a>
+                                              <input type="checkbox">
+                                              <span class="checkmark"></span>
+                                            </label>
+                            </div>
+                        </div>
+                            <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="or_box">
+                                <h1>OR</h1>
+                                <p>Login/Sign Up With</p>
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-facebook"></i><p>Sign in with Facebook</p> </a> </li>
+                                    <li><a href="#"><i class="fa fa-google"></i><p>Sign in with Google</p> </a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i><p>Sign in with Twitter</p> </a></li>
+                                </ul> 
+                            </div>
+                        </div>
+                    </div>
+                         <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
+                             <button type="submit">Sign Up</button>
+                            </div>                             
+                        </div>
+                    </form>
+               
+                </div>    
+            </div>     
+		</div>    
+	</div>    
+</section> 

@@ -1,0 +1,312 @@
+<section class="inner-section">
+    <div class="container-fluid">
+        <div class="inner-banner">
+            <a href="#">Dashboard</a> <span>&gt;</span> <a href="#">Service Metadata Editor</a>
+        </div>
+    </div>
+</section>
+
+
+<form class="" method="Post" (submit)="createService($event)" [formGroup]="album_form">
+    <section class="track_editer_section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="main_heading">
+                        <h3>Service Metadata Editor </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="title">General Information </h3>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <h3 class="title">Service artwork </h3>
+                        </div>
+                    </div>
+                    <div class="main_bg">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-8">
+                            <div class="track_form_editer">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>SOUND KIT TITLE</label>
+                                            <input type="text" [ngClass]="(album_form.touched)?( album_form.get('name').invalid)?'has_error_class':'no_error_class':''" class="form-control" formControlName="name" placeholder="New Service">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>PRICE TYPE</label>
+                                            <select [ngClass]="(album_form.touched)?( album_form.get('price_type').invalid)?'has_error_class':'no_error_class':''" class="form-control" placeholder="Price" formControlName="price_type">  
+                                                <option value="">Track Type </option>
+                                                 <option value="Beat">Beat </option>
+                                                 <option value="With Chorus">With Chorus </option>
+                                                 <option value="Song Referance">Song Referance </option>
+                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>PRICE</label>
+                                            <input type="text" [ngClass]="(album_form.touched)?( album_form.get('price').invalid)?'has_error_class':'no_error_class':''" formControlName="price" class="form-control" placeholder="Price">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                                        <div class="form-group">
+                                            <label>TAGS* (3)</label>
+                                            <input type="text" class="form-control" placeholder="Tags" id="tagtitle" maxlength="15" (keydown)="keyDownHandler($event)">
+                                            <code>0/25</code>
+                                        </div>
+                                        <div class="tab_dashbord">
+
+                                            <ul>
+                                                <li class="dashbord_btn" *ngFor="let tagrow of album_form.get('tags').value; let i = index;">
+                                                    # {{tagrow}}
+                                                    <a href="javascript:void(0)" (click)="deletetag(i)">
+                                                        <i class="fa fa-times"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                        <button type="button" class="" (click)="createTags('tagtitle')"><i class="fa fa-plus" ></i>Add Tag</button>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label>CATEGORY</label>
+                                            <select [ngClass]="(album_form.touched)?( album_form.get('track_type').invalid)?'has_error_class':'no_error_class':''" class="form-control" placeholder="Tags" formControlName="track_type">  
+                                                            <option value="">Track Type </option>
+                                                            <option value="Beat">Beat </option>
+                                                            <option value="Drum Kit">Drum Kit </option>
+                                                            <option value="With Chorus">With Chorus </option>
+                                                            <option value="Song Referance">Song Referance </option>
+                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                                        <div class="discp_info">
+                                            <h4>DESCRIPTION</h4>
+                                            <div class="text_tools">
+                                                <a href="#"><i class="fa fa-rotate-left"></i> </a>
+                                                <a href="#"><i class="fa fa-rotate-right"></i> </a>
+                                            </div>
+                                            <div class="text_tools">
+                                                <a href="#"><i class="fa fa-bold"></i> </a>
+                                                <a href="#"><i class="fa fa-italic"></i></a>
+                                                <a href="#"><i class="fa fa-underline"></i> </a>
+                                            </div>
+                                            <div class="text_tools">
+                                                <a href="#"><i class="fa fa-align-left"></i> </a>
+                                                <a href="#"><i class="fa fa-align-center"></i></a>
+                                                <a href="#"><i class="fa fa-align-right"></i> </a>
+                                                <a href="#"><i class="fa fa-align-justify"></i> </a>
+                                            </div>
+                                            <div class="text_tools">
+                                                <a href="#"><i class="fa fa-indent"></i> </a>
+                                                <a href="#"><i class="fa fa-outdent"></i></a>
+                                            </div>
+                                            <div class="text_tools">
+                                                <a href="#"><i class="fa fa-list-ul"></i> </a>
+                                                <a href="#"><i class="fa fa-list-ol"></i></a>
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea class="form-control" [ngClass]="(album_form.touched)?( album_form.get('description').invalid)?'has_error_class':'no_error_class':''" formControlName="description" placeholder="Sample Sound Kit"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                                        <div class="copy_link">
+                                            <div class="form-group">
+                                                <label>URL OF YOUR TRACK</label>
+                                                <input type="text" class="form-control" placeholder="www.trillicons.com">
+                                                <code><a href="#">Copy</a> </code>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                            <div class="track_form_editer">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="track_form_editer">
+                                            <div class="file_upload">
+                                                <button class="button" type="button" *ngIf="!image">
+                                                    <i class="fa fa-file-movie-o"></i>
+                                                </button>
+                                                <img [src]="image" alt="" class="image-exercise" *ngIf="image"><br>
+                                                <p> Artwork Dimension <br> Preferred: 1500x1500px, Minimum: 500x500px</p>
+                                                <p> Got Photoshop? Make your own using our free template. </p>
+                                                <a type="button" data-toggle="modal" data-target="#uploadArtWork" class="button1">Upload Cover Artwork </a>
+                                                <!-- <button type="button" (click)="selectFile.click()"> Upload Cover Artwork </button> -->
+
+                                                <input type="file" (change)="getImage($event)" style="display: none" #selectFile>
+                                                <li class="redclass" *ngIf="album_form.touched && album_form?.controls.image?.errors?.required">Plz select image</li>
+                                                <li class="redclass" *ngIf="album_form.touched && album_form?.controls.image?.errors?.image">Invalid Image</li>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="title_sub">Collaborators</h3>
+                    <div class="main_bg">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="border_right">
+                                        <div class="border_line">
+                                            <div class="col-md-3">
+                                                <div class="collaborators">
+                                                    <h2>COLLABORATOR</h2>
+                                                    <p>YOU</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="collaborators">
+                                                    <h2>ROLE</h2>
+                                                    <p>MAIN COLLABORATOR</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="collaborators">
+                                                    <h2>PROFIT SHARE </h2>
+                                                    <p>100%</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="collaborators">
+                                                    <h2>PUBLISHING % </h2>
+                                                    <p>100%</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                          <div class="border_line" *ngFor="let collab of collabs">
+                                            <div class="col-md-3">
+                                                <div class="collaborators">
+                                                    <h2>COLLABORATOR</h2>
+                                                    <p>{{collab.name}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="collaborators">
+                                                    <h2>ROLE</h2>
+                                                    <p>{{collab.role}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="collaborators">
+                                                    <h2>PROFIT SHARE </h2>
+                                                    <p>{{collab.profit_share}} %</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="collaborators">
+                                                    <h2>PUBLISHING % </h2>
+                                                    <p>{{collab.publishing_share}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="collaborators">
+                                                <button type="button" class="button1" (click)="open_close_modal('129','')">Add Collaborators</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="collaborators">
+                                    <p>Before you add Collaborators, please make sure that you &amp; your Collaborators meet the requirements below:</p>
+                                    <ul>
+                                        <li> - You must be the "Primary Contributor" to add Collaborators</li>
+
+                                        <li> - Make sure you Follow each other.</li>
+
+                                        <li> - Your Collaborator has to be a BeatStars Registered Member and at least subscribed to a "FREE" Subscription Account</li>
+
+                                        <li> - Needs to have their PayPal Email Address properly Setup</li>
+
+                                        <li> - You can only add up to Five (5) Collaborators per Track </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <div class="bottom_btn">
+        <a routerLink="/services" class="btn_save bg_gray1">Cancel</a>
+        <button type="submit" class="btn_save bg_red">Save Changes</button>
+    </div>
+</form>
+
+<div id="myModalprocess129" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Find Collaborator</h4>
+            </div>
+              <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                            
+                                <input type="text" class="form-control" (input)="onSearchChange($event.target.value)" placeholder="Username or Email">
+                            </div>
+                        </div>
+                        <div class="main_box_for_youtube_list" *ngFor="let crow of searchText">
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                <div class="youtube_vide0_list">
+                                    <img src="{{crow.image}}" class="hedimg-circle" alt="">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                <div class="youtube_vide0_list">
+                                    {{crow.name}}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="youtube_vide0_list">
+                                    <a href="javascript:void(0);" class="btn btn-xs btn-dark" *ngIf="crow.requesttype=='Pending'"> Action Required</a>
+                                    <a href="javascript:void(0);" class="selecbtn btn-xs" (click)="requestSend(crow.id,0)" *ngIf="crow.requesttype!='Pending'"> Add User  </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cancel_box">
+
+                        <button type="submit" class="cancel_btn" data-dismiss="modal" aria-label="Close">Close</button>
+                    </div>
+                </div>
+
+        </div>
+
+    </div>
+</div>

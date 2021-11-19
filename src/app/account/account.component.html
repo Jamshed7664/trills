@@ -1,0 +1,1809 @@
+
+<style>
+.my-account-wrapper .sws_playlist .nav>li { padding-right: 10px;}
+.playListancor{ padding:0 5px !important; display:inline-block;color:green !important; }
+.playListancor1{ color:red !important; }
+.playListtitlemain{ margin-right: 10px; border-bottom:none !important; cursor:pointer; }
+.sws_playlist li.active{ border-bottom:none !important; }
+.embeddedSettingmain select{ background: #262626 !important; color: #8e8a8a !important; margin-top:5px; padding-left:10px; padding-right:10px; }
+
+
+</style>
+  <section class="my-account-wrapper inner-section">
+         <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <main id="primary" class="site-main">
+                        <div class="user-dashboard">
+                            <div class="user-info">
+                                <div class="row align-items-center no-gutters">
+                                   <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+                                       <div class="single-info">
+                                           <p class="user-name">Hello <span>{{currentUser.name}} </span> <a style="cursor:pointer;" class="log-out" (click)="logout()">Log Out</a></p>
+                                       </div>
+                                   </div>
+                                   <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                       <div class="single-info">
+                                           <p>Need Assistance? Customer service at <a>{{currentUser.email}} </a></p>
+                                       </div>
+                                   </div>
+                                   <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+                                       <div class="single-info">
+                                           <p>E-mail them at <a href="mailto:support@example.com">support@example.com</a></p>
+                                       </div>
+                                   </div>
+                                   <div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-3">
+                                       <div class="single-info justify-content-lg-center">
+                                           <a class="btn btn-secondary" href="/cart">View Cart</a>
+                                       </div>
+                                   </div>
+                               </div> <!-- end of row -->
+                            </div> <!-- end of user-info -->                           
+                        </div> <!-- end of user-dashboard -->
+                    </main> <!-- end of #primary -->
+                </div>
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </section>
+
+<section class=" ">
+	<div class="my-account-wrapper pb-20">
+        
+<div class="container-fluid dashboard-content">
+    	<div class="col-sm-12">
+    <nav class="nav-sidebar">
+		<ul class="nav tabs">
+            <li class="active"><a href="#orders" data-toggle="tab"><i class="fa fa-shopping-cart"></i>My Purchase Orders</a></li>
+            <li class=""><a href="#sorders" data-toggle="tab"><i class="fa fa-shopping-cart"></i>My Sell Orders</a></li>
+            <li class=""><a href="#account" class="account" data-toggle="tab"><i class="fa fa-user"></i> My Account</a></li> 
+            <li class=""><a href="#settings" data-toggle="tab"> <i class="fa fa-gear"></i>Account settings </a></li>
+            <li class=""><a href="#message" data-toggle="tab"><i class="fa fa-envelope-o"></i>   Message  </a></li> 
+            <li class=""><a href="#notifications1" data-toggle="tab"><i class="fa fa-bell-o"></i> Notifications</a></li> 
+           <li class="" style="cursor:pointer;"><a  data-toggle="tab" (click)="logout()"><i class="fa fa-power-off"></i>  Logout</a></li>
+		</ul>
+	</nav>
+		 
+</div>
+    
+    <div class="col-md-12">
+        <!-- tab content -->
+        <div class="tab-content">       
+            <div class="tab-pane text-style" id="settings">            
+                 <div class="row">
+            <div class="col-sm-3"> 
+                <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
+                  <li class="active"><a href="#profile" data-toggle="tab"><span class="fa fa-user-o"></span> Profile </a></li>
+                  <li><a href="#credentials" data-toggle="tab"><span class="fa fa-key"></span> Credentials </a></li>
+                  <li><a href="#social" data-toggle="tab"><span class="fa fa-angellist"></span>  Social Media </a></li>
+                    <li><a href="#subscription" data-toggle="tab"><span class="fa fa-history"></span> Subscription Plan </a></li>
+                <!--  <li><a href="#billing" data-toggle="tab"><span class="fa fa-location-arrow"></span> Billing Address  </a></li> -->
+                  <li><a href="#shipping" data-toggle="tab"><span class="fa fa-map-marker"></span> Address </a></li> 
+                <li><a href="#discography" data-toggle="tab"><span class="fa fa-music"></span> Discography  </a></li>  
+                <li class=""><a href="#login" data-toggle="tab"> <span class="fa fa-desktop"></span>  Login Sessions</a></li>    
+                </ul>
+            </div>
+            <div class="col-sm-9">
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="profile">
+                         <h3>Profile </h3>                    
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="user_info">
+                           
+                               <img src="{{profileimg}}" alt="" class="img-circle"> 
+                               
+                            <button type="submit" class="user_profile_btn" data-toggle="modal" data-target="#uploadArtWork">Upload Your New Picture</button>
+                        </div>    
+                    </div>  
+                </div>
+                <form [formGroup]="DataForm" (ngSubmit)="onSubmit()" method="post">
+                   
+                <div class="row">
+                     <div class="col-md-6">
+                        <div class="user_info">
+                           <div class="form-group">
+                                <input type="text"  class="form-control" formControlName="first_name" id="fname" placeholder="First Name*">
+                                <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                                    <div class="redclass" *ngIf="f.first_name.errors.required">First Name is required</div>
+                                </div>
+                            </div>   
+                        </div>    
+                    </div> 
+                     <div class="col-md-6">
+                        <div class="user_info">
+                            <div class="form-group">
+                                <input type="text"  class="form-control" formControlName="last_name"  id="lname" placeholder="Last Name*">
+                                <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                                    <div class="redclass" *ngIf="f.last_name.errors.required">Last Name is required</div>
+                                </div>
+                            </div>    
+                        </div>    
+                    </div> 
+                </div>
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="user_info">
+                           <div class="form-group">
+                <input type="text" class="form-control" formControlName="name" id="display" placeholder="Display Name*"  />
+                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div class="redclass" *ngIf="f.name.errors.required">Name is required</div>
+                </div> 
+            </div>   
+                        </div>    
+                    </div> 
+                     <div class="col-md-6">
+                        <div class="user_info">
+                            <div class="form-group"> <!--ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"-->
+                               
+                                <input type="text"  (onAddressChange)="handleAddressChange($event)" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" formControlName="location" value="" class="form-control" id="location" placeholder="Location*" />
+                                <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+                                    <div class="redclass" *ngIf="f.location.errors.required">Location is required</div>
+                                </div>
+                            </div>    
+                        </div>    
+                    </div>
+                       <div class="col-md-12">
+                        <div class="user_info">
+                            <div class="form-group">
+                                <textarea type="text" formControlName="biography" class="form-control"  placeholder="Biography*"></textarea>
+                                <div *ngIf="submitted && f.biography.errors" class="invalid-feedback">
+                                    <div class="redclass" *ngIf="f.biography.errors.required">Biography is required</div>
+                                </div>
+                            </div>    
+                        </div>    
+                    </div>
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <button type="submit" class="saveaddress" value="submit">Save</button>    
+                    </div> 
+                </div>
+            </form>
+ </div>
+                    <div role="tabpanel" class="tab-pane fade" id="credentials">
+                       <h3 class="redclass">Credentials</h3>
+                        
+                        <div class="row">
+                            <div class="col-lg-push-2 col-md-8">
+                                <div class="credentials_main">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-6">
+                                            <div class="credentials_info">
+                                                <span>E-mail</span>
+                                                <h2>{{currentUser.email}}</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-6">
+                                            <div class="credentials_info">
+                                                <a routerLink='/account/credentials/email'>Change e-mail address</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="credentials_main">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-6">
+                                            <div class="credentials_info">
+                                                <span>Username</span>
+                                                <h2>{{currentUser.name}}</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-6">
+                                            <div class="credentials_info">
+                                                <a routerLink="/account/credentials/username">Change username</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  <div class="credentials_main">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-6">
+                                            <div class="credentials_info">
+                                                <span>Password</span>
+                                                <h2>********</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-6">
+                                            <div class="credentials_info">
+                                                <a routerLink="/account/credentials/password">Change password</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="credentials_main">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-6">
+                                            <div class="credentials_info" *ngIf="info">
+                                                <span>Phone Number</span>
+                                                <!--<h2 *ngIf="currentUser.mobile_no">{{info.countryCode}}{{info.phone}}</h2>-->
+												<h2 > {{info.countryCode}}{{info.phone}} </h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-6">
+                                            <div class="credentials_info">
+                                                <a routerLink="/account/credentials/phone">Change phone number</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="credentials_main">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-6">
+                                            <div class="credentials_info">
+                                                <span>2-factor Authentication</span>
+                                                <h2>None</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-6">
+                                            <div class="credentials_info">
+                                                <a routerLink="/account/credentials/security-method">Change security method</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  
+                                    <!-- <div class="row">
+                                        <div class="credentials-form">
+                                            <div class="col-md-12">
+                                                <div class="back_link">
+                                                    <a href="#"><i class="fa fa-angle-left"></i>  Account Credentials </a>
+                                               </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" placeholder="E-mail">
+                                            </div>
+                                        </div>
+                                         <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" placeholder="Currenr password">
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                </div> -->
+                            </div>
+                        </div>
+                     </div>
+                    
+                    
+                    
+
+                    <div role="tabpanel" class="tab-pane fade in" id="social">
+                        <h3>Social Media </h3> 
+                        <form [formGroup]="socialForm" (ngSubmit)="onSubmitsocial()" method="post">
+                        <div class="social_midea_form">
+                              <div class="row">
+                            <div class="col-xs-12 col-sm-3 col-md-4 col-lg-6">
+                                <div class="fom-group">
+                        <input type="text" class="form-control" formControlName="facebook_link" placeholder="facebook.com/Nickname*"  />
+                        <div *ngIf="submitted && f1.facebook_link.errors" class="invalid-feedback text-left">
+                            <div class="redclass" *ngIf="f1.facebook_link.errors.required">Facebook link is required</div>
+                        </div>         
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-3 col-md-4 col-lg-6">
+                                <div class="fom-group">
+                                    <input type="text" formControlName="twitter_link" class="form-control" placeholder="Twitter.com/Nickname" >
+                                    <div *ngIf="submitted && f1.twitter_link.errors" class="invalid-feedback text-left">
+                                        <div class="redclass" *ngIf="f1.twitter_link.errors.required">Twitter link is required</div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div> 
+                               <div class="row">
+                            <div class="col-xs-12 col-sm-3 col-md-4 col-lg-6">
+                                <div class="fom-group">
+                                    <input type="text" formControlName="insta_link" class="form-control" placeholder="instagram.com/Nickname" >
+                                    <div *ngIf="submitted && f1.insta_link.errors" class="invalid-feedback text-left">
+                                        <div class="redclass" *ngIf="f1.insta_link.errors.required">Instagram link is required</div>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-3 col-md-4 col-lg-6">
+                                <div class="fom-group">
+                                    <input type="text" formControlName="soundcloud" class="form-control" placeholder="soundcloud.com/Nickname" >
+                                    <div *ngIf="submitted && f1.soundcloud.errors" class="invalid-feedback text-left">
+                                        <div class="redclass" *ngIf="f1.soundcloud.errors.required">Instagram link is required</div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div> 
+                               <div class="row">
+                            <div class="col-xs-12 col-sm-3 col-md-4 col-lg-6">
+                                <div class="fom-group">
+                                    <input type="text" formControlName="youtube" class="form-control" placeholder="youtube.com/Nickname">
+                                    <div *ngIf="submitted && f1.youtube.errors" class="invalid-feedback text-left">
+                                        <div class="redclass" *ngIf="f1.youtube.errors.required">Youtube link is required</div>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-3 col-md-4 col-lg-6">
+                                <div class="fom-group">
+                                    <input type="text" formControlName="twitch" class="form-control" placeholder="twitch.com/Nickname">
+                                    <div *ngIf="submitted && f1.twitch.errors" class="invalid-feedback text-left">
+                                        <div class="redclass" *ngIf="f1.twitch.errors.required">Twitch link is required</div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <button type="submit" class="saveaddress" value="submit">Save</button>    
+                        </div> 
+                    </div>     
+                    </form>
+                </div>
+                    
+                       <div role="tabpanel" class="tab-pane fade in" id="subscription">
+                           <h3>Subscription Plan </h3> 
+                          <div class="subscription_plan">
+                                <div class="row">
+                                    <div class=" col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="subscription_box">
+                                           <p> Seller Plan</p>
+                                            <h2>Free</h2>
+                                            <span>Active Forever</span>
+                                            <a class="bg_gray" routerLink="/pricing">Manage Plan</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="subscription_box">
+                                           <p> Listener Plan</p>
+                                            <h2>Listener</h2>
+                                            <span> </span>
+                                            <a class="bg_red" routerLink="/pricing">Subscribe</a>
+                                        </div>
+                                    </div>
+                                 </div>
+                           </div> 
+                        </div>
+                    
+                    
+               <!--      <div role="tabpanel" class="tab-pane fade login-form in" id="billing">
+                         <form action="#">
+                            <div class="form-group row align-items-center">
+                                <label class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Title</label>
+                                <div class="col-12 col-sm-12 col-md-8 col-lg-6">
+                                    <div class="form-row">
+                                        <div class="col-6 col-sm-3">
+                                            <div class="custom-radio">
+                                                <input class="form-check-input" type="radio" name="gender" id="male">
+                                                <span class="checkmark"></span>
+                                                <label class="form-check-label" for="male">Mr.</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-sm-3">
+                                            <div class="custom-radio">
+                                                <input class="form-check-input" type="radio" name="gender" id="female">
+                                                <span class="checkmark"></span>
+                                                <label class="form-check-label" for="female">Mrs.</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="f-name" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">First Name</label>
+                                <div class="col-12 col-sm-12 col-md-8 col-lg-9">
+                                    <input type="text" class="form-control" id="f-name" required="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="l-name" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Last Name</label>
+                                <div class="col-12 col-sm-12 col-md-8 col-lg-9">
+                                    <input type="text" class="form-control" id="l-name" required="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Email Address</label>
+                                <div class="col-12 col-sm-12 col-md-8 col-lg-9">
+                                    <input type="text" class="form-control" id="email" required="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputpassword" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Current Password</label>
+                                <div class="col-12 col-sm-12 col-md-8 col-lg-9">
+                                    <input type="password" class="form-control" id="inputpassword" required="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="newpassword" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">New Password</label>
+                                <div class="col-12 col-sm-12 col-md-8 col-lg-9">
+                                    <input type="password" class="form-control" id="newpassword" required="">
+                                    <button class="pass-show-btn" type="button">Show</button>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="c-password" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Confirm Password</label>
+                                <div class="col-12 col-sm-12 col-md-8 col-lg-9">
+                                    <input type="password" class="form-control" id="c-password" required="">
+                                    <button class="pass-show-btn" type="button">Show</button>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="birth" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Birthdate (Optional)</label>
+                                <div class="col-12 col-sm-12 col-md-8 col-lg-9">
+                                    <input type="text" class="form-control" id="birth" placeholder="MM / DD / YYYY" required="">
+                                </div>
+                            </div>
+
+                                                       
+                            <div class="register-box d-flex justify-content-end mt-half">
+                                <button type="submit" class="btn btn-secondary">Save</button>
+                            </div>
+                        </form>
+                    </div> -->
+                    
+                    
+                    <div role="tabpanel" class="tab-pane fade in" id="shipping">
+                     <h3>Address </h3>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="add_address">
+                                    <a href="javascript:void(0)" (click) ="toggleDisplay()"><img src="assets/images/add-address-icon.png" alt="">
+                                    <h2>Add Address</h2>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-4" *ngFor="let row of address">
+                                <div class="address_info"> 
+                                     <h2><img src="assets/images/logo.png" alt=""> </h2>
+                                    <div class="address_details">
+                                        <h3>{{row.shipping_name | uppercase}}</h3>
+                                        <p>+91-{{row.shipping_mobile}}</p>
+                                        <p>{{row.shipping_email}}</p>
+                                        <p>{{row.shipping_address}}</p>
+                                        <a class="edit" href="javascript:void(0)" (click)="edit(row.id)">Edit</a> 
+                                        <a class="remove" href="javascript:void(0)" mat-button  (click)="delete(row.id)">Remove</a>
+                                    </div>
+                                </div>
+                            </div>
+                             
+                        </div> 
+                    <div *ngIf="isShow">
+                        <h3 id="addres" >Add New Address </h3>
+                       
+                        <div id="" class="row">    
+                            <form method="Post" (submit)="add_address($event)" [formGroup]="address_book_from" >
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                <input type="hidden" class="form-control" formControlName="id"  placeholder="address_id*">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName="name"  placeholder="Name*" maxlength="50">
+                                      
+                                        <div *ngIf="address_book_from.touched && address_book_from?.controls.name?.errors?.required" class="invalid-feedback redclass">
+                                            Name is required
+                                        </div>
+                                    </div>   
+                                  
+                            </div>   
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                <div class="form-group">
+                                    <input type="text" minlength="10" maxlength="10" class="form-control" formControlName="phone" placeholder="Mobile Number*">
+                                    <div *ngIf="address_book_from.touched && address_book_from?.controls.phone?.errors?.required" class="invalid-feedback redclass">
+                                        Mobile is required
+                                    </div>
+                                    <div *ngIf="address_book_from.touched && address_book_from?.controls.phone?.errors?.pattern" class="invalid-feedback redclass">Please enter a valid phone number</div>
+                                </div>    
+                            </div> 
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" formControlName="email" id="email" placeholder="Email Id*">
+                               
+                                    <div *ngIf="address_book_from && address_book_from.touched && address_book_from?.controls.email?.errors" class="invalid-feedback text-left">
+                                        <div class="redclass" *ngIf="address_book_from?.controls.email?.errors?.required">Email is required</div>
+                                        <div class="redclass" *ngIf="address_book_from?.controls.email?.errors?.email">Email should be valid</div>
+                                    </div>
+                                </div> 
+                            </div>
+                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <textarea type="text" class="form-control" formControlName="address"  id="Address" placeholder="Address"></textarea>
+                                </div> 
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <button  class="saveaddress">Save</button>
+                                 
+                            </div> 
+                        </form>     
+                        </div>
+                    </div>
+                        
+                    </div>
+                     <div role="tabpanel" class="tab-pane fade in" id="discography">
+                        <div class="row">
+                            <div class="  col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <h3 class="redclass">Discography</h3>
+                            </div> 
+                         </div>  
+                         <div class="row">
+                             <div class="col-lg-push-2 col-xs-12 col-sm-12 col-md-12 col-lg-8">
+                                 <div class="discography">
+                                    <h2>Discography powered by Trill Icons™</h2>
+                                     <p>Add your music that you have produced, engineered and/or performed that are currently available in Trill Icons™</p>
+                                     <div class="add_track">
+                                        <a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-plus"></i>Ad Track</a>
+                                     </div>
+                                 </div> 
+                             </div>
+                         </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in" id="login">
+                        <div class="row">
+                            <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <h3 class="redclass" >Login Sessions</h3>
+                            </div>
+                               <div class="col-lg-push-2 col-xs-12 col-sm-12 col-md-12 col-lg-8">
+                                <div class="row">
+                                       <div class="col-xs-6 col-sm-12 col-md-12 col-lg-6">
+                                            <div class="top_btn">
+                                                <a href="#"><i class="fa fa-angle-left"></i> Account Credentials</a>
+                                            </div>
+                                        </div>
+                                    <div class="col-xs-6 col-sm-12 col-md-12 col-lg-6">
+                                        <div class="top_btn text-right">
+                                            <a href="javascript:void(0)" (click)="logoutSession()">Logout From All</a>
+                                        </div>
+                                    </div>
+                        <div class="login_sessions" *ngFor="let srow of sessionlist; let i=index">
+                            <div class="col-xs-6 col-sm-12 col-md-12 col-lg-6">
+                                 <div class="login_main">
+                        <h2><i class="fa fa-desktop"></i> {{srow.window}} • {{srow.city}}  <span>{{srow.browser}}</span></h2>  
+                                            </div> 
+                                        </div>
+                                        <div class="col-xs-6 col-sm-12 col-md-12 col-lg-6">
+                                              <div class="active_login">
+                                                <a href="javascript:void(0)" *ngIf="i==0">Active Session  </a>     
+                                                <a href="javascript:void(0)" *ngIf="i!=0">{{ srow.created_at | date:'MMMM d, y H:m a' }} </a>                                                 
+                                                  <div class="dropdown listing-table-drop">
+                                                  <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><a class="dot_line" href="#"><i class="fa fa-ellipsis-v"></i> </a></button>
+                                                  <ul class="dropdown-menu dropdown-menu-right">
+                         <li><a href="javascript:void(0)" (click)="logoutSession(srow.id)"><i class="fa fa-power-off"></i> Logout</a></li> 
+                                                  </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                         </div>  
+                    </div>
+                </div>
+            </div>
+        </div>             
+            </div>
+            
+            
+            <div class="tab-pane text-style active" id="orders">
+<h3>Purchase</h3>
+<div class="dec-txt text-center" *ngIf="buyer_orders.length == 0">
+    <p>No order has been made yet</p>
+    <a routerLink="/" class="btn btn-warning burlywood-btn">Browse Tracks</a>
+    </div>
+<div class="table-responsive" *ngIf="buyer_orders.length > 0">
+    <table class="table">
+        <thead>
+            <tr >
+                <th>Order</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th>Actions</th>                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of buyer_orders; let i = index">
+                <td>{{order.order_no}}</td>
+                <td>{{order.order_date | date: 'longDate'}}</td>
+                <td>Completed</td>
+                <td><i class="fa fa-inr"></i> {{order.grand_total}} for {{order.products_count}} item </td>
+                <td><a class="btn btn-secondary" href="javascript:void(0)"  (click)="open_close_modal(1,0,1,order)">View</a></td>
+            </tr>
+           
+        </tbody>
+    </table>
+	
+</div>
+</div>
+
+<div class="tab-pane text-style" id="sorders">
+    <h3>Sales</h3>
+	<div class="dec-txt text-center" *ngIf="orders.length == 0">
+		<p>No order has been made yet</p>
+		<a routerLink="/" class="btn btn-warning burlywood-btn">Browse Tracks</a>
+    </div>
+    <div class="table-responsive" *ngIf="orders.length > 0">
+        <table class="table">
+            <thead>
+                <tr >
+                    <th>Order</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                    <th>Actions</th>                
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of orders; let i = index">
+                    <td>{{order.order_no}}</td>
+                    <td>{{order.order_date | date: 'longDate'}}</td>
+                    <td>Completed</td>
+                    <td><i class="fa fa-inr"></i> {{order.grand_total}} </td>
+                    <td><a class="btn btn-secondary" href="javascript:void(0)"  (click)="open_close_modal(1,0,1,order)">View</a></td>
+                </tr>
+               
+            </tbody>
+        </table>
+    </div>
+    </div>
+
+            <div class="tab-pane text-style" id="notifications1">
+                     <h3>Notifications </h3>
+                    
+                    <div class="col-lg-push-3  col-md-6 ">
+                        <div class="notifications_main">
+                            <span><i class="fa fa-bell-o"></i> <a href="#message">0</a> </span>
+                            <h2> No Notifications</h2>
+                            <p>If you receive any notification, it will display here</p>
+                        </div>
+                   </div>
+                
+                </div>         
+            
+            <div class="tab-pane login-form" id="account">       
+                 <div class="row">
+            <div class="col-sm-3"> 
+                <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well"> 
+                  <li class="active"><a href="#playlists" data-toggle="tab"><span class="fa fa-music"></span> Playlists </a></li>
+                  <li><a href="#embeddedSetting" class="embeddedSetting" data-toggle="tab"><span class="fa fa-heart-o"></span>  Embedded Settings </a></li>
+				  <li><a href="#favorites" data-toggle="tab"><span class="fa fa-heart-o"></span>  Favorites </a></li>
+                    <li><a href="#history" data-toggle="tab"><span class="fa fa-history"></span> History </a></li>
+                  <li><a href="#lyrics" data-toggle="tab"><span class="fa fa-headphones"></span> Lyrics </a></li>
+                  <li><a href="#negotiations" data-toggle="tab"><span class="fa fa-handshake-o"></span> Negotiations </a></li> 
+                <li><a href="#connections" data-toggle="tab"><span class="fa fa-link"></span> Connections </a></li> 
+                <li><a href="#Coupons" data-toggle="tab"><span class="fa fa-link"></span> Coupons </a></li>
+                <li class=""><a href="#help" data-toggle="tab"> <span class="fa fa-question-circle"></span>  Help</a></li>     
+                </ul>
+            </div>
+            <div class="col-sm-9">
+                <div class="tab-content">  
+                    <div role="tabpanel" class="tab-pane active fade in" id="playlists">
+                       <div class="row">
+                            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                <!--<div class="play_create">
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="search" (input)="getPlaylistTrack(0,$event.target.value);" class="form-control" placeholder="Filter">
+                                            <span class="search_icon" ><i class="fa fa-search"></i> </span>
+                                        </div>
+                                    </form>
+                                </div>-->                            
+                            </div>
+                            <div class="col-xs-6 col-sm-9 col-md-9 col-lg-9">
+                                <div class="play_create">
+                                    <h2><a routerLink="/create-playlist"> + Create Playlist</a> </h2>
+                                </div>
+                            </div>
+                         </div> 
+                          <div class="row">
+						  <!--<div class="play_list"  >
+                            <nav class="nav-sidebar sws_playlist">
+								<ul class="nav tabs" >
+									<li class="active" ><span class="playListtitlemain" (click)="getPlaylistTrack(0,'');" >All</span></li>
+									<li class="" *ngFor="let row of playlistTitle ; let i=index">
+										<span class="playListtitlemain" (click)="getPlaylistTrack(row.id,'');" >{{row.name | uppercase}}</span>
+										<a class="playListancor" routerLink="/create-playlist" [queryParams]="{ 'playlist': row.id}"><i class="fa fa-edit"></i> </a>
+                                        <a class="playListancor playListancor1" href="javascript:void(0)" (click)="deletePlaylist(row)"><i class="fa fa-remove"></i> </a>
+
+									</li>
+								</ul>
+							</nav>
+                               
+                         </div> 
+						 
+                         <div class="play_list" *ngFor="let row of playlist | paginate: { id: 'playlist_pagination',
+                                      itemsPerPage: 12,
+                                      currentPage: playlistpage,
+                                      totalItems: playlisttotalRec  }; let i=index" >
+                             
+                             <div class="col-xs-2 col-sm-2 col-md-3 col-lg-1">
+                                <div class="play_list_info">                         
+                                     <a href="#"><i class="fa fa-play"></i></a>
+                                    <img src="{{row.image}}" alt="">
+                                </div>
+                            </div>
+                             <div class="col-xs-8 col-sm-6 col-md-3 col-lg-9">
+                                <div class="play_list_info">
+                                    <h2>{{row.name | uppercase}} <span>{{row.track_type}}</span></h2>
+                                </div>
+                            </div>
+                               <div class="col-xs-2 col-sm-2 col-md-3 col-lg-2">
+                                <div class="play_list_info text-right">
+                                    <span>{{row.track_time}}</span> <br/>
+								</div>
+								
+                            </div>
+                         </div> -->
+						 
+                        <div class="playlist-accordion">
+                        <div class="panel-group" id="accordion">
+						  
+						  <div class="panel panel-default" *ngFor="let row of playlistTitle ; let i=index">
+							<div class="panel-heading">
+							  <h4 class="panel-title"  (click)="getPlaylistTrack(row.id,'');">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThreePlaylist{{i}}">
+								  {{row.name | uppercase}} <em class="song-no">{{row.track_count}}</em>
+								</a>
+								<button class="playListancor" routerLink="/create-playlist" [queryParams]="{ 'playlist': row.id}"><i class="fa fa-edit"></i> </button>
+                                <button class="playListancor playListancor1"  (click)="deletePlaylist(row)"><i class="fa fa-remove"></i> </button>
+							  </h4>
+							</div>
+							<div id="collapseThreePlaylist{{i}}" class="panel-collapse collapse">
+							  <div class="panel-body">
+								<div class="row">
+												 <div class="play_list" *ngFor="let row1 of playlist | paginate: { id: 'playlist_pagination',
+                                      itemsPerPage: 12,
+                                      currentPage: playlistpage,
+                                      totalItems: playlisttotalRec  }; let m=index">
+													 <div class="col-xs-2 col-sm-2 col-md-3 col-lg-1">
+														<div class="play_list_info">                         
+															 <a href="javascript:void(0)" (click)="CartService.setAllTracks(playlist,'tracks', m)"><i class="fa fa-play"></i></a>
+															<img src="{{row1.image}}" alt="">
+														</div>
+													</div>
+													 <div class="col-xs-8 col-sm-6 col-md-3 col-lg-9">
+														<div class="play_list_info">
+															<h2>{{row1.name | uppercase}} <span>{{row1.track_type}}</span></h2>
+														</div>
+													</div>
+													   <div class="col-xs-2 col-sm-2 col-md-3 col-lg-2">
+														<div class="play_list_info text-right">
+															<span>{{row1.track_time}}</span> 
+														</div>
+													</div>
+												 </div> 
+											 
+											</div>  
+							  </div>
+							</div>
+						  </div>
+						</div>
+												</div>
+                        
+
+                            <pagination-controls  id="playlist_pagination" maxSize="5" directionLinks="true" (pageChange)="getPlaylistPage($event)">
+
+                                    </pagination-controls>
+                            
+                    </div>  
+                        
+                        
+                     </div>
+					
+					
+					<div role="tabpanel" class="tab-pane fade" id="embeddedSetting">
+                        <h2 class="white">Embedded Track Settings</h2>
+						
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-60"> 
+								<div class="track_form_editer embeddedSettingmain">
+									<div class="row">
+										<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+											<div class="user_info">
+											    <img src="{{embeddedlogo}}" alt="" class="img-circle"/> 
+												<button type="submit" class="user_profile_btn" data-toggle="modal" data-target="#uploadEmbedLogo">Upload Your New Logo</button>
+											</div>    
+										</div> 
+										<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+											<h3 class="white">Embedded Playlist Url</h3>
+											<p>Embed Your Playlist Track on your site</p>
+											<p>{{embeddedUrl}}</p>
+										</div>
+										
+									</div>
+								<form [formGroup]="EmbeddedSettingDataForm" (ngSubmit)="onSubmitembeddedSetting_api_calling()" method="post">
+                                <div class="row ">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label class="color_picker_lbl">Background Color</label>
+											<input type="color" class="color_picker" formControlName="background_color" value="#ff0000">
+                                            <!--<select class="form-control"  formControlName="background_color">
+												 <option [value]="">Select Background Color</option>
+												 <option *ngFor="let option of embeddedcoloroptions" [value]="option" >{{option}}</option>
+												 <option value="white" >White</option>
+												 <option value="black" >Black</option>
+												 <option value="8e7e47" >Gold</option>
+											</select>-->
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label class="color_picker_lbl">Font Color</label>
+											<input type="color" class="color_picker" formControlName="font_color" value="#ff0000">
+                                            <!--<select class="form-control"  formControlName="font_color">
+												<option [value]="">Select Font Color</option>
+												<option value="#ffffff" >White</option>
+												<option value="#000000" >Black</option>
+												<option value="#8e7e47" >Gold</option>
+											</select>-->
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label class="color_picker_lbl">Button Color</label>
+											<input type="color" class="color_picker" formControlName="button_color" value="#ff0000">
+                                            <!--<select class="form-control"  formControlName="button_color">
+												<option [value]="">Select Button Color</option>
+												<option value="#ffffff" >White</option>
+												<option value="#000000" >Black</option>
+												<option value="#8e7e47" >Gold</option>
+											</select>-->
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                                        <div class="form-group">
+                                            <label>Google Analytics Id</label>
+                                            <!--<textarea  class="form-control" placeholder="Paste your google analytics code here" formControlName="google_analytics"></textarea>-->
+											<input type="text" class="form-control" placeholder="Google Analytics Id" formControlName="google_analytics"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                                        <div class="form-group">
+                                            <label>Facebook Pixles Id</label>
+                                            <!--<textarea  class="form-control" placeholder="Paste your facebook pixles code here" formControlName="facebook_pixles"></textarea>-->
+											<input type="text" class="form-control" placeholder="Facebook Pixles Id" formControlName="facebook_pixles"/>
+                                        </div>
+                                    </div>
+									
+									 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+										<button type="submit" class="saveaddress" value="submit">Save</button>    
+									  </div>
+								</div>
+								</form>
+                            </div>
+							</div>
+						</div>        
+                    </div>
+                    
+					
+                    <div role="tabpanel" class="tab-pane fade" id="favorites">
+                         <div class="row">
+                <div class="col-lg-push-9 col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <form>
+                        <div class="form-group">
+                            <input type="search" (input)="getFavouriteTrack($event.target.value);" class="form-control track-search" placeholder="Tracks which I have liked">
+                            <span class="search_icon"><i class="fa fa-truck"></i> </span>
+                        </div>
+                    </form>
+                </div> 
+             </div>        
+
+             <div class="row">
+                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-60"> 
+                        <div class="favorites_item" *ngFor="let product of favoritelist ; let i=index">
+                            <div class="counter_box">                       
+                                <p>{{i+1}}</p>
+                            </div>
+                             <div class="fav_img"> 
+                                <a href="javascript:void(0)" (click)="CartService.setAllTracks(favoritelist,'tracks', i)"><i class="fa fa-play"></i></a>
+                               <a href="javascript:void(0)"><img src="{{product.image}}" alt=""></a>
+                            </div>
+                            <div class="fav_list">
+                                <h2><a routerLink="/details/{{CartService.getDetailsUrl(product)}}">{{product.name}} <span> by  <a routerLink="/p/{{CartService.getSellerProfileUrl(product)}}">{{product.artist_name}}</a></span></a> </h2>
+                            </div>
+                            <div class="download_price">
+                               <div class="download_icon">
+								<ng-container *ngIf="product.download_options!='1'">
+									<ng-container *ngIf="product.require_downloaders == 1 || product.require_downloaders == 2">
+										<a href="javascript:void(0)" class="bg_gray" (click)="open_close_modal_download(1,0,1,product)"  ><i class="fa fa-download"></i>
+										Free</a>
+									</ng-container>
+									
+									<ng-container *ngIf="!product.require_downloaders">
+										<a href="javascript:void(0)" class="bg_gray" (click)="downloadFile(product,i)" download="{{product.audio}}"><i class="fa fa-download"></i>
+										Free</a>
+									</ng-container>
+								</ng-container>
+                                   <a class="bg_red" href="#"><span><i class="fa fa-shopping-cart"></i> ${{product.price}}</span> </a>
+                                   <a class="dot_line" href="#"><i class="fa fa-ellipsis-v"></i> </a>
+                                </div> 
+                            </div>   
+                         </div>
+					</div>
+                </div>        
+                    </div>
+                    
+                       <div role="tabpanel" class="tab-pane fade in" id="history">
+                       <div class="row">
+                            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                <div class="play_create">
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="search" (input)="getHistoryTrack($event.target.value);" class="form-control search-input" placeholder="Filter">
+                                            <span class="search_icon search-input-icon"><i class="fa fa-search"></i> </span>
+                                        </div>
+                                    </form>
+                                </div>                            
+                            </div>
+                            <!--<div class="col-xs-6 col-sm-9 col-md-9 col-lg-9">
+                                <div class="play_create">
+                                    <h2><a href="#">Create Playlist +</a> </h2>
+                                </div>
+                            </div>-->
+                         </div> 
+                          <div class="row">
+                         <div class="play_list" *ngFor="let product of historylist ; let i=index"> 
+                             <div class="col-xs-2 col-sm-2 col-md-3 col-lg-1">
+                                <div class="play_list_info">
+                                     <a href="javascript:void(0)" (click)="CartService.setAllTracks(historylist,'tracks', i)"><i class="fa fa-play"></i></a>
+                                    <img src="{{product.image}}" alt="">
+                                </div>
+                            </div>
+                             <div class="col-xs-8 col-sm-6 col-md-3 col-lg-9">
+                                <div class="play_list_info">
+									<h2><a routerLink="/details/{{CartService.getDetailsUrl(product)}}">{{product.name}} <span> by  <a routerLink="/p/{{CartService.getSellerProfileUrl(product)}}">{{product.artist_name}}</a></span></a> </h2>
+								</div>
+                            </div>
+                               <div class="col-xs-2 col-sm-2 col-md-3 col-lg-2">
+                                <div class="play_list_info text-right">
+                                    <span>{{product.track_time}}</span> 
+                                </div>
+                            </div>
+                         </div>  
+						</div>  
+                    </div>
+                    
+                     <div role="tabpanel" class="tab-pane fade in" id="lyrics">
+                          <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="play_create">
+                                     <h3>Lyrics  <a href="#">+ Create Lyrics </a></h3>                                    
+                                </div> 
+                            </div>  
+                         </div>  
+                         
+                       <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 "> 
+                                <div class="favorites_item">
+                                    <div class="counter_box">    
+                                        <a href="#"><i class="fa fa-play"></i></a>
+                                    </div>
+                                     <div class="fav_img"> 
+                                       <a href="#"><img src="assets/images/fav.png" alt=""></a>
+                                    </div>
+                                    <div class="fav_list">
+                                        <h2><a href="#">Alone II ✘ Lost Control ✘ On My Way [Remix Mashup] <span> by  Alan Walker, Ava Max, Sabrina Carpender</span></a> </h2>
+                                    </div>
+                                    <div class="download_price">
+                                       <div class="download_icon"> 
+                                           <a class="bg_red" href="#"><span><i class="fa fa-pencil-square-o"></i> lyrics</span> </a>
+                                           <a class="dot_line" href="#"><i class="fa fa-ellipsis-v"></i> </a>
+                                        </div> 
+                                    </div>   
+                                </div>
+                      <div class="favorites_item">
+                            <div class="counter_box">  
+                                <a href="#"><i class="fa fa-play"></i></a>
+                            </div>
+                             <div class="fav_img">
+                               <a href="#"><img src="assets/images/fav.png" alt=""></a>
+                            </div>
+                            <div class="fav_list">
+                                <h2><a href="#">K-391 & Alan Walker - Ignite (Live Performance at <span> by Julie Bergan and Vinni</span></a> </h2>
+                            </div>
+                            <div class="download_price">
+                               <div class="download_icon"> 
+                                   <a class="bg_red" href="#"><span><i class="fa fa-pencil-square-o"></i> lyrics</span> </a>
+                                   <a class="dot_line" href="#"><i class="fa fa-ellipsis-v"></i> </a>
+                                </div> 
+                            </div>   
+                         </div>
+                        
+                    </div>
+                </div>     
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in" id="negotiations">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                  <h3>negotiations </h3>
+                            </div> 
+                         </div>  
+                    
+                            <div class="row">
+
+                                <div class="chatsDiv">
+                                    
+                                    <ng-container *ngFor="let msg of msgs">
+                                           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12"  *ngIf="user_id==msg.toUser">
+                                            <div class="negotiations_main bg_gray">
+                                            <div class="negotiations_box">
+                                            <div class="negotiations_img">
+                                            <img src="{{msg.fromUserImage}}" alt="">
+                                            </div>
+                                            <div class="negotiations_text">
+                                            <h2>{{msg.fromUserName}}</h2>
+                                            <p>{{msg.msg}}</p>
+                                            <span>{{msg.created_at | dateAgo}}</span>
+                                            </div>
+                                            </div>
+                                            </div> 
+                                            </div>
+
+                            
+                                    <div class="col-xs-push-1 col-xs-11 col-sm-6 col-md-6 col-lg-11"  *ngIf="user_id==msg.fromUser" >
+                                    <div class="negotiations_main bg_gray">
+                                    <div class="negotiations_box">
+                                    <div class="negotiations_img">
+                                    <img src="{{msg.fromUserImage}}" alt="">
+                                    </div>
+                                    <div class="negotiations_text">
+                                    <h2>{{msg.fromUserName}}</h2>
+                                    <p>{{msg.msg}}</p>
+                                    <span>{{msg.created_at | dateAgo}}</span>
+                                    </div>
+                                    </div>
+                                    </div> 
+                                    </div>
+                                </ng-container>
+                                 </div>
+                               
+                                 
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                                <div class="comment_box">
+                                    <textarea class="form-control" placeholder="comment type here" #comment id="commentBox" maxlength="255"> </textarea>         
+                                </div>
+                            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                <div class="register-box d-flex justify-content-end mt-half">
+                    <button type="button" class="btn btn-secondary"  (click)="postChatMsg(comment.value,20)">Submit</button>
+                </div>
+            </div>
+                            </div> 
+                        </div>
+                     <div role="tabpanel" class="tab-pane fade in" id="connections">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                               
+                                    <div class="connections_create">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-8">                                        
+                                                <h3>Connections </h3>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+                                                  <div class="form-group">
+                                        <a href="#"><i class="fa fa-search"></i> </a>
+                                        <input type="search" class="form-control" placeholder="Search Connections">
+                                        <a href="#"><i class="fa fa-remove"></i> </a>
+                                        </div> 
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+                                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Create List</button>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                </div> 
+                            
+                            
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                                <div class="connections_main">
+                                    <h2>Featured member</h2>
+                                    <a href="#"> <i class="fa fa-play"></i>
+                                    <img src="assets/images/client.png" alt="">
+                                    </a>
+                                    <h4>Shahrukh Hashmi</h4>
+                                    <span>@hashmi</span>
+                                    <button type="submit" class="follow_btn"><img src="assets/images/user.png" alt=""> Follow</button>
+                                   
+                                </div>
+                            </div>
+                         </div> 
+                         
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane fade in" id="Coupons">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                               
+                                    <div class="connections_create">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-8">                                        
+                                                <h3>Coupons </h3>
+                                            </div>
+                                            <div class="col-xs-6 col-sm-9 col-md-9 col-lg-9">
+												<div class="play_create">
+													<h2><a routerLink="/create-coupons"> + Create Coupon</a> </h2>
+												</div>
+											</div>
+                                          
+                                        </div>                                        
+                                    </div>
+                                </div> 
+                            
+                            
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                                <div class="connections_main" *ngFor="let row of coupons ; let i=index">
+                                    <h2>{{row.name}}</h2>
+                                    <h4>{{row.description}}</h4>
+                                    <span>{{row.price}}</span>
+									<a class="playListancor playListancor1" href="javascript:void(0)" (click)="deleteCoupons(row)"><i class="fa fa-remove"></i> </a>
+                                </div>
+                            </div>
+                         </div> 
+                         
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in" id="help">
+                        <div class="row">
+                            <div class="  col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                   <h3>help </h3>
+                            </div> 
+                         </div>  
+                    </div>
+                </div>
+            </div>
+        </div>   
+                
+                
+             </div>          
+
+            <div class="tab-pane text-style" id="message"> 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="bg_message">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="message_heading">                                                    
+                                 <h2>Message <a data-toggle="modal" data-target="#myModal1" href="#"> <i class="fa fa-plus"></i></a> </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="message_search">
+                        <div class="form-group">
+                            <input type="search" class="form-control" placeholder="Search by user">
+                            <a href="#"> <i class="fa fa-search"></i></a>
+                        </div>
+                    </div>
+                     <div class="message_list">   
+                         <div class="message_img">
+                               <img src="assets/images/client.png" alt=""> 
+                         </div> 
+                         <div class="message_text">
+                             <span>2h</span>
+                            <h2>Shahrukh </h2>
+                             <p>Hey! I would appreciate it if you could check my beats. It would mean a lot. Let me know what you think!</p>                             
+                         </div>
+                     </div> 
+                     <div class="message_list">   
+                         <div class="message_img">
+                               <img src="assets/images/client.png" alt=""> 
+                         </div> 
+                         <div class="message_text">
+                             <span>2h</span>
+                            <h2>Shahrukh </h2>
+                             <p>Hey! I would appreciate it if you could check my beats. It would mean a lot. Let me know what you think!</p>                             
+                         </div>
+                     </div> 
+                </div>  
+            </div>    
+            </div>
+            
+        </div>
+    </div>
+  
+        </div>
+    </div>
+</section> 
+
+
+  <!-- Modal -->
+<div class="track_model">
+      <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Track to Discography</h4>
+        </div>
+        <div class="modal-body">
+            <input type="search" class="form-control discography-inpt-srch" placeholder="Search Here">
+           <a href="javascript:void(0)"> <i class="fa fa-search discography-search"></i></a>
+        </div> 
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="track_model">
+      <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Message</h4>
+        </div>
+        <div class="modal-body">
+            <h2>to : <a href="#"><i class=""></i> Search by user</a> </h2>
+            <textarea type="search" class="form-control" placeholder="Message"> </textarea>
+            <button class="send_btn" type="submit">Send</button>
+        </div> 
+      </div>
+    </div>
+  </div>
+</div>
+
+<!---Image Upload--->
+<!-- Modal -->
+<div class="track_model">
+
+    <div id="CropPhoto" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm"> 
+          <!-- Modal Image content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Crop Image</h4>
+            </div>
+            <div class="modal-body">
+                    <image-cropper
+                    [imageChangedEvent]="imageChangedEvent"
+                    [maintainAspectRatio]="true"
+                    [aspectRatio]="4 / 3"
+                    format="png"
+                    (imageCropped)="imageCropped($event)"
+                    (imageLoaded)="imageLoaded()"
+                    (cropperReady)="cropperReady()"
+                    (loadImageFailed)="loadImageFailed()"
+                    ></image-cropper>
+                <button type="submit" class="cancel_btn" data-dismiss="modal" aria-label="Close">Cancel</button>
+                <button type="submit" class="btn btn-primary" (click)="saveImage()">Save</button>
+            </div> 
+          </div>
+      
+        </div>
+      </div>
+	  
+	 <div id="CropEmbedLogo" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm"> 
+          <!-- Modal Image content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Crop Image</h4>
+            </div>
+            <div class="modal-body">
+                    <image-cropper
+                    [imageChangedEvent]="imageChangedEvent"
+                    [maintainAspectRatio]="true"
+                    [aspectRatio]="4 / 3"
+                    format="png"
+                    (imageCropped)="imageCropped($event)"
+                    (imageLoaded)="imageLoaded()"
+                    (cropperReady)="cropperReady()"
+                    (loadImageFailed)="loadImageFailed()"
+                    ></image-cropper>
+                <button type="submit" class="cancel_btn" data-dismiss="modal" aria-label="Close">Cancel</button>
+                <button type="submit" class="btn btn-primary" (click)="saveEmbedLogo()">Save</button>
+            </div> 
+          </div>
+      
+        </div>
+      </div>
+<div class="upload_new_pic">
+
+    <div id="uploadArtWork" class="modal fade" role="dialog">
+ <div class="modal-dialog modal-md">
+   <div class="modal-content">
+     <div class="modal-header">
+        <h4 class="modal-title">{{currentModalTitle}}</h4>
+       <button type="button" class="close" data-dismiss="modal">&times;</button> 
+     </div>
+     <div class="modal-body">
+       <div class="row">
+        <div class="col-sm-3"> 
+             <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
+               <li [ngClass]="(alluploaded?.length > 0)?'active':''"
+                *ngIf="alluploaded?.length > 0"><a href="#myfile" data-toggle="tab"><span class="fa fa-file"></span> My File </a></li>
+               <li [ngClass]="(alluploaded?.length > 0)?'':'active'"><a href="#upload-file" data-toggle="tab"><span class="fa fa-key"></span> Upload File </a></li>
+               <!--<li><a href="#googledrive" data-toggle="tab"><span class="fa fa-google"></span>  Google Drive </a></li>
+                 <li><a href="#dropbox" data-toggle="tab"><span class="fa fa-dropbox"></span> Dropbox </a></li>
+    
+               <li><a href="#facebook" data-toggle="tab"><span class="fa fa-facebook"></span> Facebook </a></li> 
+             <li><a href="#importurl" data-toggle="tab"><span class="fa fa-link"></span> Import URL  </a></li>  
+             <li class=""><a href="#webcam" data-toggle="tab"> <span class="fa fa-camera"></span>  Webcam</a></li>-->    
+             </ul>
+         </div>
+         
+               <div class="col-sm-9">
+                 <div class="tab-content">
+                     <div role="tabpanel"  [ngClass]="(alluploaded?.length > 0)?'tab-pane fade in active':'tab-pane text-style fade'" *ngIf="alluploaded?.length > 0" id="myfile">                 
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>My File</h3>
+                             </div>
+                             <div class="col-md-4" *ngFor="let imgrow of alluploaded">
+                                 <div class="myfile_img"> 
+                                    <a href="javascript:void(0);" (click)="selectGallery(imgrow.id,0)">
+                                    <img src="{{imgpath}}{{imgrow.image}}" alt=""> </a>   
+
+                                     <div class="img_info">
+                                        <a href="javascript:void(0);" (click)="selectGallery(imgrow.id,0)">
+                                         <h3> ng-star-inserted ng-lazyloaded</h3>
+                                        </a> 
+                                        <a href="javascript:void(0);" (click)="selectGallery(imgrow.id,1)"><span class="fa fa-trash-o"></span> </a>
+                                     </div>
+                                 </div>
+                             </div>
+                            
+                         </div>  
+                      </div> 
+                     <div [ngClass]="(alluploaded?.length > 0)?'tab-pane text-style fade ':'tab-pane text-style fade in active'" id="upload-file">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Upload File</h3>
+                             </div>
+                             <div class="col-md-12">
+                                <div class="dropzone-wrapper">
+                                    <div class="dropzone-desc">
+                                        <img src="assets/images/upload-file-icon.png" alt="">
+                                      <p>Choose an image file or drag it here.</p>
+                                    </div>
+                                    <input type="file" #fileInput
+                                    (change)="fileChangeEvent($event)"
+                                   id="customFile" name="filename" class="file-upload dropzone">
+                                 
+                                  </div>
+                                 <div class="upload_file">
+                                    <h1>Upload files from your computer (or drag them here)</h1>
+                                   <!--  <div class="file-upload-wrapper">
+                                        <input type="file" id="input-file-now" class="file-upload" />
+                                      </div>
+                                     <div class="file-upload-wrapper">
+                                        <input type="file" #fileInput
+                                        (change)="fileChangeEvent($event)"
+                                       id="customFile" name="filename" class="file-upload" />
+                                       <img src="assets/images/upload-file-icon.png" alt="">
+                                      </div> -->
+                                     <!--<input type="file" class=""
+                                      #fileInput
+                                       (change)="fileChangeEvent($event)"
+                                      id="customFile" name="filename"> 
+                                      <h1>Upload files from your computer (or drag them here)</h1>-->
+
+                                      <div class="fileUpload btn btn--browse">
+                                        <span>Select File</span>
+                                      <input type="file"  class="upload"
+                                      #fileInput (change)="fileChangeEvent($event)"
+                                      id="customFile" name="filename">    
+                                      </div>   
+                                     
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="tab-pane text-style fade" id="googledrive">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Google Drive</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file"> 
+                                     <img src="assets/images/google-drive.png" alt="">
+                                     <p>Please authenticate with Google Drive to select files</p>
+                                     <button class="button" type="submit">Connect to Google Drive</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                      <div class="tab-pane text-style fade" id="dropbox">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Drop Box</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file"> 
+                                     <img src="assets/images/dropbox-icon.png" alt="">
+                                      <p>Please authenticate with Dropbox to select files</p>
+                                     <button class="button" type="submit">Connect to Dropbox</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                       <div class="tab-pane text-style fade" id="facebook">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Facebook</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file"> 
+                                     <img src="assets/images/facebook-icon.png" alt="">
+                                      <p>Please authenticate with Facebook to select files</p>
+                                     <button class="button" type="submit">Connect to Facebook</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                        <div class="tab-pane text-style fade" id="importurl">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Import URL</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file_1">  
+                                     <h1>Import file from URL</h1> 
+                                     <p>Upload file by simply entering your file's full url below. </p>
+                                     <div class="row">
+                                         <div class="col-md-9">
+                                             <div class="form-group">
+                                                 <input type="text" class="form-control" placeholder="">
+                                             </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                             <div class="form-group">                                                    
+                                                 <button class="button" type="submit">Import</button>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                       <div class="tab-pane text-style fade" id="webcam">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Webcam</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file_1">  
+                                     <i class="fa fa-camera"></i>
+                                     <h1>Please allow access to your camera</h1> 
+                                     <p>In order to take pictures or record video with your camera, please allow camera access for this site.. </p>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div> 
+         </div>
+     </div> 
+   </div>
+ </div>
+ </div>
+     
+	 
+    <div id="uploadEmbedLogo" class="modal fade" role="dialog">
+ <div class="modal-dialog modal-md">
+   <div class="modal-content">
+     <div class="modal-header">
+        <h4 class="modal-title">{{currentModalTitle}}</h4>
+       <button type="button" class="close" data-dismiss="modal">&times;</button> 
+     </div>
+     <div class="modal-body">
+       <div class="row">
+        <div class="col-sm-3"> 
+             <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
+               <li [ngClass]="(alluploadedLogo?.length > 0)?'active':''"
+                *ngIf="alluploadedLogo?.length > 0"><a href="#myfile1" data-toggle="tab"><span class="fa fa-file"></span> My File </a></li>
+               <li [ngClass]="(alluploadedLogo?.length > 0)?'':'active'"><a href="#upload-file1" data-toggle="tab"><span class="fa fa-key"></span> Upload File </a></li>
+               <!--<li><a href="#googledrive" data-toggle="tab"><span class="fa fa-google"></span>  Google Drive </a></li>
+                 <li><a href="#dropbox" data-toggle="tab"><span class="fa fa-dropbox"></span> Dropbox </a></li>
+    
+               <li><a href="#facebook" data-toggle="tab"><span class="fa fa-facebook"></span> Facebook </a></li> 
+             <li><a href="#importurl" data-toggle="tab"><span class="fa fa-link"></span> Import URL  </a></li>  
+             <li class=""><a href="#webcam" data-toggle="tab"> <span class="fa fa-camera"></span>  Webcam</a></li>-->    
+             </ul>
+         </div>
+         
+               <div class="col-sm-9">
+                 <div class="tab-content">
+                     <div role="tabpanel"  [ngClass]="(alluploadedLogo?.length > 0)?'tab-pane fade in active':'tab-pane text-style fade'" *ngIf="alluploadedLogo?.length > 0" id="myfile1">                 
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>My File</h3>
+                             </div>
+                             <div class="col-md-4" *ngFor="let imgrow of alluploadedLogo">
+                                 <div class="myfile_img"> 
+                                    <a href="javascript:void(0);" (click)="selectGallery(imgrow.id,0)">
+                                    <img src="{{imgpath1}}{{imgrow.logo}}" alt=""> </a>   
+
+                                     <div class="img_info">
+                                        <a href="javascript:void(0);" (click)="selectGallery(imgrow.id,0)">
+                                         <h3> ng-star-inserted ng-lazyloaded</h3>
+                                        </a> 
+                                        <a href="javascript:void(0);" (click)="selectGallery(imgrow.id,1)"><span class="fa fa-trash-o"></span> </a>
+                                     </div>
+                                 </div>
+                             </div>
+                            
+                         </div>  
+                      </div> 
+                     <div [ngClass]="(alluploadedLogo?.length > 0)?'tab-pane text-style fade ':'tab-pane text-style fade in active'" id="upload-file1">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Upload File</h3>
+                             </div>
+                             <div class="col-md-12">
+                                <div class="dropzone-wrapper">
+                                    <div class="dropzone-desc">
+                                        <img src="assets/images/upload-file-icon.png" alt="">
+                                      <p>Choose an image file or drag it here.</p>
+                                    </div>
+                                    <input type="file" #fileInput
+                                    (change)="fileChangeEvent1($event)"
+                                   id="customFile1" name="filename" class="file-upload dropzone">
+                                 
+                                  </div>
+                                 <div class="upload_file">
+                                    <h1>Upload files from your computer (or drag them here)</h1>
+                                   <!--  <div class="file-upload-wrapper">
+                                        <input type="file" id="input-file-now" class="file-upload" />
+                                      </div>
+                                     <div class="file-upload-wrapper">
+                                        <input type="file" #fileInput
+                                        (change)="fileChangeEvent($event)"
+                                       id="customFile" name="filename" class="file-upload" />
+                                       <img src="assets/images/upload-file-icon.png" alt="">
+                                      </div> -->
+                                     <!--<input type="file" class=""
+                                      #fileInput
+                                       (change)="fileChangeEvent($event)"
+                                      id="customFile" name="filename"> 
+                                      <h1>Upload files from your computer (or drag them here)</h1>-->
+
+                                      <div class="fileUpload btn btn--browse">
+                                        <span>Select File</span>
+                                      <input type="file"  class="upload"
+                                      #fileInput (change)="fileChangeEvent1($event)"
+                                      id="customFile1" name="filename">    
+                                      </div>   
+                                     
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="tab-pane text-style fade" id="googledrive">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Google Drive</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file"> 
+                                     <img src="assets/images/google-drive.png" alt="">
+                                     <p>Please authenticate with Google Drive to select files</p>
+                                     <button class="button" type="submit">Connect to Google Drive</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                      <div class="tab-pane text-style fade" id="dropbox">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Drop Box</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file"> 
+                                     <img src="assets/images/dropbox-icon.png" alt="">
+                                      <p>Please authenticate with Dropbox to select files</p>
+                                     <button class="button" type="submit">Connect to Dropbox</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                       <div class="tab-pane text-style fade" id="facebook">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Facebook</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file"> 
+                                     <img src="assets/images/facebook-icon.png" alt="">
+                                      <p>Please authenticate with Facebook to select files</p>
+                                     <button class="button" type="submit">Connect to Facebook</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                        <div class="tab-pane text-style fade" id="importurl">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Import URL</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file_1">  
+                                     <h1>Import file from URL</h1> 
+                                     <p>Upload file by simply entering your file's full url below. </p>
+                                     <div class="row">
+                                         <div class="col-md-9">
+                                             <div class="form-group">
+                                                 <input type="text" class="form-control" placeholder="">
+                                             </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                             <div class="form-group">                                                    
+                                                 <button class="button" type="submit">Import</button>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                       <div class="tab-pane text-style fade" id="webcam">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Webcam</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file_1">  
+                                     <i class="fa fa-camera"></i>
+                                     <h1>Please allow access to your camera</h1> 
+                                     <p>In order to take pictures or record video with your camera, please allow camera access for this site.. </p>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div> 
+         </div>
+     </div> 
+   </div>
+ </div>
+ </div>
+     
+	 </div>
+</div>
+
+<div id="myModalprocess1" class="modal fade" role="dialog" *ngIf="selected_product">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <!--<div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Order Details</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">Product</div>
+                    <div class="col-md-6">{{selected_product.product_name}}</div>
+
+                    <div class="col-md-6">Product Total</div>
+                    <div class="col-md-6">{{selected_product.grand_total}}</div>
+
+                    <div class="col-md-6">Order no</div>
+                    <div class="col-md-6">{{selected_product.order_no}}</div>
+                </div>
+            </div>
+        </div>-->
+		<div class="modal-content orderModal-content">
+				<div class="modal-body">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3>Download</h3>
+				  <div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Product</th>
+						<th>Contract</th>
+						<th width="20%" style="text-align: right;">Download</th>            
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let row of selected_product; let i = index">
+						<td>{{row.product_name}}</td>
+						<td><a class="btn btn-warning burlywood-btn" href="javascript:void(0)" (click)="open_close_modal_license(1,0,row.product_id,row.license_id)" >View</a></td>
+						<td><a class="btn btn-danger" (click)="OrderdownloadFile(row,i)" download="{{row.audio}}">{{row.product_name}}</a></td>
+					</tr>
+					
+				</tbody>
+			</table>
+		</div>
+					<div class="order-summary">
+						<h4 class="title-shopping-cart">Order Details</h4>
+						<div class="checkout-element-content">
+							<h5 class="order-left">PRODUCT  <strong>TOTAL</strong></h5>
+							<p class="order-left" *ngFor="let row of selected_product; let i = index">
+								{{row.product_name}}  <strong>${{row.product_price}}</strong>
+							</p>
+							<p class="order-left">Subtotal  <strong>${{selected_product[0].grand_total}}  </strong></p>
+							<p class="order-left">Payment method  <strong>Credit/Debit Card Payment 
+							<ng-container *ngIf="selected_product[0].payment_mode==1">
+							(Paypal)  
+							</ng-container>
+							<ng-container *ngIf="selected_product[0].payment_mode==2">
+							(Stripe)  
+							</ng-container>
+							</strong></p>
+							<p class="order-left totalpay">Total  <strong>${{selected_product[0].grand_total}}</strong></p>
+						</div>
+						<!--<ul class="btn-group cart-btn-group">
+						<li><a href="javascript:void(0)">Order again</a></li>
+						</ul>-->
+					</div>
+				</div>
+			  </div>
+
+    </div>
+</div>
+
+
+<div id="myModallicense1" class="modal fade" role="dialog" *ngIf="selected_product_licenses">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Contract {{selected_product_licenses.product_name}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+						<div class="dec-txt">
+						<p>{{selected_product_licenses.full_customization}}</p>
+						</div>
+						<!--<div class="pull-right">
+							<div class="btn btn-warning burlywood-btn mr10">Print</div> 
+							<div class="btn btn-warning burlywood-btn">Download</div>
+						</div>-->
+					</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+	<div id="myModalDownload1" class="modal fade" role="dialog" *ngIf="selected_product_download">
+	  <div class="modal-dialog modal-sm pop_center">
+		
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Download {{selected_product_download.name}}</h4>
+		  </div>
+		  <div class="modal-body">
+		  <div class="button-mainclass">
+			<div *ngIf="selected_product_download.require_downloaders==1" class="track_form_editer mb10">
+				<form [formGroup]="downloadForm" (ngSubmit)="downloaderEmail(selected_product_download,1)">
+					<div class="dwnload_input">
+						<input type="text" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" class="form-control" placeholder="Email" formControlName="email" />
+						<button class="btn">
+						<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+						Submit
+						</button>
+					</div>
+					<div *ngIf="!df_success && submitted && df.email.errors" class="invalid-feedback">
+						<div *ngIf="df.email.errors.required">Email is required</div>
+					</div>
+					<div *ngIf="df.email.errors && df.email.errors.pattern">
+						Email is invalid
+					</div>
+					<div *ngIf="df_success">
+						Data Recorded Successfully
+					</div>
+					
+				</form>
+			</div>
+			<button *ngIf="selected_product_download.social_twitter==1" class="btn btn-block twitter_btn bg_twitter mb10" type="submit"> Follow with Twitter </button>
+			<button *ngIf="selected_product_download.social_sound==1" class="btn btn-block twitter_btn bg_red mb10" type="submit"> Follow with Soundcloud </button>
+			
+			<ng-container *ngIf="selected_product_download.isIamFollowing==true">
+				<a href="javascript:void(0)" (click)="downloadFile(selected_product_download,1)">You already followed trillions</a>
+			</ng-container>
+			
+			<ng-container *ngIf="selected_product_download.isIamFollowing==false">
+				<button *ngIf="selected_product_download.social_trill==1" class="btn btn-block twitter_btn bg_twitter mb10" type="button" (click)="followapi(selected_product_download,1)"> Follow with Trillions </button>
+			</ng-container>
+			
+			</div>
+		  </div>
+		   
+		</div>
+
+	  </div>
+	</div>
+    
+
+

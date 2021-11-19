@@ -1,0 +1,48 @@
+
+
+<div id="top-banner">
+<div class="columns-container">
+
+ <!-- breadcrumb -->
+
+    <div class="breadcrumb clearfix"> 
+        <div class="container">
+            <a class="home" routerLink="" title="Return to Home">Home</a> <span class="navigation-pipe">&nbsp;</span> <span class="navigation_page">Rice</span> 
+        </div>
+    </div>
+    
+    
+    <div class="container" id="columns"> 
+    <div class="row" *ngFor="let row of total_product_in_cart">
+                            <div class="col-sm-4 col-md-4 col-xs-12 col-lg-2">
+                        <div class="thumbnail tmb cart-tmb">
+                        <img src="https://www.peppervan.com.au/assets/assets/assets/images/vis_m_porotta.jpg" alt="">
+                        </div>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-xs-12 col-lg-10">
+                                    <div class="cart-cnt"> 
+                                        <span class="green" id="prd9"></span>
+                                        <div class="details-info selectsize">
+                                            <div class="row"><div class="col-sm-4 col-md-6 col-xs-12 col-lg-4">
+                                                <div class="size-box"> 
+                                                <h4>{{row.fld_product_name}}</h4> <span class="green">In stock</span><br> </div>
+                                            </div><div class="col-sm-4 col-md-6 col-xs-12 col-lg-4">
+                                    <div class="size-box">
+                                    <!--<h6>Pack Size</h6>--> <select onchange="edit_posale(this.value,3703)" id="fld_product_size2417" class="form-control"><option value="4152" selected="">Buy 1 for - $11.99</option><option value="4153">Buy 2 for - $23.98</option><option value="4154">Buy 3 for - $35.97</option> </select> <span class="yousave"> You Save  <i class="fa fa-usd"></i> <span id="attrb_price12417">0.51</span> </span></div></div><div class="col-sm-4 col-md-4 col-xs-12 col-lg-4">
+                                    <div class="size-box">
+                                    <h4>Delete</h4>
+                                       <span class="item-remove"><a href="javascript:void(0);" onclick="deleteCart(3703);"><i class="fa fa-trash"></i></a></span>
+                                     </div>
+                                            </div></div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+    <!-- ./row--> 
+
+  </div>
+
+</div>
+
+</div>
+

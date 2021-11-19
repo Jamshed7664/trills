@@ -1,0 +1,142 @@
+
+
+  <section class="inner-section">
+    <div class="container-fluid">
+        <div class="inner-banner">
+            <a routerLink="/dashboard">Dashboard</a> <span>></span> <a href="javascript:void(0)">Video</a>
+        </div>    
+    </div> 
+</section> 
+
+
+<section class="media_section">
+<div class="container-fluid">
+    <div class="row">
+        <div class="media_page">
+            <div class="col-md-12">
+                <div class="video_box">
+<button type="submit" data-toggle="modal" data-target="#myModal" class=""><i class="fa fa-plus"></i>
+    &nbsp; Add video</button>
+                </div> 
+
+                
+                <div class="video_heading">
+                    
+                    <h3 *ngIf="videos?.length == 0">You have yet to import any videos. </h3>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-xs-12 mt20">
+                <div class="row">
+         <div class="col-sm-6 col-md-3 col-xs-6" *ngFor="let vrow of videos">
+             <div class="item-box">
+             <div class="thumbnail tmb">
+                 <img src="{{vrow.thumbnail_url}}">
+                 <a class="play-video" href="javascript:void(0)" (click)="videoplay(vrow.title,vrow.youtubelink)">
+            <i class="fa fa-play"></i>
+                </a>
+                 </div>
+                 <div class="item-dec">
+                     <h5>{{vrow.title | slice :0:35}}...</h5>
+                     <ul class="list-inline video-likes lefticon">
+                         <li><a href="javascript:void(0);" (click)="deleteVideo(vrow.id)"><img src="assets/images/heart-sm.png"> 2</a></li>
+                         <li><a href="#"><img class="reposticon" src="assets/images/repost.png"> 1</a></li>
+                         <li><a href="#"><img src="assets/images/chat-iocn-sm.png"> 5</a></li>
+                     </ul>
+                     <ul class="list-inline video-likes righticon">
+                         <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-star"></i></a></li>
+                         <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i></a></li>
+                         <li><a href="javascript:void(0);" (click)="deleteVideo(vrow.id)"><i class="fa fa-trash"></i></a></li>
+                     </ul>
+                 </div>
+             </div>
+        </div>
+   
+    </div>
+            </div>
+
+        </div>
+        
+    </div>
+</div>
+</section>
+
+
+
+<div class="track_editer_popup_youtube">
+    <div id="videoplay" class="modal fade" role="dialog">
+  <div class="modal-dialog"> 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <p class="white">{{videotitle}}</p>
+      </div>
+      <div class="modal-body">
+        <iframe id="frame" width="700" height="315" frameborder="0" [src]="videolink"></iframe>
+    <!--<iframe width="700" height="315" src="{{videolink}}" frameborder="0" allowfullscreen></iframe> -->
+           
+      </div> 
+    </div>
+
+  </div>
+</div>
+</div>
+
+<div class="track_editer_popup_youtube">
+    <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog"> 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add a YouTube™ Video URL</h4>
+      </div>
+      <div class="modal-body">
+         <div class="row">
+            <form method="Post" (submit)="saveVideo()" [formGroup]="form01" >
+         
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <label>ENTER VIDEO URL</label>
+                            <input type="text" id="video_link" formControlName="video_link" placeholder="Paste URL" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="javascript:void(0)" class="button1 button_imp" (click)="importVideo()">import</a>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>VIDEO TITLE</label>
+                            <input type="text" id="video_title" formControlName="video_title" placeholder="Video title" class="form-control">
+                        </div>
+                    </div> 
+                     <div class="col-md-12">
+                        <div class="form-group">
+                            <label>DESCRIPTION</label>
+                            <textarea type="text" id="video_description" formControlName="video_description" placeholder="type.." class="form-control"></textarea>
+                        </div>
+                    </div> 
+                </div>
+             </div>
+             <div class="col-md-6">
+                 <div class="upload_youtube_video">
+                    <i *ngIf="thumbnail_url==''" class="fa fa-youtube-play"></i>
+                <img *ngIf="thumbnail_url" src="{{thumbnail_url}}" alt="">
+                </div>
+             </div>
+             <div class="cancel_box">
+                 <button type="submit" [disabled]="api_calling" class="cancel_btn">Upload Video</button>
+             </div>
+            </form>
+         </div>
+      </div> 
+    </div>
+
+  </div>
+</div>
+</div>

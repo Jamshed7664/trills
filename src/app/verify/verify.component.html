@@ -1,0 +1,37 @@
+<section class="form_section">
+	<div class="container-fluid">
+		<div class="row">
+	        <div class="col-lg-push-4 col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                <div class="form_box">
+                    <h2>Verify Email Or Mobile</h2>
+                    <form [formGroup]="verifyForm" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
+                                <div class="form-group">
+                                 <!--<input type="hidden" formControlName="id" value="{{userData}}">-->
+                                    <input minlength="4" maxlength="4" type="text"  placeholder="Enter OTP Number" formControlName="otp" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.otp.errors }" />
+                                    <div *ngIf="submitted && f.otp.errors" class="invalid-feedback">
+                                        <div class="text-white" *ngIf="f.otp.errors.required">OTP code is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                         <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
+                                <button >
+                                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                    Submit
+                                </button>
+                            
+                            </div>                             
+                        </div>
+                    </form>
+                    
+                </div>    
+            </div>     
+		</div>    
+	</div>    
+</section> 
+
+

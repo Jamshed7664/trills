@@ -1,0 +1,551 @@
+
+<style>
+.my-account-wrapper .sws_playlist .nav>li { padding-right: 10px;}
+.playListancor{ padding:0 5px !important; display:inline-block;color:green !important; }
+.playListancor1{ color:red !important; }
+.playListtitlemain{ margin-right: 10px; border-bottom:none !important; cursor:pointer; }
+.sws_playlist li.active{ border-bottom:none !important; }
+.embeddedSettingmain select{ background: #262626 !important; color: #8e8a8a !important; margin-top:5px; padding-left:10px; padding-right:10px; }
+
+
+</style>
+ 
+
+<section class=" ">
+	<div class="my-account-wrapper pb-20">
+        
+<div class="container-fluid dashboard-content">
+    	<div class="col-sm-12">
+    <nav class="nav-sidebar">
+		<ul class="nav tabs">
+            <li class="active"><a href="#orders" data-toggle="tab"><i class="fa fa-shopping-cart"></i>My Purchase Orders</a></li>
+            
+		</ul>
+	</nav>
+		 
+</div>
+    
+    <div class="col-md-12">
+        <!-- tab content -->
+        <div class="tab-content"> 
+
+            <div class="tab-pane text-style active" id="orders">
+<h3>Purchase</h3>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr >
+                <th>Order</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th>Actions</th>                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders; let i = index">
+                <td>{{i}}</td>
+                <td>{{order.order_date | date: 'longDate'}}</td>
+                <td>Processing</td>
+                <td><i class="fa fa-inr"></i> {{order.grand_total}} </td>
+                <td><a class="btn btn-secondary" href="javascript:void(0)"  (click)="open_close_modal(1,0,1,order)">view</a></td>
+            </tr>
+           
+        </tbody>
+    </table>
+</div>
+</div>
+   
+        </div>
+    </div>
+  
+        </div>
+    </div>
+</section> 
+
+
+  <!-- Modal -->
+<div class="track_model">
+      <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Track to Discography</h4>
+        </div>
+        <div class="modal-body">
+            <input type="search" class="form-control" placeholder="Search Here">
+           <a href="#"> <i class="fa fa-search"></i></a>
+        </div> 
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="track_model">
+      <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Message</h4>
+        </div>
+        <div class="modal-body">
+            <h2>to : <a href="#"><i class=""></i> Search by user</a> </h2>
+            <textarea type="search" class="form-control" placeholder="Message"> </textarea>
+            <button class="send_btn" type="submit">Send</button>
+        </div> 
+      </div>
+    </div>
+  </div>
+</div>
+
+<!---Image Upload--->
+<!-- Modal -->
+<div class="track_model">
+
+    <div id="CropPhoto" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm"> 
+          <!-- Modal Image content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Crop Image</h4>
+            </div>
+            <div class="modal-body">
+                    <image-cropper
+                    [imageChangedEvent]="imageChangedEvent"
+                    [maintainAspectRatio]="true"
+                    [aspectRatio]="4 / 3"
+                    format="png"
+                    (imageCropped)="imageCropped($event)"
+                    (imageLoaded)="imageLoaded()"
+                    (cropperReady)="cropperReady()"
+                    (loadImageFailed)="loadImageFailed()"
+                    ></image-cropper>
+                <button type="submit" class="cancel_btn" data-dismiss="modal" aria-label="Close">Cancel</button>
+                <button type="submit" class="btn btn-primary" (click)="saveImage()">Save</button>
+            </div> 
+          </div>
+      
+        </div>
+      </div>
+	  
+	 <div id="CropEmbedLogo" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm"> 
+          <!-- Modal Image content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Crop Image</h4>
+            </div>
+            <div class="modal-body">
+                    <image-cropper
+                    [imageChangedEvent]="imageChangedEvent"
+                    [maintainAspectRatio]="true"
+                    [aspectRatio]="4 / 3"
+                    format="png"
+                    (imageCropped)="imageCropped($event)"
+                    (imageLoaded)="imageLoaded()"
+                    (cropperReady)="cropperReady()"
+                    (loadImageFailed)="loadImageFailed()"
+                    ></image-cropper>
+                <button type="submit" class="cancel_btn" data-dismiss="modal" aria-label="Close">Cancel</button>
+                <button type="submit" class="btn btn-primary" (click)="saveEmbedLogo()">Save</button>
+            </div> 
+          </div>
+      
+        </div>
+      </div>
+<div class="upload_new_pic">
+
+    <div id="uploadArtWork" class="modal fade" role="dialog">
+ <div class="modal-dialog modal-md">
+   <div class="modal-content">
+     <div class="modal-header">
+        <h4 class="modal-title">{{currentModalTitle}}</h4>
+       <button type="button" class="close" data-dismiss="modal">&times;</button> 
+     </div>
+     <div class="modal-body">
+       <div class="row">
+        <div class="col-sm-3"> 
+             <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
+               <li [ngClass]="(alluploaded?.length > 0)?'active':''"
+                *ngIf="alluploaded?.length > 0"><a href="#myfile" data-toggle="tab"><span class="fa fa-file"></span> My File </a></li>
+               <li [ngClass]="(alluploaded?.length > 0)?'':'active'"><a href="#upload-file" data-toggle="tab"><span class="fa fa-key"></span> Upload File </a></li>
+               <!--<li><a href="#googledrive" data-toggle="tab"><span class="fa fa-google"></span>  Google Drive </a></li>
+                 <li><a href="#dropbox" data-toggle="tab"><span class="fa fa-dropbox"></span> Dropbox </a></li>
+    
+               <li><a href="#facebook" data-toggle="tab"><span class="fa fa-facebook"></span> Facebook </a></li> 
+             <li><a href="#importurl" data-toggle="tab"><span class="fa fa-link"></span> Import URL  </a></li>  
+             <li class=""><a href="#webcam" data-toggle="tab"> <span class="fa fa-camera"></span>  Webcam</a></li>-->    
+             </ul>
+         </div>
+         
+               <div class="col-sm-9">
+                 <div class="tab-content">
+                     <div role="tabpanel"  [ngClass]="(alluploaded?.length > 0)?'tab-pane fade in active':'tab-pane text-style fade'" *ngIf="alluploaded?.length > 0" id="myfile">                 
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>My File</h3>
+                             </div>
+                             <div class="col-md-4" *ngFor="let imgrow of alluploaded">
+                                 <div class="myfile_img"> 
+                                    <a href="javascript:void(0);" (click)="selectGallery(imgrow.id,0)">
+                                    <img src="{{imgpath}}{{imgrow.image}}" alt=""> </a>   
+
+                                     <div class="img_info">
+                                        <a href="javascript:void(0);" (click)="selectGallery(imgrow.id,0)">
+                                         <h3> ng-star-inserted ng-lazyloaded</h3>
+                                        </a> 
+                                        <a href="javascript:void(0);" (click)="selectGallery(imgrow.id,1)"><span class="fa fa-trash-o"></span> </a>
+                                     </div>
+                                 </div>
+                             </div>
+                            
+                         </div>  
+                      </div> 
+                     <div [ngClass]="(alluploaded?.length > 0)?'tab-pane text-style fade ':'tab-pane text-style fade in active'" id="upload-file">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Upload File</h3>
+                             </div>
+                             <div class="col-md-12">
+                                <div class="dropzone-wrapper">
+                                    <div class="dropzone-desc">
+                                        <img src="assets/images/upload-file-icon.png" alt="">
+                                      <p>Choose an image file or drag it here.</p>
+                                    </div>
+                                    <input type="file" #fileInput
+                                    (change)="fileChangeEvent($event)"
+                                   id="customFile" name="filename" class="file-upload dropzone">
+                                 
+                                  </div>
+                                 <div class="upload_file">
+                                    <h1>Upload files from your computer (or drag them here)</h1>
+                                   <!--  <div class="file-upload-wrapper">
+                                        <input type="file" id="input-file-now" class="file-upload" />
+                                      </div>
+                                     <div class="file-upload-wrapper">
+                                        <input type="file" #fileInput
+                                        (change)="fileChangeEvent($event)"
+                                       id="customFile" name="filename" class="file-upload" />
+                                       <img src="assets/images/upload-file-icon.png" alt="">
+                                      </div> -->
+                                     <!--<input type="file" class=""
+                                      #fileInput
+                                       (change)="fileChangeEvent($event)"
+                                      id="customFile" name="filename"> 
+                                      <h1>Upload files from your computer (or drag them here)</h1>-->
+
+                                      <div class="fileUpload btn btn--browse">
+                                        <span>Select File</span>
+                                      <input type="file"  class="upload"
+                                      #fileInput (change)="fileChangeEvent($event)"
+                                      id="customFile" name="filename">    
+                                      </div>   
+                                     
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="tab-pane text-style fade" id="googledrive">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Google Drive</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file"> 
+                                     <img src="assets/images/google-drive.png" alt="">
+                                     <p>Please authenticate with Google Drive to select files</p>
+                                     <button class="button" type="submit">Connect to Google Drive</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                      <div class="tab-pane text-style fade" id="dropbox">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Drop Box</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file"> 
+                                     <img src="assets/images/dropbox-icon.png" alt="">
+                                      <p>Please authenticate with Dropbox to select files</p>
+                                     <button class="button" type="submit">Connect to Dropbox</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                       <div class="tab-pane text-style fade" id="facebook">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Facebook</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file"> 
+                                     <img src="assets/images/facebook-icon.png" alt="">
+                                      <p>Please authenticate with Facebook to select files</p>
+                                     <button class="button" type="submit">Connect to Facebook</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                        <div class="tab-pane text-style fade" id="importurl">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Import URL</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file_1">  
+                                     <h1>Import file from URL</h1> 
+                                     <p>Upload file by simply entering your file's full url below. </p>
+                                     <div class="row">
+                                         <div class="col-md-9">
+                                             <div class="form-group">
+                                                 <input type="text" class="form-control" placeholder="">
+                                             </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                             <div class="form-group">                                                    
+                                                 <button class="button" type="submit">Import</button>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                       <div class="tab-pane text-style fade" id="webcam">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Webcam</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file_1">  
+                                     <i class="fa fa-camera"></i>
+                                     <h1>Please allow access to your camera</h1> 
+                                     <p>In order to take pictures or record video with your camera, please allow camera access for this site.. </p>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div> 
+         </div>
+     </div> 
+   </div>
+ </div>
+ </div>
+     
+	 
+    <div id="uploadEmbedLogo" class="modal fade" role="dialog">
+ <div class="modal-dialog modal-md">
+   <div class="modal-content">
+     <div class="modal-header">
+        <h4 class="modal-title">{{currentModalTitle}}</h4>
+       <button type="button" class="close" data-dismiss="modal">&times;</button> 
+     </div>
+     <div class="modal-body">
+       <div class="row">
+        <div class="col-sm-3"> 
+             <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
+               <li [ngClass]="(alluploadedLogo?.length > 0)?'active':''"
+                *ngIf="alluploadedLogo?.length > 0"><a href="#myfile1" data-toggle="tab"><span class="fa fa-file"></span> My File </a></li>
+               <li [ngClass]="(alluploadedLogo?.length > 0)?'':'active'"><a href="#upload-file1" data-toggle="tab"><span class="fa fa-key"></span> Upload File </a></li>
+               <!--<li><a href="#googledrive" data-toggle="tab"><span class="fa fa-google"></span>  Google Drive </a></li>
+                 <li><a href="#dropbox" data-toggle="tab"><span class="fa fa-dropbox"></span> Dropbox </a></li>
+    
+               <li><a href="#facebook" data-toggle="tab"><span class="fa fa-facebook"></span> Facebook </a></li> 
+             <li><a href="#importurl" data-toggle="tab"><span class="fa fa-link"></span> Import URL  </a></li>  
+             <li class=""><a href="#webcam" data-toggle="tab"> <span class="fa fa-camera"></span>  Webcam</a></li>-->    
+             </ul>
+         </div>
+         
+               <div class="col-sm-9">
+                 <div class="tab-content">
+                     <div role="tabpanel"  [ngClass]="(alluploadedLogo?.length > 0)?'tab-pane fade in active':'tab-pane text-style fade'" *ngIf="alluploadedLogo?.length > 0" id="myfile1">                 
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>My File</h3>
+                             </div>
+                             <div class="col-md-4" *ngFor="let imgrow of alluploadedLogo">
+                                 <div class="myfile_img"> 
+                                    <a href="javascript:void(0);" (click)="selectGallery(imgrow.id,0)">
+                                    <img src="{{imgpath1}}{{imgrow.logo}}" alt=""> </a>   
+
+                                     <div class="img_info">
+                                        <a href="javascript:void(0);" (click)="selectGallery(imgrow.id,0)">
+                                         <h3> ng-star-inserted ng-lazyloaded</h3>
+                                        </a> 
+                                        <a href="javascript:void(0);" (click)="selectGallery(imgrow.id,1)"><span class="fa fa-trash-o"></span> </a>
+                                     </div>
+                                 </div>
+                             </div>
+                            
+                         </div>  
+                      </div> 
+                     <div [ngClass]="(alluploadedLogo?.length > 0)?'tab-pane text-style fade ':'tab-pane text-style fade in active'" id="upload-file1">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Upload File</h3>
+                             </div>
+                             <div class="col-md-12">
+                                <div class="dropzone-wrapper">
+                                    <div class="dropzone-desc">
+                                        <img src="assets/images/upload-file-icon.png" alt="">
+                                      <p>Choose an image file or drag it here.</p>
+                                    </div>
+                                    <input type="file" #fileInput
+                                    (change)="fileChangeEvent1($event)"
+                                   id="customFile1" name="filename" class="file-upload dropzone">
+                                 
+                                  </div>
+                                 <div class="upload_file">
+                                    <h1>Upload files from your computer (or drag them here)</h1>
+                                   <!--  <div class="file-upload-wrapper">
+                                        <input type="file" id="input-file-now" class="file-upload" />
+                                      </div>
+                                     <div class="file-upload-wrapper">
+                                        <input type="file" #fileInput
+                                        (change)="fileChangeEvent($event)"
+                                       id="customFile" name="filename" class="file-upload" />
+                                       <img src="assets/images/upload-file-icon.png" alt="">
+                                      </div> -->
+                                     <!--<input type="file" class=""
+                                      #fileInput
+                                       (change)="fileChangeEvent($event)"
+                                      id="customFile" name="filename"> 
+                                      <h1>Upload files from your computer (or drag them here)</h1>-->
+
+                                      <div class="fileUpload btn btn--browse">
+                                        <span>Select File</span>
+                                      <input type="file"  class="upload"
+                                      #fileInput (change)="fileChangeEvent1($event)"
+                                      id="customFile1" name="filename">    
+                                      </div>   
+                                     
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="tab-pane text-style fade" id="googledrive">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Google Drive</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file"> 
+                                     <img src="assets/images/google-drive.png" alt="">
+                                     <p>Please authenticate with Google Drive to select files</p>
+                                     <button class="button" type="submit">Connect to Google Drive</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                      <div class="tab-pane text-style fade" id="dropbox">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Drop Box</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file"> 
+                                     <img src="assets/images/dropbox-icon.png" alt="">
+                                      <p>Please authenticate with Dropbox to select files</p>
+                                     <button class="button" type="submit">Connect to Dropbox</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                       <div class="tab-pane text-style fade" id="facebook">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Facebook</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file"> 
+                                     <img src="assets/images/facebook-icon.png" alt="">
+                                      <p>Please authenticate with Facebook to select files</p>
+                                     <button class="button" type="submit">Connect to Facebook</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                        <div class="tab-pane text-style fade" id="importurl">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Import URL</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file_1">  
+                                     <h1>Import file from URL</h1> 
+                                     <p>Upload file by simply entering your file's full url below. </p>
+                                     <div class="row">
+                                         <div class="col-md-9">
+                                             <div class="form-group">
+                                                 <input type="text" class="form-control" placeholder="">
+                                             </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                             <div class="form-group">                                                    
+                                                 <button class="button" type="submit">Import</button>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                       <div class="tab-pane text-style fade" id="webcam">                     
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <h3>Webcam</h3>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="upload_file_1">  
+                                     <i class="fa fa-camera"></i>
+                                     <h1>Please allow access to your camera</h1> 
+                                     <p>In order to take pictures or record video with your camera, please allow camera access for this site.. </p>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div> 
+         </div>
+     </div> 
+   </div>
+ </div>
+ </div>
+     
+	 </div>
+</div>
+
+<div id="myModalprocess1" class="modal fade" role="dialog" *ngIf="selected_product">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Order Details</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">Product</div>
+                    <div class="col-md-6">{{selected_product.product_name}}</div>
+
+                    <div class="col-md-6">Product Total</div>
+                    <div class="col-md-6">{{selected_product.grand_total}}</div>
+
+                    <div class="col-md-6">Order no</div>
+                    <div class="col-md-6">{{selected_product.order_no}}</div>
+                   
+                 
+                </div>
+               
+            </div>
+
+        </div>
+
+    </div>
+</div>

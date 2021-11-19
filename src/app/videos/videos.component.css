@@ -1,0 +1,17 @@
+a.button1{
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    border-radius: 3px;
+    border: 1px solid #8e7e47;
+    background: #8e7e47;
+    color: #fff;
+    /* padding: 10px 37px; */
+    margin-top: 23px !important;
+    opacity: 1;
+    margin: 0px auto;
+    width: auto;
+    padding: 10px;
+}

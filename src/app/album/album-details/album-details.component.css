@@ -1,0 +1,17 @@
+.albm-track-play {
+    color: #fff;
+    background: #000;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    line-height: 29px;
+    font-size: 12px;
+    padding: 1px 0 0 3px;
+    position: relative;
+    left: 19px;
+    top: -50px;
+    opacity: 1;
+    cursor: pointer;
+}

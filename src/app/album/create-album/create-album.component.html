@@ -1,0 +1,420 @@
+<section class="inner-section">
+    <div class="container-fluid">
+        <div class="inner-banner">
+            <a href="#">Dashboard</a> <span>&gt;</span> <a href="javascript:void(0)">Create Albums</a>
+        </div>
+    </div>
+</section>
+
+<form class="" method="Post" (submit)="createAlbum('save')" [formGroup]="album_form">
+    <section class="track_editer_section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="title">General Information </h3>
+                    <div class="main_bg">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                            <div class="track_form_editer">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="track_form_editer">
+                                            <div class="file_upload">
+                                                <button class="button" type="button" *ngIf="!image">
+                                                    <i class="fa fa-file-movie-o"></i>
+                                                </button>
+                                                <img [src]="image" alt="" class="image-exercise" *ngIf="image"><br>
+                                                <p> Artwork Dimension <br> Preferred: 1500x1500px, Minimum: 500x500px</p>
+                                                <p> Got Photoshop? Make your own using our free template. </p>
+
+                                                <a type="button" data-toggle="modal" data-target="#uploadArtWork" class="button1" style="cursor: pointer;">Upload Cover Artwork </a>
+                                                <!-- <button type="button" (click)="selectFile.click()"> Upload Cover Artwork </button> -->
+
+                                                <input type="file" (change)="getImage($event)" style="display: none" #selectFile>
+                                                <br>
+                                                <li class="redclass" *ngIf="album_form.touched && album_form?.controls.image?.errors?.required">Please select image</li>
+                                                <li class="redclass" *ngIf="album_form.touched && album_form?.controls.image?.errors?.image">Invalid Image</li>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
+                            <div class="track_form_editer">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Album Title</label>
+                                            <input type="text" class="form-control" [ngClass]="(album_form.touched)?( album_form.get('name').invalid)?'has_error_class':'no_error_class':''" placeholder="Album Title" formControlName="name">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label>Album Type*</label>
+                                                <select type="text" [ngClass]="(album_form.touched)?( album_form.get('track_type').invalid)?'has_error_class':'no_error_class':''" class="form-control" placeholder="Tags" formControlName="track_type">  
+                                                 <option>Track Type </option>
+                                                 <!--<option>Beat </option>
+                                                 <option>With Chorus </option>
+                                                 <option>Song Referance </option>-->
+												 <option>Beat Album </option>
+												 <option>Song Album </option>
+                                             </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                        <div class="form-group">
+                                            <label>RELEASE DATE</label>
+                                            <input type="date" class="form-control" [ngClass]="(album_form.touched)?( album_form.get('release_date').invalid)?'has_error_class':'no_error_class':''" placeholder="New track" formControlName="release_date">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                                        <div class="form-group">
+
+                                            <label>TAGS</label>
+                                            <input type="text" class="form-control" placeholder="TAGS" id="tagtitle" maxlength="15" (keydown)="keyDownHandler($event)">
+                                        </div>
+
+                                        <div class="tab_dashbord">
+
+                                            <ul>
+                                                <li class="dashbord_btn" *ngFor="let tagrow of album_form.get('tags').value; let i = index;">
+                                                    # {{tagrow}}
+                                                    <a href="javascript:void(0)" (click)="deletetag(i)">
+                                                        <i class="fa fa-times"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                        <button type="button" class="" (click)="createTags('tagtitle')"><i class="fa fa-plus" ></i>Add Tag</button>
+                                    </div>
+
+
+
+
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                                        <div class="form-group">
+                                            <label>DESCRIPTION</label>
+                                            <textarea [ngClass]="(album_form.touched)?( album_form.get('description').invalid)?'has_error_class':'no_error_class':''" class="form-control" placeholder="Enter Description" formControlName="description"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                                        <div class="copy_link">
+                                            <div class="form-group">
+                                                <label>URL OF YOUR TRACK</label>
+                                                <!--<input type="text" [ngClass]="(album_form.touched)?( album_form.get('track_url').invalid)?'has_error_class':'no_error_class':''" class="form-control " placeholder="www.trillicons.com" formControlName="track_url">-->
+												<input type="text" readonly class="form-control track-albm-url" formControlName="album_url" placeholder="www.trillicons.com" value="">
+                                                <code><a href="javascript:void(0)" (click)="copyMessage(baseurl+'/album/'+albumCreate+'/tracks')">Copy</a> </code>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="title">Selling Preferences </h3>
+                    <div class="main_bg">
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="checkBox_div">
+                                    <label class="container"> 
+                          <input type="checkbox" value="true" formControlName="not_for_sale" id="not_for_sale" (change)="onNotSale($event)"  [checked]="album_form?.controls.not_for_sale.value=='true'?true:false">Not for sale
+                          <span class="checkmark"></span>
+                        </label>
+                                </div>
+                                <div class="checkBox_div">
+                                    <label class="container"> 
+                          <input type="checkbox" value="true" formControlName="private_discount" id="private_discount" (change)="onPrivateDiscount($event)"  [checked]="album_form?.controls.private_discount.value=='true'?true:false">Private
+                          <span class="checkmark"></span>
+                        </label>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="payment_account">
+									<div formArrayName="licenseslist">
+										<div class="row" *ngFor="let licenserow of album_form.get('licenseslist')['controls']; let i=index;">
+											<div [formGroupName]="i">
+												<div class="form-group">
+													<div class="col-xs-12 col-sm-6 col-md-6 col-lg-12" >
+														<div class="form-group">
+															<input type="hidden" formControlName="licenseId" id="{{'licenseId'+i}}" class="form-control" />
+															<input type="hidden" formControlName="licenseName" id="{{'licenseName'+i}}" class="form-control" />
+															<label for="license-{{i}}">{{licenserow.get('licenseName').value}}</label>
+															<input type="text" id="license-{{i}}" formControlName="licensePrice" class="form-control" placeholder="license price"  />
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+                                    <!--<div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                                            <div class="form-group">
+                                                <label>BASIC LICENSE (MP3) - NON-EXCLUSIVE</label>
+                                                <input type="text" class="form-control" placeholder="29.95">
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                    <span> Note: You may customize your Licenses through here: <a routerLink="/licenses">Licenses &amp; Contracts</a>
+To disable a License for this specific Beat Album please enter 0 (or 0.00). This will disable purchases for that specific license.  </span>
+
+                                </div>
+                            </div>
+                            <!--<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="payment_account">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                                            <div class="form-group">
+                                                <label>PREMIUM LICENSE (MP3 AND WAV) - NON-EXCLUSIVE</label>
+                                                <input type="text" class="form-control" placeholder="49.95">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="title">Album Tracks </h3>
+                    <div class="main_bg">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label>TRACK FINDER</label>
+                                            <input type="search" class="form-control" placeholder="Search" (input)="searchPosts($event.target.value)">
+                                            <code><i class="fa fa-search"></i> </code>
+                                            <ng-container *ngIf="searchData?.length > 0">
+                                                <div class="row albumtracks">
+                                                    <div class="col-md-9">Tracks</div>
+                                                    <div class="col-md-3"></div>
+
+                                                </div>
+                                                <div class="row albumtracks" *ngFor="let blogPost1 of searchData">
+                                                    <div class="col-md-9">{{blogPost1.title}} </div>
+                                                    <div class="col-md-3 customPointer" (click)="addTracks(blogPost1)"><i class="fa fa-plus "></i> Add</div>
+
+                                                </div>
+
+                                            </ng-container>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label>ALBUM TRACKS</label>
+                                            <div class="tab_dashbord">
+
+                                                <ul>
+                                                    <li class="dashbord_btn" *ngFor="let tagrow of album_form.get('tracks').value; let j = index;">
+                                                        # {{tagrow.title}}
+                                                        <a href="javascript:void(0)" (click)="deleteTracks(j)">
+                                                            <i class="fa fa-times"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="title_sub">Collaborators</h3>
+                    <div class="main_bg">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="border_right">
+                                        <div class="border_line">
+                                            <div class="col-md-3">
+                                                <div class="collaborators">
+                                                    <h2>COLLABORATOR</h2>
+                                                    <p>YOU</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="collaborators">
+                                                    <h2>ROLE</h2>
+                                                    <p>MAIN COLLABORATOR</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="collaborators">
+                                                    <h2>PROFIT SHARE </h2>
+                                                    <p>{{profitShare}}%</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="collaborators">
+                                                    <h2>PUBLISHING % </h2>
+                                                    <p>{{publishing}}%</p>
+                                                </div>
+                                            </div>
+                                        </div>
+										
+										<div formArrayName="collaborators">
+										<div class="border_line" 
+										*ngFor="let item of collaborators.controls; let collaboratorIndex=index" [formGroupName]="collaboratorIndex">
+										<div class="row">
+											<div class="col-md-11 col-xs-12">
+												<div class="row">
+													<div class="col-md-3">
+														<div class="collaborators">
+															<!--<h2>COLLABORATOR</h2>-->
+															<p><input type="text" class="form-control" formControlName="collaboratorUser" [readonly]="true"/></p>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="collaborators">
+															<!--<h2>ROLE</h2>-->
+															<p><select class="form-control" formControlName="collaboratorRole"><option value="master">master</option></select></p>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="collaborators">
+															<!--<h2>PROFIT SHARE </h2>-->
+															<p><input type="text" class="form-control" formControlName="collaboratorProfit" (change)="onKeyUpProfit($event,collaboratorIndex)"/><span>%</span></p>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="collaborators">
+															<!--<h2>PUBLISHING % </h2>-->
+															<p><input type="text" class="form-control" formControlName="collaboratorPublishing" (change)="onKeyUpPublishing($event,collaboratorIndex)"/><span>%</span></p>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-1 col-xs-12">
+												<div class="location-delete">
+													<i (click)="removeCollaborator(collaboratorIndex)" class="fa fa-trash text-danger"></i>
+												</div>
+											</div>
+										</div>
+                                        </div>
+										</div>
+                                        
+                                        <div class="col-md-12 mb20">
+                                            <div class="text-center">
+                                                <!--<button type="submit" class="button1">Add Collaborators</button>-->
+												<a data-toggle="modal" data-target="#exampleModal1" type="submit" class="button1">
+													Add Collaborators
+												</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="collaborators">
+                                    <p>Before you add Collaborators, please make sure that you &amp; your Collaborators meet the requirements below:</p>
+                                    <ul>
+                                        <li> - You must be the "Primary Contributor" to add Collaborators</li>
+
+                                        <li> - Make sure you Follow each other.</li>
+
+                                        <li> - Your Collaborator has to be a BeatStars Registered Member and at least subscribed to a "FREE" Subscription Account</li>
+
+                                        <li> - Needs to have their PayPal Email Address properly Setup</li>
+
+                                        <li> - You can only add up to Five (5) Collaborators per Track </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="bottom_btn">
+        <button type="submit" class="btn_save bg_gray1">Cancel</button>
+        <button type="submit" class="btn_save bg_red" [disabled]="api_calling">Save Changes</button>
+    </div>
+</form>
+
+<!--Collaborators--->
+<div class="track_editer_popup">
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog pop_center1" style="width: 478px;" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Find Collaborator</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="">
+                            <div class="form-group">
+                            
+                                <input type="text" class="form-control" (input)="onSearchChange($event.target.value)" placeholder="Username or Email">
+                            </div>
+                        </div>
+						<div class="collaborator_list">
+							<div class="main_box_for_youtube_list" *ngFor="let crow of searchText">
+								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+									<div class="youtube_vide0_list">
+										<img src="{{crow.image}}" class="hedimg-circle" alt="">
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+									<div class="youtube_vide0_list">
+										{{crow.name}}
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="youtube_vide0_list">
+										<a href="javascript:void(0);" class="btn btn-xs btn-dark" *ngIf="crow.requesttype=='Pending'"> Action Required</a>
+										<!--<a href="javascript:void(0);" class="selecbtn btn-xs" (click)="requestSend(crow.id,0)" *ngIf="crow.requesttype!='Pending'"> Add User  </a>-->
+										<a href="javascript:void(0);" class="selecbtn btn-xs" (click)="addCollaborator(crow.id,crow.name)" > Add User </a>
+									</div>
+								</div>
+							</div>
+						</div>
+                    </div>
+                    <!--<div class="cancel_box">
+
+                        <button type="submit" class="cancel_btn" data-dismiss="modal" aria-label="Close">Close</button>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

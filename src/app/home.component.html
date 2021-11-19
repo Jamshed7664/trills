@@ -1,0 +1,321 @@
+<section class="slider-wrap">
+    <div id="" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active" *ngFor="let row of banner">
+                <img src="{{row.image}}" />
+                <div class="carousel-caption">
+                    <h3>
+                        {{row.short_text}} <br> {{row.description}}
+                    </h3>
+                    <img src="assets/images/slider-voice-img.png" class="img-responsive mrgn-auto" />
+                    <section class="slider-search">
+                        <div class="search-box">
+                            <input type="text" class="form-control HOMEsearchBoxTop" placeholder="Try “Hip-hop beat”" />
+                            <button type="submit" class="btn btn-search"><img src="assets/images/search-iocn.png"/></button>
+                            <div class="dropdown track-drop">
+                                <select class="btn btn-default dropdown-toggle HOMEsearchBoxTopVale">
+                                    <option value="all">All</option>
+                                    <option value="musicians">Musicians</option>
+                                    <option value="tracks">Tracks</option>
+                                    <option value="albums">Albums</option>
+                                    <option value="services">Services</option>
+                                    <option value="sound-kits">Sound Kits</option>
+                                    </select>
+
+                                <div class="form-icon"><span class="fa fa-angle-down"></span></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<section class="wrap bg-black" *ngIf="trending">
+    <div class="container-fluid">
+        <div class="owl-carousel-wrap">
+            <div class="row">
+                <div class="col-xs-8 col-sm-8">
+                    <div class="title-header">
+                        <h2 class="white">Trending Beats</h2>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4">
+                    <div class="txt-rgt view">
+                        <a class="white" routerLink="/trending-beats/1">>View All</a>
+                    </div>
+                </div>
+            </div>
+            <div class="owl-carousel owl-theme owl-carousel1">
+                <div class="item" *ngFor="let trrow of trending">
+                    <div class="item-box">
+                        <div class="thumbnail tmb">
+                            <a routerLink="/details/{{CartService.getDetailsUrl(trrow)}}">
+                                <img src="{{trrow.image}}" />
+                            </a>
+                        </div>
+                        <div class="item-dec">
+                            <h5>{{trrow.track_type}}</h5>
+                            <p><img src="assets/images/music-icon.png" /> {{trrow.totaltrack}} Tracks</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="owl-carousel-wrap most-sold-beats-carousel" *ngIf="most_sold">
+            <div class="row">
+                <div class="col-xs-8 col-sm-8">
+                    <div class="title-header">
+                        <h2 class="white">Most Sold Beats</h2>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4">
+                    <div class="txt-rgt view">
+                        <a class="white" routerLink="/most-sold-beats/2">View All</a>
+                    </div>
+                </div>
+            </div>
+            <div class="owl-carousel owl-theme owl-carousel1">
+                <div class="item" *ngFor="let mrow of most_sold">
+                    <div class="item-box">
+                        <div class="thumbnail tmb">
+                            <a routerLink="/details/{{CartService.getDetailsUrl(mrow)}}">
+                                <img src="{{mrow.image}}" />
+                            </a>
+                        </div>
+                        <div class="item-dec">
+                            <h5>{{mrow.track_type}}</h5>
+                            <p><img src="assets/images/music-icon.png" /> {{mrow.totaltrack}} Tracks</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="wrap bg-black-gray" *ngIf="artists">
+    <div class="container-fluid">
+        <div class="owl-carousel-wrap">
+            <div class="row">
+                <div class="col-xs-8 col-sm-8">
+                    <div class="title-header">
+                        <h2 class="white">Artists</h2>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4">
+                    <div class="txt-rgt view">
+                        <a class="white" href="#">View All</a>
+                    </div>
+                </div>
+            </div>
+            <div class="owl-carousel owl-theme artists-carousel">
+
+                <div class="item" *ngFor="let arow of artists">
+                    <div class="item-box">
+                        <div class="thumbnail tmb">
+                            <img src="{{arow.image}}" style="height: 198px;width: 198px;" />
+                        </div>
+                        <div class="item-dec">
+                            <h5>{{arow.name}}</h5>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="wrap">
+    <div class="container">
+        <div class="title text-center">
+            <h2 class="text-uppercase">Some Other Beats</h2>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-3">
+                <div class="beat-box">
+                    <img src="assets/images/4aydj.jpg" class="img-responsive mrgn-auto" />
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="beat-box">
+                    <img src="assets/images/4aydj0.jpg" class="img-responsive mrgn-auto" />
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="beat-box">
+                    <img src="assets/images/4aydj1.jpg" class="img-responsive mrgn-auto" />
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="beat-box">
+                    <img src="assets/images/4aydj2.jpg" class="img-responsive mrgn-auto" />
+                </div>
+            </div>
+        </div>
+        <p class="view-black-btn text-center"><a class="btn btn-default">View All</a></p>
+    </div>
+</section>
+<section class="wrap bg-black">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="selling-title">
+                    <div class="title">
+                        <h2 class="text-uppercase">START <span>SELLING</span> YOUR <span>BEATS</span> <span class="text-stroke-title">AND SAMPLE PACKS ONLINE</span></h2>
+                    </div>
+                    <a class="btn btn-warning burlywood-btn">Start Selling</a>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-4 col-sm-offset-4">
+                        <div class="selling-video">
+                            <a href="#" class="thumbnail tmb">
+                                <img src="assets/images/video.jpg" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4">
+                        <div class="selling-video">
+                            <a href="#" class="thumbnail tmb">
+                                <img src="assets/images/video0.jpg" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-4 col-sm-offset-2">
+                        <div class="selling-video">
+                            <a href="#" class="thumbnail tmb">
+                                <img src="assets/images/video1.jpg" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-sm-pull-0">
+                        <div class="selling-video">
+                            <a href="#" class="thumbnail tmb">
+                                <img src="assets/images/video2.jpg" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-4">
+                        <div class="selling-video video-tpmrgn">
+                            <a href="#" class="thumbnail tmb">
+                                <img src="assets/images/video3.jpg" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4">
+                        <div class="selling-video">
+                            <a href="#" class="thumbnail tmb">
+                                <img src="assets/images/video4.jpg" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4">
+                        <div class="selling-video">
+                            <a href="#" class="thumbnail tmb">
+                                <img src="assets/images/video5.jpg" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="wrap bg-black-gray">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-5 col-md-6">
+                <div class="title artists-title">
+                    <h2 class="text-uppercase">Why Artists and Producers Trust Trill Icons</h2>
+                </div>
+                <div class="artist-handimg">
+                    <img src="assets/images/artist-hand-img.png" />
+                </div>
+            </div>
+            <div class="col-sm-7 col-md-6">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="why-box">
+                            <h3><img src="assets/images/work-pros.png" /></h3>
+                            <h4>Work With Pros.</h4>
+                            <p>Better sounding content gets more plays, bookings and placement.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="why-box">
+                            <h3><img src="assets/images/safty.png" /></h3>
+                            <h4>Safety Is Our Priority</h4>
+                            <p>We do not compromise on Safety, and protect your work.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="why-box">
+                            <h3><img src="assets/images/Guarantee.png" /></h3>
+                            <h4>100% Satisfaction Guarantee</h4>
+                            <p>If you buy a service, and aren't happy with it, we will personally step in and resolve any situation.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="why-box">
+                            <h3><img src="assets/images/support.png" /></h3>
+                            <h4>Human support</h4>
+                            <p>Email, phone and chat to help you with anything.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="wrap dreams-into-wrap">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-md-7">
+                <div class="dreams-into-title">
+                    <div class="title">
+                        <h3>Join Thousands Of Creators Who Have Turned Their </h3>
+                        <h2>Dreams Into Reality.</h2>
+                    </div>
+                    <a class="btn btn-warning burlywood-btn">Join Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="wrap testimonial-wrap" *ngIf="testimonials">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="testimonial-section">
+                    <h4>Testimonial</h4>
+                    <h2>What our creators<br/> say about us</h2>
+                    <div class="owl-carousel owl-theme testimonial-carousel">
+                        <div class="item" *ngFor="let trow of testimonials">
+                            <div class="testimonial-box">
+                                <p>{{trow.description}}</p>
+                                <div class="client-img"><img src="{{trow.image}}"></div>
+                                <div class="client-title">
+                                    <h6>{{trow.name}}</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

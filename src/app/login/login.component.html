@@ -1,0 +1,76 @@
+﻿<section class="form_section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-push-4 col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                <div class="form_box">
+                    <h2>Log In</h2>
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
+                                <div class="form-group">
+
+                                    <input type="text" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                        placeholder="Enter email Id" formControlName="email" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <small class="redclass" *ngIf="f.email.errors.required">Email is
+                                            required</small>
+
+                                        <small class="redclass" *ngIf="f.email.errors && f.email.errors.pattern">
+                                            Email is invalid
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
+                                <div class="form-group">
+                                    <input placeholder="Password" type="password" formControlName="password"
+                                        class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                        <small class="redclass" *ngIf="f.password.errors.required">Password is
+                                            required</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
+                                <button>
+                                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                    Login
+                                </button>
+
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="or_box">
+                                <h1>OR</h1>
+                                <p>Login/Sign Up With</p>
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-facebook"></i>
+                                            <p>Sign in with Facebook</p>
+                                        </a> </li>
+                                    <li><a href="#"><i class="fa fa-google"></i>
+                                            <p>Sign in with Google</p>
+                                        </a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i>
+                                            <p>Sign in with Twitter</p>
+                                        </a></li>
+                                </ul>
+
+                                <div class="new_user">
+                                    <p>New User?<a routerLink="/register">Sign up</a> <span>|</span>
+                                        <a routerLink="/forge-password">Forgot Password</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

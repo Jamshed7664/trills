@@ -1,0 +1,1007 @@
+<section class="wrap bg-black">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- <div class="media_page"> -->
+            <div class="">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 sidebar__inner">
+                        <div class="sidebar_listing">
+                            <div class="filter">
+                                <h6><i class="fa fa-filter"></i> Filter by
+                                    <span id="filter-btn">
+                                        <i class="fa fa-navicon"></i></span>
+                                    <div class="clearall">
+                                        <a href="javascript:void(0)" (click)="clearall()">Clear All</a>
+                                    </div>
+                                </h6>
+                            </div>
+
+                            <div id="mobile-filter">
+                                <aside class="sidebar-wrapper">
+                                    <div class="sidebar-box">
+                                        <div class="box-title">
+                                            <h5 class="showFire" data-toggle="collapse" data-target="#catemenu1">Genres <span class="fa fa-angle-right"></span></h5>
+                                        </div>
+                                        <div id="catemenu1" class="box-content
+                                            last_li_hidden collapse">
+                                            <ul class="category-list list-unstyled">
+                                                <li *ngFor="let category of categories |
+                                                    slice:0:5;">
+                                                    <label class="common-customCheckbox
+                                                        vertical-filters-label">
+                                                        <input type="checkbox"
+                                                            class="price-input"
+                                                            (click)="send($event,category.url)"
+                                                            name="checkbox[]"
+                                                            attr.id="cat{{category.url}}"
+                                                            [checked]="selectedFilterCats(0,category.url)"
+                                                            value="{{category.url}}">
+                                                        {{category.name}}
+                                                        <div
+                                                            class="common-checkboxIndicator"></div>
+                                                    </label>
+                                                </li>
+
+                                                <ng-container *ngIf="moreCats">
+                                                    <li *ngFor="let category of
+                                                        categories |
+                                                        slice:5:categories.length;">
+                                                        <label class="common-customCheckbox
+                                                            vertical-filters-label">
+                                                            <input type="checkbox"
+                                                                class="price-input"
+                                                                (click)="send($event,category.url)"
+                                                                name="checkbox[]"
+                                                                attr.id="cat{{category.url}}"
+                                                                [checked]="selectedFilterCats(0,category.url)"
+                                                                value="{{category.url}}">
+                                                            {{category.name}}
+                                                            <div
+                                                                class="common-checkboxIndicator"></div>
+                                                        </label>
+                                                    </li>
+                                                </ng-container>
+
+                                            </ul>
+                                            <p class="showmore" *ngIf="categories?.length> 5 &&
+                                                !moreCats" (click)="showhideCat()"><a href="javascript:void(0)">+ Show
+                                                    more
+                                                    {{categories.length-5}}</a></p>
+                                            <p class="showmore" *ngIf="moreCats" (click)="showhideCat()"><a href="javascript:void(0)">- Show
+                                                    less </a></p>
+                                        </div>
+                                    </div>
+                                    <hr class="listing-sider-hr" *ngIf="searchType=='tracks'" />
+                                    <div class="sidebar-box" *ngIf="searchType=='tracks'">
+                                        <div class="box-title">
+                                            <h5 class="showFire" data-toggle="collapse" data-target="#catemenu0">BPM <span class="fa fa-angle-right"></span></h5>
+                                        </div>
+                                        <div id="catemenu0" class="box-content
+                                                last_li_hidden collapse">
+                                            <div class="wrapper mg_top40 mg_bottom40">
+                                                <div class="sliders_step1">
+                                                    <div id="slider-range"></div>
+                                                </div>
+                                                <div class="extra-controls form-inline">
+                                                    <div id="time-range" class="row">
+                                                        <div class="col-md-6 col-xs-6"><span class="slider-time">{{min_price}}</span></div>
+                                                        <div class="col-md-6 col-xs-6"><span class="slider-time2">{{max_price}}</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="listing-sider-hr" *ngIf="searchType=='tracks'" />
+                                    <div class="sidebar-box" *ngIf="searchType=='tracks'">
+                                        <div class="box-title">
+                                            <h5 data-toggle="collapse" data-target="#catemenu4">Moods <span class="fa fa-angle-right"></span></h5>
+                                        </div>
+                                        <div id="catemenu4" class="box-content
+                                            last_li_hidden collapse">
+                                            <ul class="category-list list-unstyled">
+                                                <li *ngFor="let mood of moods |
+                                                    slice:0:5;">
+                                                    <label class="common-customCheckbox
+                                                        vertical-filters-label">
+                                                        <input type="checkbox"
+                                                            class="price-input"
+                                                            (click)="send($event,mood.url)"
+                                                            name="checkbox[]"
+                                                            attr.id="mood{{mood.url}}"
+                                                            [checked]="selectedFilterMoods(0,mood.url)"
+                                                            value="{{mood.url}}">
+                                                        {{mood.name}}
+                                                        <div
+                                                            class="common-checkboxIndicator"></div>
+                                                    </label>
+                                                </li>
+
+                                                <ng-container *ngIf="moreMoods">
+                                                    <li *ngFor="let mood of moods |
+                                                        slice:5:moods.length;">
+                                                        <label class="common-customCheckbox
+                                                            vertical-filters-label">
+                                                            <input type="checkbox"
+                                                                class="price-input"
+                                                                (click)="send($event,mood.url)"
+                                                                name="checkbox[]"
+                                                                attr.id="mood{{mood.url}}"
+                                                                [checked]="selectedFilterMoods(0,mood.url)"
+                                                                value="{{mood.url}}">
+                                                            {{mood.name}}
+                                                            <div
+                                                                class="common-checkboxIndicator"></div>
+                                                        </label>
+                                                    </li>
+                                                </ng-container>
+                                            </ul>
+
+
+                                            <p class="showmore" *ngIf="moods?.length> 5
+                                                && !moreMoods" (click)="showhideMood()"><a href="javascript:void(0)">+ Show
+                                                    more {{moods.length-5}}</a></p>
+                                            <p class="showmore" *ngIf="moreMoods" (click)="showhideMood()"><a href="javascript:void(0)">- Show
+                                                    less </a></p>
+
+                                        </div>
+                                    </div>
+                                    <hr class="listing-sider-hr" *ngIf="searchType=='tracks'" />
+                                    <div class="sidebar-box" *ngIf="searchType=='tracks'">
+                                        <div class="box-title">
+                                            <h5 data-toggle="collapse" data-target="#catemenu5">Track Type <span class="fa fa-angle-right"></span>
+                                            </h5>
+                                        </div>
+                                        <div id="catemenu5" class="box-content
+                                            last_li_hidden collapse">
+                                            <ul class="category-list list-unstyled">
+                                                <li *ngFor="let beat of beats |
+                                                    slice:0:5;">
+                                                    <label class="common-customCheckbox
+                                                        vertical-filters-label">
+                                                        <!--<input type="checkbox" value=""
+                                                            class="price-input"
+                                                            (click)="send($event,beat.url)"
+                                                            name="checkbox[]"
+                                                            attr.id="trackType{{beat.url}}"
+                                                            [checked]="selectedFilterTracks(0,beat.url)"
+                                                            value="{{beat.url}}">-->
+														<input type="checkbox" value=""
+                                                            class="price-input"
+                                                            (click)="send($event,beat.name)"
+                                                            name="checkbox[]"
+                                                            attr.id="trackType{{beat.name}}"
+                                                            [checked]="selectedFilterTracks(0,beat.name)"
+                                                            value="{{beat.name}}">
+                                                        {{beat.name}}
+                                                        <div
+                                                            class="common-checkboxIndicator"></div>
+                                                    </label>
+                                                </li>
+
+                                                <ng-container *ngIf="moreBeats">
+                                                    <li *ngFor="let beat of beats |
+                                                        slice:5:beats.length;">
+                                                        <label class="common-customCheckbox
+                                                            vertical-filters-label">
+                                                            <input type="checkbox"
+                                                                class="price-input"
+                                                                (click)="send($event,beat.url)"
+                                                                name="checkbox[]"
+                                                                attr.id="trackType{{beat.url}}"
+                                                                [checked]="selectedFilterTracks(0,beat.url)"
+                                                                value="{{beat.url}}">
+                                                            {{beat.name}}
+                                                            <div
+                                                                class="common-checkboxIndicator"></div>
+                                                        </label>
+                                                    </li>
+                                                </ng-container>
+                                            </ul>
+                                            <p class="showmore" *ngIf="beats?.length> 5
+                                                && !moreBeats"><a href="javascript:void(0)" (click)="showhideBeats()">+ Show
+                                                    more {{beats.length-5}}</a></p>
+                                            <p class="showmore" *ngIf="moreBeats" (click)="showhideBeats()"><a href="javascript:void(0)">- Show
+                                                    less </a></p>
+                                        </div>
+                                    </div>
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dec-txt" *ngIf="searchType=='all'">
+                        <h3>All Categories</h3>
+                    </div>
+                    <div class="tab_dashbord" *ngIf="search">
+
+                        <ul>
+                            <li class="dashbord_btn">
+                                # {{search}}
+                                <a href="javascript:void(0)" (click)="removeFilter('search')">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <!-- Musicians SECTION -->
+                    <div class="product-listing col-xs-12 col-sm-12 col-md-9 col-lg-9" *ngIf="searchType=='musicians'">
+                        <div class="dec-txt">
+                            <h3>Musicians</h3>
+                        </div>
+                        <ul class="list-inline video-item servicelst">
+
+                            <li class="col-sm-6 col-md-3 col-xs-6" *ngFor="let product of
+                        products | paginate: { id: 'listing_pagination',
+                        itemsPerPage: 1,
+                        currentPage: page,
+                        totalItems: totalRec }">
+                                <div class="item-box">
+                                    <div class="thumbnail tmb customRound">
+                                        <img src="{{product.productImage}}" class="rounded-circle">
+                                    </div>
+                                    <div class="item-dec">
+                                        <h5><a routerLink="/u/{{CartService.getfeedUrl(product)}}" class="aTagwhite">{{product.artist_name}}</a></h5>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- Musicians SECTION -->
+
+                    <!-- ALBUM SECTION -->
+                    <div class="product-listing col-xs-12 col-sm-12 col-md-9 col-lg-9" *ngIf="searchType=='albums'">
+                        <div class="dec-txt">
+                            <h3>Album</h3>
+                        </div>
+                        <ul class="list-inline video-item servicelst">
+
+
+
+                            <li class="col-sm-6 col-md-3 col-xs-6" *ngFor="let product of
+                        products | paginate: { id: 'listing_pagination',
+                        itemsPerPage: 1,
+                        currentPage: page,
+                        totalItems: totalRec }">
+                                <div class="item-box">
+                                    <div class="thumbnail tmb">
+                                        <img src="{{product.image}}"><a class="play-video" href="javascript:void(0)" (click)="CartService.setAllTracks(product.tracks,'tracks', 0)"><i class="fa fa-play-circle-o"></i></a>
+                                    </div>
+                                    <div class="item-dec">
+                                        <h5><a routerLink="/album/{{product.id}}/tracks" class="aTagwhite">{{product.name}}</a></h5>
+                                        <p>{{product.artist_name}} <span *ngIf="product.price">| {{currency}} {{product.price}}</span> | Tracks {{product.tracks.length}}</p>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- ALBUM SECTION -->
+
+                    <!-- SERVICES SECTION -->
+                    <div class="product-listing col-xs-12 col-sm-12 col-md-9 col-lg-9" *ngIf="searchType=='services'">
+                        <div class="dec-txt">
+                            <h3>Services </h3>
+                        </div>
+                        <ul class="list-inline video-item servicelst">
+
+
+
+                            <li class="col-sm-6 col-md-3 col-xs-6" *ngFor="let product of
+                        products | paginate: { id: 'listing_pagination',
+                        itemsPerPage: 1,
+                        currentPage: page,
+                        totalItems: totalRec }">
+                                <div class="item-box">
+                                    <div class="thumbnail tmb">
+                                        <img src="{{product.artist_image}}"><a class="play-video" href="javascript:void(0)"><i class="fa fa-play"></i></a>
+                                    </div>
+                                    <div class="item-dec">
+                                        <h5><a routerLink="/u/{{CartService.getServiceUrl(product)}}" class="aTagwhite">{{product.name}}</a></h5>
+                                        <p>{{product.artist_name}}</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- SERVICES SECTION -->
+
+                    <!-- ALL SECTION -->
+                    <div class="product-listing col-xs-12 col-sm-12 col-md-9 col-lg-9" *ngIf="searchType=='all'">
+                        <section class="wrap bg-black-gray">
+                            <div class="container-fluid">
+                                <!-- artist section -->
+                                <div class="owl-carousel-wrap" *ngIf="artists">
+                                    <div class="row">
+                                        <div class="col-xs-8 col-sm-8">
+                                            <div class="title-header">
+                                                <h2 class="white">Musicians</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="txt-rgt view">
+                                                <a class="white" [queryParams]="{ 'q':search ,'type':'musicians'}" routerLink="/search">View All</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-carousel owl-theme" id="artistImage">
+
+                                        <div class="item" *ngFor="let artist of artists">
+                                            <div class="item-box">
+                                                <div class="thumbnail tmb">
+                                                    <img src="{{artist.productImage}}" style="height: 198px;width: 198px;" />
+                                                </div>
+                                                <div class="item-dec">
+                                                    <h5>{{artist.artist_name}}</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- artist section -->
+
+                                <!-- album section -->
+                                <div class="owl-carousel-wrap" *ngIf="albums">
+                                    <div class="row">
+                                        <div class="col-xs-8 col-sm-8">
+                                            <div class="title-header">
+                                                <h2 class="white">Albums</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="txt-rgt view">
+                                                <a class="white" [queryParams]="{ 'q':search,'type':'albums'}" routerLink="/search">View All</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-carousel owl-theme" id="albumsSlider">
+
+                                        <div class="item" *ngFor="let album of albums">
+                                            <div class="item-box">
+                                                <div class="thumbnail tmb">
+                                                    <img src="{{album.productImage}}" style="height: 198px;width: 198px;" />
+                                                </div>
+                                                <div class="item-dec">
+                                                    <a routerLink="/album/{{album.id}}/tracks">
+                                                        <h5>{{album.name}}</h5>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- album section -->
+
+                                <!-- Tracks section -->
+                                <div class="owl-carousel-wrap" *ngIf="tracks">
+                                    <div class="row">
+                                        <div class="col-xs-8 col-sm-8">
+                                            <div class="title-header">
+                                                <h2 class="white">Tracks</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="txt-rgt view">
+                                                <a class="white" [queryParams]="{ 'q':search,'type':'tracks'}" routerLink="/search">View All</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-carousel owl-theme" id="tracksSlider">
+
+                                        <div class="item" *ngFor="let track of tracks; let i = index">
+                                            <div class="item-box">
+                                                <div class="thumbnail tmb">
+                                                    <img class="playerCursor" (click)="CartService.setAllTracks(tracks,'tracks', i)" src="{{track.productImage}}" style="height: 198px;width: 198px;" />
+                                                </div>
+                                                <div class="item-dec">
+
+                                                    <a routerLink="/details/{{CartService.getDetailsUrl(track)}}">
+                                                        <h5>{{track.name}} </h5>
+                                                    </a>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- Tracks section -->
+
+                                <!-- playlists section -->
+                                <div class="owl-carousel-wrap" *ngIf="playLists">
+                                    <div class="row">
+                                        <div class="col-xs-8 col-sm-8">
+                                            <div class="title-header">
+                                                <h2 class="white">Playlist</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="txt-rgt view">
+                                                <a class="white" [queryParams]="{ 'q':search,'type':'playlist'}" routerLink="/search">View All</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-carousel owl-theme" id="playlistsSlider">
+
+                                        <div class="item" *ngFor="let playList of playLists">
+                                            <div class="item-box">
+                                                <div class="thumbnail tmb">
+                                                    <img src="{{playList.productImage}}" style="height: 198px;width: 198px;" />
+                                                </div>
+                                                <div class="item-dec">
+                                                    <h5>{{playList.name}}</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- playlists section -->
+
+                                <!-- sounds section -->
+                                <div class="owl-carousel-wrap" *ngIf="soundskits">
+                                    <div class="row">
+                                        <div class="col-xs-8 col-sm-8">
+                                            <div class="title-header">
+                                                <h2 class="white">Sounds Kits</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="txt-rgt view">
+                                                <a class="white" [queryParams]="{ 'q':search,'type':'sound-kits'}" routerLink="/search">View All</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-carousel owl-theme" id="soundskitSlider">
+
+                                        <div class="item" *ngFor="let soundskit of soundskits">
+                                            <div class="item-box">
+                                                <div class="thumbnail tmb">
+                                                    <img src="{{soundskit.productImage}}" style="height: 198px;width: 198px;" />
+                                                </div>
+                                                <div class="item-dec">
+                                                    <a routerLink="/u/{{CartService.getSoundKitDeatilsListUrl(soundskit)}}">
+                                                        <h5>{{soundskit.name}}</h5>
+                                                    </a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- sounds section -->
+
+                                <!-- services section -->
+                                <div class="owl-carousel-wrap" *ngIf="services">
+                                    <div class="row">
+                                        <div class="col-xs-8 col-sm-8">
+                                            <div class="title-header">
+                                                <h2 class="white">Services</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="txt-rgt view">
+                                                <a class="white" [queryParams]="{ 'q':search,'type':'services'}" routerLink="/search{{CartService.getUrlFromallList(search,5)}}">View All</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-carousel owl-theme" id="serviceSlider">
+
+                                        <div class="item" *ngFor="let service of services">
+                                            <div class="item-box">
+                                                <div class="thumbnail tmb">
+                                                    <img src="{{service.productImage}}" style="height: 198px;width: 198px;" />
+                                                </div>
+                                                <div class="item-dec">
+                                                    <a routerLink="/u/{{CartService.getServiceUrl2(service)}}">
+                                                        <h5>{{service.name}}</h5>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- services section -->
+                            </div>
+                        </section>
+                    </div>
+                    <!-- ALL SECTION -->
+
+                    <!-- SOUND KITS SECTION -->
+                    <div class="product-listing col-xs-12 col-sm-12 col-md-9 col-lg-9" *ngIf="searchType=='sound-kits'">
+                        <div class="dec-txt">
+                            <h3>Sounds Kits </h3>
+                        </div>
+                        <ul class="list-inline video-item servicelst">
+
+
+
+                            <li class="col-sm-6 col-md-3 col-xs-6" *ngFor="let product of
+                        products | paginate: { id: 'listing_pagination',
+                        itemsPerPage: 1,
+                        currentPage: page,
+                        totalItems: totalRec }">
+                                <div class="item-box">
+                                    <div class="thumbnail tmb">
+                                        <img src="{{product.artist_image}}"><a class="play-video" href="javascript:void(0)"><i class="fa fa-play"></i></a>
+                                    </div>
+                                    <div class="item-dec">
+                                        <h5><a routerLink="/u/{{CartService.getSoundKitListUrl(product)}}" class="aTagwhite">{{product.name}}</a></h5>
+                                        <p>{{product.artist_name}}</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- SOUND KITS SECTION -->
+
+
+                    <!-- TRACK SECTION -->
+                    <div class="product-listing col-xs-12 col-sm-12 col-md-9 col-lg-9" *ngIf="searchType=='tracks'">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group shortby">
+                                    <h5>Sort By</h5>
+                                    <select class="form-control _select_arrow" (change)="sortBy($event.target.value)">
+                                        <option value="3" [selected]="sort_by=='3'">Top
+                                            selling</option>
+                                        <option value="2" [selected]="sort_by=='2'">Popular</option>
+                                        <option value="1" [selected]="sort_by=='1'">Newest</option>
+                                        <!--<option value="4" [selected]="sort_by=='4'">Price
+                                            : High to Low</option>
+                                        <option value="5" [selected]="sort_by=='5'">Price
+                                            : Low to High</option>-->
+                                    </select>
+                                    <div class="form_icon"><i class="fa fa-angle-down"></i></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="title-header">
+                            <h2 class="white">Tracks</h2>
+                        </div>
+
+                        <div class="listing-table">
+                            <div class="">
+                                <div class="table" id="results">
+
+                                    <div class="table_row" *ngFor="let product of
+                                        products | paginate: { id: 'listing_pagination',
+                                        itemsPerPage: 1,
+                                        currentPage: page,
+                                        totalItems: totalRec }; let i = index">
+                                        <div class="table_small">
+                                            <div class="table_cell">Item</div>
+                                            <div class="table_cell">
+                                                <img (click)="CartService.setAllTracks(products,'tracks', i)" class="playerCursor item-table-img
+                                                    img-responsive" src="{{product.image}}" alt="">
+                                                <div class="playhover">
+                                                    <a href="javascript:void(0)" (click)="CartService.setAllTracks(products,'tracks', i)"><i class="fa fa-play-circle-o"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table_small">
+                                            <div class="table_cell"></div>
+                                            <div class="table_cell cart-tile">
+                                                <a routerLink="/details/{{CartService.getDetailsUrl(product)}}">
+                                                    <h5>{{product.name}}</h5>
+                                                </a>
+                                                <p>by <a routerLink="/p/{{CartService.getSellerProfileUrl(product)}}">{{product.artist_name}}</a></p>
+                                            </div>
+                                        </div>
+                                        <div class="table_small">
+                                            <div class="table_cell"></div>
+                                            <div class="table_cell">{{product.track_type}}</div>
+                                        </div>
+                                        <div class="table_small">
+                                            <div class="table_cell"></div>
+                                            <div class="table_cell">{{product.BPM}} BPM</div>
+                                        </div>
+                                        <div class="table_small">
+                                            <div class="table_cell"></div>
+                                            <div class="table_cell">{{product.total_playes}} plays
+                                            </div>
+                                        </div>
+                                        <div class="table_small">
+                                            <div class="table_cell"></div>
+                                            <div class="table_cell">
+                                                <div class="download-btn" *ngIf="product.download_options!='1'">
+                                                    <ng-container *ngIf="product.require_downloaders == 1 || product.require_downloaders == 2">
+                                                        <a href="javascript:void(0)" (click)="open_close_modal_download(1,0,1,product)"><img src="assets/images/download-icon.png" />
+                                                        </a> Free
+                                                    </ng-container>
+
+                                                    <ng-container *ngIf="!product.require_downloaders">
+                                                        <a href="javascript:void(0)" (click)="downloadFile(product,i)" download="{{product.audio}}"><img src="assets/images/download-icon.png" />
+                                                        </a> Free
+                                                    </ng-container>
+
+                                                </div>
+                                                <div class="share-btn ml5">
+                                                    <a href="javascript:void(0)" (click)="open_close_modal_share(1,0,1,product)"><img src="assets/images/share-icon.png" /></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="table_small">
+                                            <div class="table_cell"></div>
+                                            <div class="table_cell">
+                                                <div class="listint-shopping-btn">
+                                                    <a (click)="add_to_cart(1,product)" class="hideElement"><img src="assets/images/share-icon0.png" /> {{currency}} {{product.price}}</a>
+                                                    <a (click)="open_close_modal(1,0,1,product)" *ngIf="product.price"><img src="assets/images/share-icon0.png" />{{currency}} {{product.price}}</a>
+                                                </div>
+                                                <div class="dropdown
+                                                    listing-table-drop">
+                                                    <button class="btn btn-default
+                                                        dropdown-toggle" type="button" data-toggle="dropdown"><img
+                                                            src="assets/images/navgation-dot.png"
+                                                            /></button>
+                                                    <ul class="dropdown-menu
+                                                        dropdown-menu-right">
+                                                        <li><a href="javascript:void(0)" (click)="likeunLike(product,i)">  {{ product.isIamLiking ? 'Undo Like' : 'Like'}}</a></li>
+                                                        <li><a href="#">Repost</a></li>
+                                                        <li><a routerLink="/details/{{CartService.getDetailsUrl(product)}}">Comments</a></li>
+                                                        <li><a href="javascript:void(0)" (click)="open_close_modal_playlist(1,0,1,product)">Add to playlist</a></li>
+                                                        <li><a href="javascript:void(0)" (click)="open_close_modal_lyrics(1,0,1,product)">Lyrics</a></li>
+                                                        <li *ngIf="product.download_options!='1'">
+                                                            <ng-container *ngIf="product.require_downloaders == 1 || product.require_downloaders == 2">
+                                                                <a href="javascript:void(0)" (click)="open_close_modal_download(1,0,1,product)">Free download
+																</a>
+                                                            </ng-container>
+
+                                                            <ng-container *ngIf="!product.require_downloaders">
+                                                                <a href="javascript:void(0)" (click)="downloadFile(product,i)" download="{{product.audio}}">Free download
+																</a>
+                                                            </ng-container>
+                                                        </li>
+                                                        <li><a routerLink="/details/{{CartService.getDetailsUrl(product)}}">Go to track</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pagination custom_paginate">
+                            <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" previousLabel="Pre" nextLabel="Next" (pageChange)="getPage($event)"></pagination-controls>
+                        </div>
+                    </div>
+                    <!-- TRACK SECTION -->
+
+                    <!-- <div class="page-header _header_title" *ngIf="products?.length == 0 && searchType!='all'"  >
+                        <h3>No records found</h3>
+                    </div> -->
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModalLyrics1" role="dialog" *ngIf="selected_product_lyrics">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{selected_product_lyrics.name}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="lyric-media">
+                    <div class="media">
+                        <div class="media-left">
+                            <div class="media-left">
+                                <div class="thumbnail tmb">
+                                    <img class="item-table-img" src="{{selected_product_lyrics.image}}" alt="">
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h4>{{selected_product_lyrics.track_type}}</h4>
+                                <p>By {{selected_product_lyrics.artist_name}}</p>
+                            </div>
+                            <div class="media-right">
+                                <a (click)="open_close_modal(1,0,1,selected_product_lyrics)"><img src="assets/images/share-icon0.png" /> {{currency}} {{selected_product_lyrics.price}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="dynamictab">
+                    <ejs-tab #element id="element" (created)="tabCreated()" (selected)="tabSelected($event)">
+                        <e-tabitems>
+                            <e-tabitem [header]='headerText[0]' content="#tab1_content"></e-tabitem>
+                            <e-tabitem [header]='headerText[1]' content="#form-container"></e-tabitem>
+                        </e-tabitems>
+                    </ejs-tab>
+                </div> -->
+
+
+
+
+                <p id="form-container"></p>
+                <ul class="nav nav-tabs version-tabs">
+                    <li [ngClass]="{'active': item.id == versionId}" *ngFor="let item of versions; index as i"><a data-toggle="tab" href="#Version" (click)="onversionClick(item)">Version {{i+1}}</a></li>
+                    <li (click)="onAddLyric()"><a><i class="fa fa-plus"></i> Add New</a></li>
+                </ul>
+                <!-- <div class="contactform" *ngIf="!isLyrics">
+                    <p class="text-white">{{description}}</p>
+                </div> -->
+                <div class="contactform">
+                    <!-- <div class="contactform" *ngIf="isLyrics"> -->
+                    <div class="tab-content">
+                        <div id="Version" class="tab-pane fade in active">
+                            <form [formGroup]='lyricform' (ngSubmit)="onsubmitLyrics()">
+                                <div class="form-group">
+                                    <label>LYRICS TITLE</label>
+                                    <input formControlName='name' type="text" class="form-control form_ctrl" id="name" placeholder="Lyrics for Direct | Buy 2 Get 1 FREE">
+                                    <small *ngIf="lyricform.get('name').invalid && lyricform.get('name').touched">Please enter lyrics name</small>
+                                </div>
+                                <div class="form-group">
+                                    <label>LYRICS</label>
+
+                                    <textarea formControlName='description' class="form-control form_msg" name="message" rows="6" placeholder="Start writing your lyrics..."></textarea>
+                                    <small *ngIf="lyricform.get('description').invalid && lyricform.get('description').touched">Please enter description</small>
+                                </div>
+                                <button type="submit" class="btn btn-default btn-sumbit">{{isUpdate   ? 'Save lyrics' : 'Update lyrics'}}</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="myModalprocess1" class="modal fade" role="dialog" *ngIf="selected_product">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Choose license type</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <!--<img class="item-table-img img-responsive" src="{{selected_product.artist_image}}" alt="">-->
+                        <img class="item-table-img img-responsive" src="{{selected_product.image}}" alt="">
+                    </div>
+                    <div class="col-md-9 lncsDiv">
+                        <div class="panel panel-default" *ngFor="let license of licenses ">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-7">{{license.name}}<br>
+                                        <span>
+									{{license.license_for_wav}} {{license.license_for_stems}} 
+										<ng-container *ngIf="license.license_for_mp3">
+											{{license.license_for_mp3}} ({{license.untagged}} {{license.untagged_with}})
+										</ng-container >
+									</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-5 txt-rgt">
+                                        <div class="listint-shopping-btn addTocartInModal">
+                                            <a href="javascript:void(0)" (click)="add_to_cart2(1,selected_product,license.id)"><img src="assets/images/share-icon0.png" /> {{currency}} {{license.default_track_price}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="panel-body" *ngIf="license.features">
+                                <a href="#demo{{license.id}}" class="btn btn-info" data-toggle="collapse">See usage terms</a>
+                                <div id="demo{{license.id}}" class="collapse">
+                                    <div class="row">
+                                        <div class="col-md-12" *ngIf="license.distribution_copies">
+                                            <p>NUMBER OF DISTRIBUTION COPIES {{license.distribution_copies}}</p>
+                                        </div>
+                                        <div class="col-md-6" *ngIf="license.free_downloads">
+                                            <p>NUMBER OF FREE DOWNLOADS {{license.free_downloads}}</p>
+                                        </div>
+
+                                        <div class="col-md-6" *ngIf="license.audio_streams">
+                                            <p>NUMBER OF AUDIO STREAMS {{license.audio_streams}}</p>
+                                        </div>
+
+                                        <div class="col-md-6" *ngIf="license.music_video">
+                                            <p>NUMBER OF MUSIC VIDEOS {{license.music_video}}</p>
+                                        </div>
+
+                                        <div class="col-md-6" *ngIf="license.non_monetized_video_streams">
+                                            <p>NUMBER OF NON-MONETIZED VIDEO STREAMS {{license.non_monetized_video_streams}}</p>
+                                        </div>
+
+                                        <div class="col-md-6" *ngIf="license.monetized_video_streams">
+                                            <p>NUMBER OF MONETIZED VIDEO STREAMS {{license.monetized_video_streams}}</p>
+                                        </div>
+
+                                        <div class="col-md-6" *ngIf="license.broadcasting_right">
+                                            <p>BROADCASTING RIGHTS {{license.broadcasting_right}}</p>
+                                        </div>
+
+                                        <div class="col-md-6" *ngIf="license.radio_stations">
+                                            <p>NUMBER OF RADIO STATIONS {{license.radio_stations}}</p>
+                                        </div>
+
+                                        <div class="col-md-6" *ngIf="license.allow_profit">
+                                            <p>ALLOW FOR PROFIT PERFORMANCES {{license.allow_profit}}</p>
+                                        </div>
+
+                                        <div class="col-md-6" *ngIf="license.not_profit">
+                                            <p>NOT FOR PROFIT PERFORMANCES {{license.not_profit}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<p>You can also:</p>
+                <p>Negotiate the Price</p>-->
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div id="myModalshare1" class="modal fade" role="dialog" *ngIf="selected_product_share">
+    <div class="modal-dialog modal-sm pop_center">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Share {{selected_product_share.name}}</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <share-buttons [include]="['facebook','twitter','linkedin','pinterest','reddit','mix','vk','telegram','messenger','whatsapp','xing','line','sms','email','copy']" [show]="9" [size]="1" [url]=selected_product_share.artist_image [image]=selected_product_share.artist_image
+                        [autoSetMeta]="false"></share-buttons>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div id="myModalDownload1" class="modal fade" role="dialog" *ngIf="selected_product_download">
+    <div class="modal-dialog modal-sm pop_center">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Download {{selected_product_download.name}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="button-mainclass">
+                    <div *ngIf="selected_product_download.require_downloaders==1" class="track_form_editer mb10">
+                        <form [formGroup]="downloadForm" (ngSubmit)="downloaderEmail(selected_product_download,1)">
+                            <div class="dwnload_input">
+                                <input type="text" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" class="form-control" placeholder="Email" formControlName="email" />
+                                <button class="btn">
+						<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+						Submit
+						</button>
+                            </div>
+                            <div *ngIf="!df_success && submitted && df.email.errors" class="invalid-feedback">
+                                <div *ngIf="df.email.errors.required">Email is required</div>
+                            </div>
+                            <div *ngIf="df.email.errors && df.email.errors.pattern">
+                                Email is invalid
+                            </div>
+                            <div *ngIf="df_success">
+                                Data Recorded Successfully
+                            </div>
+
+                        </form>
+                    </div>
+                    <button *ngIf="selected_product_download.social_twitter==1" class="btn btn-block twitter_btn bg_twitter mb10" type="submit"> Follow with Twitter </button>
+                    <button *ngIf="selected_product_download.social_sound==1" class="btn btn-block twitter_btn bg_red mb10" type="submit"> Follow with Soundcloud </button>
+
+                    <ng-container *ngIf="selected_product_download.isIamFollowing==true">
+                        <a href="javascript:void(0)" (click)="downloadFile(selected_product_download,1)">You already followed trillions</a>
+                    </ng-container>
+
+                    <ng-container *ngIf="selected_product_download.isIamFollowing==false">
+                        <button *ngIf="selected_product_download.social_trill==1" class="btn btn-block twitter_btn bg_twitter mb10" type="button" (click)="followapi(selected_product_download,1)"> Follow with Trillions </button>
+                    </ng-container>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<div id="myModalPlaylist1" class="modal fade" role="dialog" *ngIf="selected_product_playlist">
+    <div class="modal-dialog pop_center_playlist">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Playlist {{selected_product_playlist.name}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="button-mainclass">
+                    <div class="track_form_editer existing_playlist mb10">
+                        <form *ngIf="playlistTitle.length>0" [formGroup]="updatePlaylistForm" (ngSubmit)="updatePlaylist(selected_product_playlist)">
+                            <h2>Add to Existing Playlist</h2>
+                            <ul class="playlist_popup_ul">
+                                <li class="" *ngFor="let row of playlistTitle ; let i=index">
+                                    <label class="box1 playListtitlemain"> 
+						  <!--<input type="radio" formControlName="selectedPlaylist" value="{{row.id}}" />-->
+						  <input type="checkbox" [id]="'checkbox' +row.id" (change)="onCheckboxChange($event)" value="{{row.id}}" /> {{row.name | uppercase}}
+						  <span class="checkmark"></span>
+						</label>
+                                </li>
+                            </ul>
+                            <div class="row ">
+                                <div class="col-md-8 col-xs-12">
+                                    <div class="dwnload_input">
+                                        <input type="hidden" formControlName="selectedTrackId" value="{{selected_product_playlist.id}}" />
+                                        <button class="btn">
+							<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+							Submit
+							</button>
+                                    </div>
+                                    <div *ngIf="!upf_success && submitted && this.updatePlaylistForm.controls['selectedPlaylist'].errors?.required" class="invalid-feedback mt5">
+                                        <div class="redclass">Playlist is required, select atleast one value.</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </form>
+                        <form [formGroup]="createPlaylistForm" (ngSubmit)="createPlaylist(selected_product_playlist)">
+                            <h2 class="mt20">Create New Playlist</h2>
+                            <div class="dwnload_input">
+                                <input type="text" class="form-control" placeholder="Playlist Name" formControlName="playlistName" />
+                                <input type="hidden" formControlName="selectedTrackId" value="{{selected_product_playlist.id}}" />
+                                <button class="btn">
+					<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+					Submit
+					</button>
+                            </div>
+                            <div *ngIf="!cpf_success && csubmitted && cpf.playlistName.errors" class="invalid-feedback mt5">
+                                <div class="redclass" *ngIf="cpf.playlistName.errors.required">Playlist Name is required</div>
+                            </div>
+                            <div *ngIf="(cpf_success && csubmitted) || (upf_success && submitted)">
+                                Data Recorded Successfully
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

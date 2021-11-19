@@ -1,0 +1,24 @@
+.dropdown-menu-right li {
+    border-bottom: solid 1px #ccc;
+}
+
+.dropdown-menu-right li:last-child {
+    border-bottom: none;
+}
+
+.listing-table .download-btn,
+.share-btn {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: white !important;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}

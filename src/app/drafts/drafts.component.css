@@ -1,0 +1,8 @@
+.new_tracklist button{ border:none; margin:0; }
+.dropdown-menu-right {
+    right: 0;
+    left: auto;
+	padding: 10px;
+	height: auto;
+	overflow-y: auto;
+}

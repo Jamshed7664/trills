@@ -1,0 +1,76 @@
+<section class="inner-section">
+    <div class="container-fluid">
+        <div class="inner-banner">
+            <a href="#">Dashboard</a> <span>&gt;</span> <a href="#">Licenses &amp; Contracts</a>
+        </div>
+    </div>
+</section>
+
+<section class="licenses_section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                <div class="main_heading">
+                    <h3>Licenses &amp; Contracts </h3>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <div class="main_heading text-right">
+                    <a routerLink="/create-license" class="plus_btn"><i class="fa fa-plus"></i> Create Licenses</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="title_sub">General Information </h3>
+            </div>
+            <div class="col-md-6 text-right">
+                <!--<h3 class="title_sub"><i class="fa fa-youtube-play"></i> How to create Licenses </h3>-->
+            </div>
+        </div>
+        <div class="main_bg" *ngFor="let product of
+        products | paginate: { id: 'listing_pagination',
+        itemsPerPage: 1,
+        currentPage: page,
+        totalItems: totalRec }">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-5">
+                    <div class="licenses_details">
+                        <i class="fa fa-align-justify"></i>
+                        <h2>{{product.name}} <span>{{getLicenseName(product.license_for)}}</span></h2>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <div class="licenses_details">
+                        <p>Default track price:</p>
+                        <button type="submit" class="price_btn bg_gray1">{{currency}} {{product.default_track_price}}</button>
+                        <button type="submit" class="price_btn bg_red">{{currency}} Apply to all track</button>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="licenses_details text-right">
+                        <div class="ekabled_box_edit">
+                            <label class="container_checkbox" *ngIf="product.enable_license=='yes'"> 
+                                  <input type="checkbox" checked (click)="licenseEnableDisable(product.id,'no')">Enabled
+                                  <span class="checkmark"></span>
+                            </label>
+							<label class="container_checkbox" *ngIf="product.enable_license=='no'"> 
+                                  <input type="checkbox" (click)="licenseEnableDisable(product.id,'yes')" >Disabled
+                                  <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="ekabled_box_edit">
+                            <a href="#"><i class="fa fa-star"></i> </a>
+                            <a routerLink="/create-license" [queryParams]="{ 'licenseId': product.id}"><i class="fa fa-edit"></i> </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="pagination custom_paginate">
+        <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" previousLabel="Pre" nextLabel="Next" (pageChange)="getPage($event)"></pagination-controls>
+    </div>
+</section>

@@ -1,0 +1,398 @@
+
+/*------------------------------------------------------*/
+/* RESPONSIVE
+/*------------------------------------------------------*/
+@media (max-width:1320px) {.carousel-caption h3 {font-size: 53px;}
+    .navbar-nav>li:first-child>a {margin-left: 30px;}
+    .artists-carousel .item-box .tmb {width: 155px; height: 155px;}
+}
+@media (max-width:1199px) {
+    .navbar-brand>img {}
+    .container-fluid {margin-right: 20px;margin-left: 20px;}
+   .navbar-nav>li:first-child>a {margin-left: 8px;}
+    .navbar-nav>li>a {padding: 35px 10px;}
+    .nav-rgt>li>a { padding: 12px 18px;}
+    .affix .header-search {width: 42%;}
+    .artists-carousel .item-box .tmb {width: 135px;height: 135px;}
+    .selling-title .title h2 {font-size: 65px;}
+    .why-box {min-height: 280px;}
+    .dreams-into-wrap {background-position: left;}
+    .dreams-into-title .title h3 {font-size: 40px;}
+    .dreams-into-title .title h2 {font-size: 50px;}
+    .testimonial-wrap {background-size: 40%;}
+    .artist-handimg {margin-top: 65px;}
+    /*====== product details ===========*/
+    .detail-comment {margin-top: 48px;}
+    
+    /*============= cart ============*/
+    .cart-col-rgt {padding-left: 15px;}
+    .cart-btn-group li {width: 100%;margin-bottom: 10px;}
+    /*============= tracks ================*/
+    .profile-social-links li {padding-left: 2px;padding-right: 2px;}
+    .profile-social-links li a {padding: 8px;font-size: 14px;}
+    .profile-social-links li a.socil_link {font-size: 17px;height: 38px;width: 38px;}
+    .profile-likes li a {font-size: 24px;padding: 8px; width: 60px;}
+    /*=================== feed =============*/
+    .profile-item-like li a img {margin-right: 0px;}
+    .profile-item-like li a {padding: 10px 6px;}
+    
+    }
+@media (max-width:1100px) {
+    .artist-handimg {margin-top:40px;}
+    
+}
+@media (max-width:1023px) {
+    .container-fluid {margin-right:auto;margin-left:auto;}
+    .navbar-right {margin-right: 0px;}
+    .navbar-nav>li>a {padding: 15px 8px; font-size: 14px;}
+    .navbar-nav>li:first-child>a {margin-left: 0px;}
+    .navbar-brand>img {width: 120px;}
+    .affix .navbar-nav>li>a {padding: 10px;}
+    .navbar-brand {padding:13px 0px 5px 15px;}
+    .affix .navbar-brand {padding: 15px 0px 0px 15px;}
+    .affix .navbar-brand>img {width: 130px;}
+    .nav-rgt {margin-top: 10px;}
+    .nav-rgt>li>a {font-size: 12px;padding: 5px 7px;}
+    .nav-rgt>li.cart>a img{    width: 30px;}
+    .affix .header-search {width: 43%;margin-right: 20px;}
+    .slider-wrap .form-box {padding: 20px;}
+    .slider-wrap>img {height:auto;object-fit: cover;}
+    .carousel-caption { top: 5%;}
+    .carousel-caption h3 {font-size: 40px;    margin-bottom: 10px;}
+    .slider-search {margin-top: 20px;}
+    .wrap {padding-top: 60px;padding-bottom: 60px;}
+    .artists-carousel .item-box .tmb {width: 160px;height: 160px;}
+    .selling-title .title h2 {font-size: 52px;}
+    .artists-title h2 {font-size: 60px;}
+    .why-box {min-height: 305px;}
+    .dreams-into-title .title h3 { font-size: 26px;}
+    .dreams-into-title .title h2 {font-size: 40px;}
+    .testimonial-wrap {background-size: 42%;}
+    .artist-handimg {margin-top: 130px;}
+    /*================ prolisting ==================*/
+    .sidebar_listing {margin-bottom: 20px;}
+    .filter {margin-bottom: 0px;}
+    #mobile-filter{display: none;}
+     #filter-btn {display: block;
+    margin-left: 10px;}
+    /*================= product details ==================*/
+  .detail-comment {margin-top: 30px;}
+    /*=============== cart ===============*/
+    .cart-col-rgt {padding-left: 15px;}
+    .cart-btn-group li {width: 49%;margin-bottom: 0px;}
+    /*================= tracks ==================*/
+    .listint-shopping-btn a{padding: 8px;}
+    .profile-likes {text-align: inherit;}
+    .profile-sec { padding: 60px 0px;}
+    .profile-likes li {width: 33%;}
+    .profile-likes li a {font-size: 30px; padding: 10px 15px; width: 100%;}
+    
+    /*============== video =============*/
+    .video-rgtbar {padding-left: 15px;}
+    /*==================== feed ================*/
+    .profile-item-like li a{padding: 10px;}
+}
+ @media (max-width:990px) {
+    .artist-handimg {margin-top: 50px;}
+    
+}   
+
+
+/*---------- MEDIA 480px ----------*/
+@media  (max-width: 767px) {
+    .navbar {min-height: auto;}
+    .affix .nav-menu {display:block;}
+    .slider-wrap .carousel-inner{ overflow: visible;  }
+    .slider-wrap{ overflow: visible; }
+    .slider-wrap .carousel-inner > .item{ -webkit-perspective: 1000px; perspective: inherit; }
+    .slider-wrap .carousel-inner > .item.active, .slider-wrap .carousel-inner > .item.next.left, .slider-wrap .carousel-inner > .item.prev.right{ -webkit-transform: inherit; transform: inherit; }
+    .affix .rightmenubar .header-search.search-box{ display: none; }
+    .rightmenubar{display: inline-block; position: absolute; right: 50px; top: 0; }
+    .nav-rgt, .affix .nav-rgt{ margin-top: 8px; }
+    
+    .navbar-right.nav-rgt li a, .affix .navbar-nav > .navbar-right.nav-rgt > li > a{ padding: 0; text-align: center; font-size: 12px; background: none; border: none; }
+    .navbar-right.nav-rgt li a img{ width: 22px; }
+    .nav-rgt > li.hdr-login > a{ margin-right: 4px;}
+    .nav-rgt > li.cart > a{ padding: 2px 5px; }
+    .cart a img{ width: 26px; }
+    .nav-rgt > li.cart > a span{ width: 16px; height: 16px;right: 0px; font-size: 9px;line-height: 16px; }
+    .navbar-right.nav-rgt li{ display: inline-block; vertical-align: middle; }
+    .navbar-default .navbar-toggle {border-color:transparent;padding: 7px 0px;}
+   .navbar-default .navbar-toggle .icon-bar {background-color:#fff;}
+    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+        background-color: transparent;}
+    .navbar-brand{height: auto;}
+    .navbar-brand>img {width: 130px;}
+    .navbar-nav>li:first-child>a {margin-left: 0px;}
+	.navbar-brand {padding: 10px 10px;}
+    .navbar-nav>li>a {padding: 5px 15px;text-align: center;font-size: 15px;}
+    .navbar-nav>li>a.custom-nav-menu {display: none;}
+    .affix{position: fixed;}
+    .affix .navbar-brand {padding: 10px 10px;}
+    .hdr-social-link li a {font-size: 15px;}
+    .carousel-caption {padding-bottom: 0px; top: 4%;}
+    .carousel-caption h3 {font-size: 18px;line-height: 24px;    margin-bottom: 5px;}
+    .slider-search {margin-top: 10px;}
+    .slider-wrap .carousel-inner>.item>a>img, .carousel-inner>.item>img {height: 225px; object-fit: cover;}
+    .search-box { width: 95%;}
+    .search-box>.form-control {height: 45px;padding: 10px 55px;}
+    .search-box>.btn-search {padding: 9px 10px;}
+    .search-box>.track-drop>.btn {margin-top: 5px;}
+    .search-box>.track-drop>.btn span.fa {top: 8px;}
+    .slider-wrap .owl-nav{ top: 25%;}
+    .slider-wrap .owl-prev{margin-left: 10px;}
+    .slider-wrap .owl-next{margin-right: 10px;}
+    .slider-wrap .carousel-indicators{display: none;}
+    .slide-text { left: 0%;right: 0%;top: 0px;}
+    .slide-text h1 {font-size: 30px;line-height: 40px;margin-bottom: 10px;}
+    .title-header h2 {font-size: 20px;}
+    .wrap {padding-top: 30px;padding-bottom: 30px;}
+    .view a {font-size: 12px;}
+    .owl-carousel-wrap .owl-nav {top: -40px;}
+    .item-dec h5 {font-size: 16px;}
+    .artists-carousel .item-box .tmb {width: 120px;height: 120px;}
+    .title h2 {font-size: 30px;}
+    .selling-title {margin-bottom: 35px;text-align: center;}
+    .selling-title .title{margin-bottom: 20px;}
+    .selling-title .title h2 {font-size: 40px;}
+    .video-tpmrgn {margin-top: 0px;}
+    .artists-title {text-align: center;}
+    .artist-handimg {display: none;}
+    .why-box { margin-bottom: 0px;min-height: auto; margin-top: 20px;}
+    .dreams-into-wrap{background: none; background-color: #000;}
+    .dreams-into-title { text-align: center;}
+    .dreams-into-title .title h3 {font-size: 30px;}
+    .dreams-into-title .title h2 {font-size: 32px;}
+    .testimonial-wrap{padding-top: 50px;background: none;background-color: #191919;}
+    .testimonial-section {text-align: center;}
+    .testimonial-section h4:before {left: 37%;}
+    .testimonial-box:before {left: 43%;}
+    .testimonial-section h2 {font-size: 32px;margin-bottom: 20px;}
+    .client-img {display: block;margin: auto;}
+    .client-title {display: block;padding-left: 0px;}
+    footer {padding-top:30px; text-align: center;}
+    .fotr-menu {margin-bottom: 30px;}
+    .payment-icon {margin-bottom:30px;}
+    .cpyrgt-wrap {padding-top: 10px;margin-top: 25px;}
+    .cpyrgt-wrap .txt-rgt {text-align: inherit;}
+    .cpyrgt-wrap .txt-rgt p{padding-top: 0px;}
+    .pdingrgt0 {padding-right: 15px;}
+    /*=========== thanks ============*/
+    .thanks-section {padding-top: 100px;
+    padding-bottom: 25px;}
+    .inner-thanks img {
+    width: 70px;}
+    
+    /******************Table css**********************/
+    .theader {display: none;}
+    .table_row {
+    border-bottom: solid 1px #484848;
+    display: table;
+    width: 100%;
+    border-collapse: separate;    padding-bottom: 10px;
+    padding-top: 10px;}
+    .table_small {display: table-row;border: solid 1px #333;}
+    .table_row > .table_small > .table_cell:nth-child(odd) {display: table-cell;width: 33%;padding-left: 5px;    color: #a2a1a1;}
+    .table_row > .table_small > .table_cell {vertical-align: middle;
+    padding: 10px 10px;}
+    .table-responsive {margin-bottom: 0px;border: none;}
+    /******************Table css**********************/
+    
+    /*==================== product listing ================*/
+    .prolisting-section { padding-top: 30px;padding-bottom: 30px;}
+    .owl-carousel-wrap .owl-nav, .owl-carousel-listing .owl-nav {top: -35px;}
+    .listing-table {margin-top: 0px;}
+    .listing-table .download-btn {float: none;}
+    .listing-table .item-table-img {width: 85px;}
+    /*================= product details ================*/
+    .pro-details-section {padding: 30px 0px 30px;}
+     .detail-btn li .download-btn a, .detail-btn li .share-btn a {padding: 7px;width: 36px;}
+    .detail-btn li {margin-bottom: 10px;}
+    .detail-btn li .black-btn {font-size: 12px;padding: 10px 5px;}
+    .listing-table>h3 {font-size: 24px; padding-bottom: 15px;}
+    /*================= cart =============*/
+    .inner-section {padding: 30px 0px;}
+    .cart-header-media .media-left {padding-right: 10px;padding-left: 1px;}
+    .cart-header-media h3 {font-size: 24px;}
+    .review-btn {text-align: inherit;}
+    .cart-header-media .item-count { text-align: inherit;margin-top: 10px;}
+    .cart-header-media .close-btn {margin-top: 6px;}
+    .cart-col-rgt {padding-left: 15px;}
+    /*===========Review Page===========*/
+    .profile-hdr-img{ width: 80px; height: 80px; }
+    .profile-hedr-media .media-body{ padding-left: 0; }
+    .profile-hedr-media h3{ font-size: 18px; }
+    .profile-hedr-media p{ font-size: 14px; line-height: 20px; }
+    .listint-shopping-btn a{ padding: 5px 10px; font-size: 12px; }
+    .profile-social-links li a{ padding: 5px; font-size: 12px; }
+    .profile-social-links li a img{ width: 22px; }
+    .profile-social-links li{ vertical-align: top; margin-bottom: 10px; }
+    .profile-social-links li a.socil_link{font-size: 12px; height: 28px;width: 28px;line-height: 15px;}
+    .profile-social-links{ margin-top: 15px; margin-left: 0; }
+    .profile-likes{ text-align: left; }
+    .replay-ans .media-right{ display: block; }
+    .review-media-rgt{ text-align: right; width: 100%; }
+    .profile-likes li{ width: 32.6%; }
+    .profile-likes li:last-child{  padding-right: 0; }
+    .profile-likes li a{font-size: 26px; width: 100%; }
+    .profile-tab li a{ padding: 10px 0; font-size: 14px; }
+    .profile-sec{padding: 20px 0px;}
+    .replay-ans h3, .post-review h3, .dec-txt h3 { font-size: 20px; color: #fff; font-weight: 400; margin-bottom: 10px; }
+    .rating-revies-comment p{ line-height: 18px; font-size: 12px; }
+    .replay-ans .media{ margin-top: 20px; padding-bottom: 10px; }
+    .replay-ans .media .media-body{ margin-top: 10px; padding-left: 0; }
+    .replay-ans .media-right{ padding-left: 0; }
+    .replay-ans .media p{ margin-bottom: 10px; font-size: 12px; line-height: 18px; }
+    .post-review {margin-top: 15px;margin-bottom: 20px;}
+    .video-rgtbar {padding-left: 15px; margin-top: 25px; }
+    .profile-rgtbar:last-child{margin-bottom: 0; }
+    .tread-lftbar h4{ font-size: 16px; }
+    .tread-lftbar p{ font-size: 13px; line-height: 20px; }
+    
+    /*===========feed===========*/
+    .profile-slderbar{padding: 10px;}
+    .profile-slderbar h3{ font-size: 20px; margin-bottom: 20px; }
+    .follow-media h5{ font-size: 16px; }
+    .follow-media p{ font-size: 12px; margin-bottom: 0px; }
+    .follow-media{margin-top: 15px;}
+    .tread-lftbar{margin-top: 15px;}
+    .profile-midbox{ padding: 10px; }
+    .media-img-md{ width: 70px; height: 70px; }
+    .profile-media-item .media-body{ padding-left: 0; }
+    .profile-media-item h5 img {margin-top: 0px;}
+    .profile-hdr-item p{ font-size: 13px; }
+    .profile-media-item h5{ font-size: 16px; }
+    .media-img-md{ width: 70px; height: 70px; }
+    .profile-media-item p{ font-size: 12px; line-height: 18px; }
+    .profile-media-item p.first-phr { margin-bottom: 10px; }
+    .profile-media-item { margin-bottom: 15px; }
+    .profile-hdr-item{ margin-bottom: 15px; }
+    .profile-item-like li a{height: 30px; font-size: 12px; padding: 3px 4px; text-align: center; }
+    .profile-item-like li{ padding-right: 0; padding-left: 3px; width: 19%; }
+    .profile-item-like li a img{ margin-right: 0; width: 19px; }
+    
+    /*===========Tracks===========*/
+    .filter h6{font-size: 16px;}
+    .sidebar__inner{ position: relative; top: 0; }
+    .sidebar-box .box-title h5{ font-size: 16px; }
+    .filter{ padding: 15px; margin-bottom: 0; }
+    .sidebar-box .box-title{padding-bottom: 10px;}
+    .sidebar-wrapper{ padding: 15px; margin-bottom: 20px; }
+    ul.category-list li label{ font-size: 13px; }
+    ul.category-list li{ margin-bottom: 10px; }
+    .sliders_step1 { width: 100%; margin: 15px 0px 15px 0px; }
+    .shortby{margin-bottom: 15px;}
+    .product-listing{ padding-left: 15px;}
+    
+    /*================ video ==================*/
+    .video-item .play-video {left: 40%;}
+    .video-likes li a img {margin-right: 2px;}
+    
+    
+    /*===========Tracks===========*/
+    .btn-default.active, .btn-default:active, .open > .dropdown-toggle.btn-default{ border-radius: 3px;}
+    #account-btn, #filter-btn{ display: block; margin-left: 10px;}
+    #mobile-filter{ display: none; }
+    .sidebar_listing{ margin-bottom: 20px; }
+    .dec-txt p{font-size: 13px;line-height: 22px;margin-bottom: 10px;}
+    .replay-ans .form-group{ margin-top: 0; }
+}
+
+
+@media  (max-width: 480px) {
+   .testimonial-section h4:before {left: 30%;}
+       /*=========== cart ============*/
+        .cart-btn-group li {width: 100%;margin-bottom: 10px;}
+    /*============ feed ================*/
+    .profile-item-like li a {font-size: 10px;padding: 6px 2px;}
+    /*================ video ============*/
+    .video-item .play-video {left: 30%;}
+    /*================ dashboard ============*/
+    .user-info .single-info {
+        padding: 0 0px;
+        min-height: 37px;
+    }
+    .my-account-wrapper .dashboard-content { 
+        padding: 10px;
+    }
+    .my-account-wrapper .nav-sidebar .nav > li > a { 
+        font-size: 13px;  
+        padding: 0 28px 0;
+        text-align: left;
+    }
+    .my-account-wrapper .nav-sidebar .nav > li { 
+        display: inline-block;
+        text-align: left;
+    }
+    .my-account-wrapper .btn-secondary{
+        margin-bottom: 15px;
+    }
+    .play_list { 
+        margin: 0px 0px 0;
+    }
+    .favorites_item { 
+        padding: 10px 10px 10px; 
+    }
+    .favorites_item .fav_list {
+        width: 180px ;
+        padding: 1px 10px 0;
+    }
+    .favorites_item .fav_list h2 { 
+        font-size: 14px; 
+    }
+    .favorites_item .fav_list h2 span { 
+        font-size: 11px; 
+        margin: 0px 0 0;
+    }
+    .favorites_item .counter_box {
+        width: 24px;  
+    }
+    .download_price {
+        width: 140px;  
+    }
+    .download_price .download_icon a {
+        padding: 5px 11px 5px;  
+        margin-left: 5px; 
+    }
+    .download_price .download_icon a {
+        padding: 5px 7px 5px; 
+    }
+    .favorites_item .counter_box i{
+           margin: 1px -14px 0;
+    }
+    .negotiations_main .negotiations_box .negotiations_text { 
+        width: 290px; 
+    }
+    .social_midea_form {
+        padding: 10px;
+    }
+    .subscription_plan .subscription_box { 
+        margin-bottom: 30px;
+    }
+    .subscription_plan {
+        padding: 30px 20px 0 20px; 
+        margin-bottom: 30px;
+    }
+  .address_info { 
+        margin-bottom: 40px;
+    }
+    .message_text { 
+        width: 320px; 
+    }
+    
+}
+@media  (max-width: 319px) {
+    .navbar-brand {padding: 14px 10px;}
+    .navbar-brand>img {width: 85px;}
+    .affix .navbar-brand>img {width: 85px;}
+    .affix .navbar-brand {padding: 14px 10px;}
+    .search-box>.track-drop>.btn {padding: 0px 15px 0px 5px;    font-size: 10px;}
+    .search-box>.track-drop>.btn span.fa {top: 16px;font-size: 14px;right: 2px;}
+    .title-header h2 {font-size: 16px;}
+    .item-dec h5 {font-size: 14px;}
+    .artists-carousel .item-box .tmb {width: 80px; height: 80px;}
+    .payment-icon li a img {width: 45px;}
+    .profile-social-links li a { padding: 5px 4px;font-size: 11px;}
+    .profile-tab li a {font-size: 13px;}
+}
+

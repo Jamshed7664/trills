@@ -1,0 +1,106 @@
+
+ <section class="inner-section">
+    <div class="container-fluid">
+        <div class="inner-banner">
+            <a href="#">Dashboard</a> <span>></span> <a href="#">Membership</a>
+        </div>    
+    </div> 
+</section> 
+
+
+<section class="pricing_section_1">
+    <div class="container-fluid"> 
+       <div class="pricing_main_1">
+            <div class="row">
+               <div class="col-md-12">
+                 <h2>Choose your path to success</h2>
+                   <p>Cancel or change plans at anytime!</p>
+                   <h4>I want to monetize my music</h4>
+                    <label class="switch" for="checkbox">
+                      <span class="span1">Pay Monthly</span>  <input type="checkbox" id="checkbox" />  
+                        <div class="slider round"></div>
+                        <span>Pay annually</span>
+                   </label>
+               </div> 
+
+
+                <div class="col-md-4" *ngFor="let row of packagelist">
+                    <div  [ngClass]="(row.plan_name=='Free')?'pricing_item_1 pricing_item_2 active_price':'pricing_item_1 pricing_item_2'">
+                       <h3>{{row.plan_name}} {{row.plan_id}}</h3> 
+                        <p>{{row.description}}</p>                          
+                        <span *ngIf="row.plan_price!='0.00'">{{PostService.currency()}} {{row.plan_price}}-/month</span>
+                        <code *ngIf="row.plan_price1!='0.00'">{{PostService.currency()}} {{row.plan_price1}}-/year</code>
+                       
+                        <ul >
+                            <h1 >All free features plus:</h1>
+                            <li *ngFor="let detail of row.pack_detail">{{detail.title}}</li>
+                           
+                        </ul>
+                          <!--<button type="text" (click)="purchasePlan(row.plan_id)" [ngClass]="(row.plan_name=='Free')?'btn_get_started  btn_active':'btn_get_started'">{{(row.plan_name=='Free')?'Active':'Get Started'}}</button>-->
+						  <button type="text" (click)="purchasePlan(row.plan_id)" [ngClass]="(row.plan_name=='Free')?'btn_get_started':'btn_get_started'">Get Started</button>
+                    </div>
+               </div>
+               <!-- <div class="col-md-4">
+                    <div class="pricing_item_1 active_price">
+                        <div class="bg_active"></div>
+                       <h3>Free</h3> 
+                        <p>For sellers just starting their music business.</p>
+                        <span>₹ 0.00-/month</span>
+                        <code>₹ 00.00-/year</code>
+                        <ul>
+                            <li>Up to 10 tracks </li>
+                            <li>Upload Track Stems </li>
+                            <li>Instant Payments </li>
+                            <li>Accept PayPal payments </li> 
+                            <li>Instant Payments </li>
+                        </ul>
+                        <button type="submit" class="btn_active btn_get_started">Active</button>
+                    </div>
+               </div>
+                <div class="col-md-4">
+                    <div class="pricing_item_1 pricing_item_2">
+                       <h3>Pro Page</h3> 
+                        <h4 class="ribbon"><i class="fa fa-star-o"></i>&nbsp; MOST POPULAR</h4>
+                        <p>For sellers just starting their music business.</p>
+                         <span>₹ 3000.00-/month</span>
+                        <code>₹ 36000.00-/year</code>
+                        <ul>
+                            <h1>All marketplace features plus:</h1>
+                            <li>Up to 10 tracks </li>
+                            <li>Upload Track Stems </li>
+                            <li>Instant Payments </li>
+                            <li>Accept PayPal payments </li> 
+                        </ul>
+                        <button type="text" class="btn_get_started">Get Started</button>
+                    </div>
+               </div>
+                 <div class="col-md-12"> 
+                   <h4>I want to listen & buy music</h4>  
+               </div> 
+                <div class="col-lg-offset-3 col-md-6">
+                      <div class="row">
+                         <div class="pricing_main_sec">
+                    <div class="col-md-6">
+                        <div class="listing_music">
+                            <h3>Free</h3> 
+                             <span>₹ 0.00-/month</span>
+                            <button type="text" class="btn_get_started">Get Started</button>
+                         </div>
+                    </div> 
+                    <div class="col-md-6">
+                        <div class="listing_music">
+                             <ul> 
+                                <li>5 Monthly Private Messages </li>
+                                <li>Write and save lyrics </li>
+                                <li>Download free demo tagged beats </li>
+                                <li>Store all your purchased files </li> 
+                            </ul>
+                         </div>
+                    </div>
+                </div>
+                     </div>
+                </div>-->
+           </div>
+       </div>
+    </div>
+</section>

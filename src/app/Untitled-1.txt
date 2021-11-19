@@ -1,0 +1,23 @@
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAK9MBttnfzhiD2ud2vIydiqJEgxlqNdsg",
+    authDomain: "grocery-d874d.firebaseapp.com",
+    databaseURL: "https://grocery-d874d.firebaseio.com",
+    projectId: "grocery-d874d",
+    storageBucket: "grocery-d874d.appspot.com",
+    messagingSenderId: "48149436986",
+    appId: "1:48149436986:web:66c6975325fd7dcb33f303",
+    measurementId: "G-FHL24FXGGC"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>

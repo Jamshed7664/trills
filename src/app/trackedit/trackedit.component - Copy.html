@@ -1,0 +1,717 @@
+<form [formGroup]="DataForm" (ngSubmit)="onSubmit($event)" method="post">
+    <section class="track_editer_section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <div class="main_heading">
+                        <h3>Track Metadata Editor </h3>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="main_heading text-right">
+                        <a href="javascript:void(0)" class="btn" (click)="createTrack()"><i class="fa fa-plus"></i> </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="title">General Information </h3>
+                    <div class="main_bg">
+
+
+
+
+
+
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                            <div class="track_form_editer">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                                        <div class="form-group">
+                                            <label>Title</label>
+                                            <!-- <input type="text" formControlName="name" class="form-control" placeholder="New track"> -->
+                                            <span *ngIf="f.touched && f.name?.errors?.required">Title is required</span>
+                                            <!--<span *ngIf="f.name.errors.minlength || f.name.errors.maxlength">6 out of 50 Maximum characters allowed</span>-->
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                                        <div class="form-group">
+                                            <label>TAGS* (3)</label>
+                                            <input type="text" id="tagtitle" [(ngModel)]="tagtitle" formControlName="tagtitle" class="form-control" placeholder="Tags">
+                                            <code>0/25</code>
+                                            <div class="tab_dashbord">
+                                                <ul>
+                                                    <li class="dashbord_btn" *ngFor="let tagrow of tags">
+                                                        #{{tagrow.title}}
+                                                        <a href="javascript:void(0)" (click)="delete(tagrow.id)">
+                                                            <i class="fa fa-times"> </i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                        <a class="button" href="javascript:void(0)" (click)="createTags(id)"><i class="fa fa-plus"></i>Add Tag</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Track Type*</label>
+                                            <select type="text" formControlName="track_type" class="form-control" id="track_type">  
+                                                    <!--<option value="">Track Type </option>-->
+                                                     <option *ngFor="let trow of tracktypelist" value="{{trow.name}}">{{trow.name | uppercase}} </option>
+                                                    
+                                                 </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>RELEASE DATE</label>
+                                            <input type="text" formControlName="release_date" class="form-control datepicker" placeholder="New track">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                                        <div class="copy_link">
+                                            <div class="form-group">
+                                                <label>URL OF YOUR TRACK</label>
+                                                <input type="text" class="form-control" value="{{baseurl}}/beat/{{id}}" placeholder="www.trillicons.com">
+                                                <code><a href="javascript:void(0)" (click)="copyMessage(baseurl+'/beat/'+id)" title="click to copy">Copy</a> </code>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
+                            <div class="track_form_editer">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <h2>AUDIO FILES FOR DOWNLOAD</h2>
+                                        <div class="file_box">
+                                            <a href="#">
+                                                <i class="fa fa-music"></i>
+                                                <h1>Un-Tagged WAV or MP3</h1>
+                                                <p>.WAV (or .MP3)</p>
+                                            </a>
+                                        </div>
+                                        <div class="file_box">
+                                            <a href="#">
+                                                <i class="fa fa-sliders"></i>
+                                                <h1>Track Stems</h1>
+                                                <p>.ZIP (or .RAR)</p>
+                                            </a>
+                                        </div>
+                                        <h2>AUDIO FILE FOR STREAMING (Optional)</h2>
+                                        <div class="file_box">
+                                            <a href="#">
+                                                <i class="fa fa-music"></i>
+                                                <h1>Tagged MP3</h1>
+                                                <p>.WAV (or .MP3)</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="track_form_editer">
+                                            <div class="file_upload">
+
+                                                <img src="{{image}}" style="height: 150px;width: 150px; border: 5px solid #8e7e47 ;box-shadow: 0 1px #ff8e7e47;">
+
+                                                <p> Artwork Dimension <br> Preferred: 1500x1500px, Minimum: 500x500px</p>
+                                                <p> Got Photoshop? Make your own using our free template. </p>
+                                                <button type="submit" data-toggle="modal" data-target="#uploadArtWork" class="button1"> Upload Artwork </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="title">Selling Preferences </h3>
+                    <div class="main_bg">
+                        <div class="checkBox_div">
+                            <label class="container"> 
+                              <input type="checkbox" value="yes" formControlName="not_for_sale" [checked]="DataForm?.controls.not_for_sale.value == 'yes'? true : false">Not for sale
+                              <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="checkBox_div">
+                            <label class="container"> 
+                              <input type="checkbox" value="yes" formControlName="private_discount" [checked]="DataForm?.controls.private_discount.value=='yes'?true:false">Private
+                              <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="checkBox_div">
+                            <label class="container"> 
+                              <input type="checkbox" value="yes" formControlName="bulk_discounts" [checked]="DataForm?.controls.bulk_discounts.value=='yes'?true:false">Exclude From Bulk Discounts
+                              <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="payment_account">
+                                    <p>Please visit section and connect your PayPal or Stripe account in order for you to be able to setup a price for this track.</p>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                                            <div class="form-group">
+                                                <label>BASIC LICENSE (MP3) PRICE</label>
+                                                <input type="text" formControlName="price" class="form-control" placeholder="29.95" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                                            <div class="form-group">
+                                                <label>PREMIUM LICENSE (MP3 AND WAV) PRICE</label>
+                                                <input type="text" formControlName="WAVprice" class="form-control" placeholder="49.95" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span>Note: You may customize your Licenses through here <a routerLink="#">Licenses & Contracts</a> </span>
+                                    <span>To disable a License for this specific Track please enter 0 (or 0.00). This will disable purchases for that specific license.</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="download_option">
+                                    <h2>FREE DOWNLOAD OPTIONS</h2>
+                                    <div class="radio_checkbox_item">
+                                        <label class="radio-inline">
+                                              <input type="radio" value="1" formControlName="download_options" name="download_options" [checked]="DataForm?.controls.download_options.value=='1'?true:false">No
+                                            </label>
+                                    </div>
+                                    <div class="radio_checkbox_item">
+                                        <label class="radio-inline">
+                                              <input type="radio" value="2" formControlName="download_options" name="download_options" [checked]="DataForm?.controls.download_options.value=='2'?true:false">Yes, with voice tag (MP3 Version)
+                                            </label>
+                                    </div>
+                                    <div class="radio_checkbox_item">
+                                        <label class="radio-inline">
+                                              <input type="radio" value="3" formControlName="download_options" name="download_options" [checked]="DataForm?.controls.download_options.value=='3'?true:false">Yes, untagged (MP3 Version - 320kbps)
+                                            </label>
+                                    </div>
+                                    <div class="download_button">
+                                        <label class="container"> 
+                                          <input type="checkbox">Allow Anonymous Guest Downloads
+                                          <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <h2>REQUIRE DOWNLOADERS TO</h2>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="radio_checkbox_item">
+                                                <label class="radio-inline">
+                                                      <input type="radio" value="1" formControlName="require_downloaders" name="require_downloaders" [checked]="DataForm?.controls.require_downloaders.value==1?true:false">Capture email only 
+                                                    </label>
+                                            </div>
+                                            <div class="download_button">
+                                                <label class="container"> 
+                                                      <input type="checkbox">Twitter
+                                                      <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                            <div class="download_button">
+                                                <label class="container"> 
+                                                      <input type="checkbox">SoundCloud
+                                                      <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                            <div class="download_button">
+                                                <label class="container"> 
+                                                      <input type="checkbox">Trill Icons
+                                                      <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="radio_checkbox_item">
+                                                <label class="radio-inline">
+                                                      <input type="radio" value="2" formControlName="require_downloaders" name="require_downloaders" [checked]="DataForm?.controls.require_downloaders.value==2?true:false">Social Follow 
+                                                    </label>
+                                                <button type="submit" class="twitter_btn bg_twitter">
+                                                        Connect with Twitter
+                                                    </button>
+                                                <button type="submit" class="twitter_btn bg_red">
+                                                        Connect with SoundCloud
+                                                    </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="title">Track Details </h3>
+                    <div class="main_bg">
+                        <div class="selling_check">
+                            <label class="container"> 
+                              <input type="checkbox" (click) ="toggleDisplay()">I used 3rd party loops or/and samples
+                              <span class="checkmark"></span>
+                            </label>
+                            <div class="row" *ngIf="isShow">
+                                <div class="atr_group">
+                                    <div class="form-group">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>WHAT IS THE NAME OF THE SAMPLE/LOOP?</label>
+                                                <input type="text" formControlName="title" class="form-control" placeholder="Sample Title">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>WHERE DID YOU GET THIS SAMPLE? </label>
+                                                <input type="text" formControlName="source" class="form-control" placeholder="Sample Source">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <div class="remove_user">
+                                                    <a href="javascript:void(0)" class="remove_atr"><img src="assets/images/remove-use-image.png" alt=""> </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button (click)="onAddRow()" class="pointer add_atr">Add another Sample/Loop </button>
+                            </div>
+
+
+                            <!-- <div class="row" *ngIf ="isShow">
+                                <div class="atr_group">
+                                <div class="col-sm-5 col-xs-12">
+                                    <div class="form-group">
+                                    <h3 class="title">WHAT IS THE NAME OF THE SAMPLE/LOOP?</h3>
+     <input class="form-control" type="text" formControlName="title[]" name="title[]"  placeholder="Sample Title">
+                                </div>
+                            </div>
+                                <div class="col-sm-5 col-xs-12">
+                                    <div class="form-group">
+                                <h3 class="title">WHERE DID YOU GET THIS SAMPLE?</h3>
+                               
+        <input class="form-control" type="text" formControlName="source[]" name="source[]"   placeholder="Sample Source">
+                                </div>
+                            </div>
+            
+                                <div class="col-sm-2 col-xs-12">
+                                    <div class="form-group">
+                                        <label>&nbsp;</label>
+                                    <i class="fa fa-remove text-dark remove_atr"></i>
+                                </div>
+                                </div>
+                             </div>
+               
+                            </div> -->
+
+                        </div>
+
+
+                        <button (click)="onAddRow()" *ngIf="addForm.get('rows')">add row</button>
+
+                        <div class="row" *ngFor="let row of DataForm.get('rows')?.controls;let index = index;">
+                            <div class="col-md-5">
+                                <input type="text" [formControl]="row.get('name')" class="form-control" placeholder="New track">
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" [formControl]="row.get('description')" class="form-control" placeholder="New track">
+                            </div>
+                            <div class="col-md-2">
+                                <button (click)="onRemoveRow(index)">Remove</button>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>PRIMARY GENRE*</label>
+                                            <select class="form-control" formControlName="primary_genre">
+                                                        <option> All Game</option>
+                                                    </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>PRIMARY MOOD</label>
+                                            <select class="form-control" formControlName="primary_mood">
+                                                        <option> None</option>
+                                                    </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>DESCRIPTION</label>
+                                            <textarea class="form-control" formControlName="description" placeholder="Enter Description"></textarea>
+                                            <span>0 out of 120 Maximum characters allowed</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>SUBGENRE*</label>
+                                            <select class="form-control" formControlName="subgenre">
+                                                        <option> None</option>
+                                                    </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>SECONDARY MOOD</label>
+                                            <select class="form-control" formControlName="secondary_mood">
+                                                                   
+                                                    </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>BPM(Beats per minute)</label>
+                                            <select class="form-control" formControlName="BPM">
+                                                        <option> 0</option>
+                                                    </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>KEY</label>
+
+
+                                            <select class="form-control" formControlName="track_key">
+                                <option value="{{row.id}}" *ngFor="let row of Droplist">{{row.name | uppercase}} </option>
+                                   
+                                    </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="title_sub">Collaborators</h3>
+                    <div class="main_bg">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="border_right">
+                                        <div class="border_line">
+                                            <div class="col-md-3">
+                                                <div class="collaborators">
+                                                    <h2>COLLABORATOR</h2>
+                                                    <p>YOU</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="collaborators">
+                                                    <h2>ROLE</h2>
+                                                    <p>MAIN COLLABORATOR</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="collaborators">
+                                                    <h2>PROFIT SHARE </h2>
+                                                    <p>100%</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="collaborators">
+                                                    <h2>PUBLISHING % </h2>
+                                                    <p>100%</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="collaborators">
+                                                <button data-toggle="modal" data-target="#exampleModal1" type="submit" class="button1">
+                                                Add Collaborators
+                                            </button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="collaborators">
+                                    <p>Before you add Collaborators, please make sure that you & your Collaborators meet the requirements below:</p>
+                                    <ul>
+                                        <li> - You must be the "Primary Contributor" to add Collaborators</li>
+
+                                        <li> - Make sure you Follow each other.</li>
+
+                                        <li> - Your Collaborator has to be a BeatStars Registered Member and at least subscribed to a "FREE" Subscription Account</li>
+
+                                        <li> - Needs to have their PayPal Email Address properly Setup</li>
+
+                                        <li> - You can only add up to Five (5) Collaborators per Track </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="title_sub">Related Videos</h3>
+                    <div class="main_bg">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="collaborators">
+                                    <div class="row">
+                                        <div class="main_box_for_youtube_list" *ngFor="let vrow of videos">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
+                                                <div class="youtube_vide0_list">
+                                                    <h3><i class="fa fa-youtube-play"></i> {{vrow.title}}</h3>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="youtube_vide0_list">
+                                                    <a href="javascript:void(0);" (click)="deleteVideo(vrow.id)" class="delete_youtube_list"><i class="fa fa-trash-o"></i> </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <p>Only link videos that are related to this Track. Following examples are: Video Promotions or Official Music Video. </p>
+
+                                    <button type="submit" data-toggle="modal" data-target="#myModal" class="button1">Add a YouTube video URL</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <div class="bottom_btn">
+        <button type="submit" name="draft" class="btn_save bg_gray1">Save Draft</button>
+        <button type="submit" name="save" (click)="onSubmit(1)" class="btn_save bg_red">Publish</button>
+    </div>
+</form>
+
+<!-- Modal -->
+<div class="track_editer_popup">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Upload Track Stems</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+                </div>
+                <div class="modal-body">
+                    <h2>Compress track stems files into a single .zip (or .rar) file and click the upload button below. </h2>
+                    <button type="submit" class="">Upload a .zip (or .rar) file</button>
+                    <span>We recommend WAV 24-bit depth or higher for the actual stem files. To learn more <a href="#">click  here</a> </span>
+                    <code>OR</code>
+                    <p>If you have uploaded your track stem .ZIP (or .RAR) file to a file sharing website such as Google Drive, Dropbox, Amazon S3, OneDrive, etc. you may alternatively paste the download URL link into the text box below: </p>
+                    <div class="row">
+                        <form>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Enter track sterm URl">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>TRACK STEM PASSWORD (OPTIONAL)</label>
+                                    <input type="text" class="form-control" placeholder="Enter track sterm URl's password">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="cancel_box">
+                        <button type="submit" class="cancel_btn">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="track_editer_popup">
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Find Collaborator</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Username or Email">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="cancel_box">
+                        <button type="submit" class="cancel_btn">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="video_photo">
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add a YouTube™ Video URL</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label>ENTER VIDEO URL</label>
+                                        <input type="text" id="video_link" placeholder="Paste URL" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="button_imp">import</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>VIDEO TITLE</label>
+                                        <input type="text" id="video_title" placeholder="Video title" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>DESCRIPTION</label>
+                                        <textarea type="text" id="video_description" placeholder="type.." class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="assets/images/thumbmail-image.jpg" alt="">
+                        </div>
+                        <div class="col-md-12">
+                            <button type="submit" class="upload_btn" (click)="saveVideo()">Upload Video</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="video_photo">
+
+    <div id="CropPhoto" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal Image content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Crop Image</h4>
+                </div>
+                <div class="modal-body">
+                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+
+                    <button type="submit" class="btn btn-primary" (click)="saveImage()">Save</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="uploadArtWork" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal Image content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{currentModalTitle}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <ul>
+                                <li (click)="changeSection(0,'My device')" class="uploadSectionLi cursror" [ngClass]="{'sectionActive': !currentModal}"><i class="fa fa-cloud-upload"></i> My Device </li>
+                                <li (click)="changeSection(1,'All My Uploaded Files')" class="uploadSectionLi  cursror" [ngClass]="{'sectionActive': currentModal}"> <i class="fa fa-list-alt" aria-hidden="true"></i> Uploaded </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-9">
+                            <div id="myDevice" *ngIf="!currentModal">
+                                <form action="/action_page.php">
+                                    <p>Custom file:</p>
+                                    <div class="custom-file mb-3">
+                                        <input type="file" class="custom-file-input" #fileInput (change)="fileChangeEvent($event)" id="customFile" name="filename"> Choose file<label class="custom-file-label" for="customFile"></label>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div id="myUploaded" *ngIf="currentModal">
+                                <div class="row uploadSectionLi">
+                                    <ul class="">
+                                        <li *ngFor="let imgrow of alluploaded">
+                                            <i class="fa fa-picture-o" aria-hidden="true"></i> {{imgrow.image}}
+                                            <a href="javascript:void(0);" (click)="selectGallery(imgrow.id)">Selected</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

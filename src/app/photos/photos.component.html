@@ -1,0 +1,62 @@
+<section class="media_section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="media_page">
+                <div class="col-md-12">
+                    <div class="video_box">
+                        <button type="submit" class="">+ Upload Photo</button>
+                    </div>
+                    <div class="video_heading" *ngIf="allimages?.length ==0">
+                        <h3>You have yet to upload any photos! . </h3>
+                    </div>
+                    <div class="col-md-12 col-xs-12 mt20">
+                        <div class="row">
+                 <div class="col-sm-6 col-md-3 col-xs-6" *ngFor="let imgrow of allimages">
+                     <div class="item-box">
+                         <div class="thumbnail tmb">
+                         <img src="{{imgpath+'/'+imgrow.image}}">
+                         </div>
+                         <div class="item-dec">
+                             <h5>{{imgrow.image}}</h5>
+                             <ul class="list-inline video-likes lefticon">
+                                 <li><a href="#"><img src="assets/images/heart-sm.png"> 2</a></li>
+                                 <li><a href="#"><img class="reposticon" src="assets/images/repost.png"> 1</a></li>
+                                 <li><a href="#"><img src="assets/images/chat-iocn-sm.png"> 5</a></li>
+                             </ul>
+                             <ul class="list-inline video-likes righticon">
+                               <!--<li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i></a></li>-->
+                                 <li><a href="javascript:void(0)" (click)="selectGallery(imgrow.id,1)"><i class="fa fa-trash"></i></a></li>
+                             </ul>
+                      
+                         </div>
+                     </div>
+                </div>
+            </div>
+                    </div>
+                  
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+    
+<div id="myModal" class="modal fade " role="dialog">
+    <div class="modal-dialog modal-sm">
+
+      <!-- Modal content-->
+      <div class="modal-content uploadimgpopup">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Update Photo Caption</h4>
+        </div>
+        <div class="modal-body">
+            <div class=""><img class="img-responsive" src="images/video6.jpg"></div>
+            <p class="imhname">cropped-Chrysanthemum.jpg</p>
+            <button type="button" class="btn btn-default">Save</button>
+        </div>
+        
+      </div>
+
+    </div>
+  </div>

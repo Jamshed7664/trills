@@ -1,0 +1,169 @@
+
+<section class="inner-section">
+    <div class="container-fluid">
+        <div class="inner-banner">
+            <a href="#">Dashboard</a> <span>&gt;</span> <a href="javascript:void(0)">Create Albums</a>
+        </div>
+    </div>
+</section>
+<form class="" method="Post" (submit)="createBlog($event)" [formGroup]="album_form">
+<section class="track_editer_section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="main_heading">
+                    <h3>Blog Post Metadata Editor </h3>
+                </div>
+            </div> 
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
+                <div class="row">
+                    <div class="col-md-12">
+                    <h3 class="title">General Information </h3>
+                    </div> 
+                </div>
+                    <div class="main_bg"> 
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-8"> 
+                            <div class="track_form_editer">
+                                <div class="row">
+                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                         <div class="form-group">
+                                            <label>Blog</label>
+                                             <input type="text" class="form-control"  [ngClass]="(album_form.touched)?( album_form.get('name').invalid)?'has_error_class':'no_error_class':''" placeholder="Title" formControlName="name">    
+                                        </div>
+                                    </div>  
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
+                                         <div class="form-group">
+                                            <label>TAGS* (3)</label>
+                                            <input type="text" class="form-control" placeholder="TAGS" id="tagtitle" maxlength="15" (keydown)="keyDownHandler($event)">
+                                                <code>0/25</code>
+                                        </div>
+                                        <div class="tab_dashbord">
+
+                                            <ul>
+                                                <li class="dashbord_btn" *ngFor="let tagrow of album_form.get('tags').value; let i = index;">
+                                                    # {{tagrow}}
+                                                    <a href="javascript:void(0)" (click)="deletetag(i)">
+                                                        <i class="fa fa-times"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                                <button type="button" class="" (click)="createTags('tagtitle')"><i class="fa fa-plus" ></i>Add Tag</button>
+                                            </div>
+                                </div> 
+                                 <div class="row">  
+                                       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                         <div class="form-group">
+                                            <label>CATEGORY</label>
+                                             <select type="text" class="form-control"  [ngClass]="(album_form.touched)?( album_form.get('category').invalid)?'has_error_class':'no_error_class':''" class="form-control" placeholder="Category" formControlName="category">  
+                                                <option value="">--Select</option>
+                                                <option value="drum-kit">Drum Kit </option>
+                                                <option value="beat">Beat </option>
+                                                <option value="with-chorus">With Chorus </option>
+                                                <option value="song-refreance">Song Referance </option>
+                                             </select>     
+                                        </div>
+                                    </div> 
+
+                                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4"> 
+
+                                            <div class="form-group">
+                                                <div class="auto_play">
+                                                    <span>FEATURED BLOG</span>
+                                                    <label class="radio-inline">
+                                                  <input type="radio"  formControlName="featured" value="yes" >Yes
+                                                </label>
+                                                    <label class="radio-inline">
+                                                  <input type="radio"  formControlName="featured"  value="no">No
+                                                </label>
+                                                </div>
+                                            </div>
+                                    </div> 
+                                       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
+                                             <div class="form-group">
+                                                <label>Excerpt</label>
+                                                <input type="text" class="form-control" [ngClass]="(album_form.touched)?( album_form.get('excert').invalid)?'has_error_class':'no_error_class':''" class="form-control" placeholder="Excerpt" formControlName="excert">
+                                            </div> 
+                                    </div> 
+                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                                        <div class="discp_info">
+                                            <h4>BLOG POST</h4>
+                                                <div class="text_tools">
+                                                    <a href="#"><i class="fa fa-rotate-left"></i> </a>
+                                                    <a href="#"><i class="fa fa-rotate-right"></i> </a>
+                                                 </div>
+                                              <div class="text_tools">
+                                                    <a href="#"><i class="fa fa-bold"></i> </a>
+                                                  <a href="#"><i class="fa fa-italic"></i></a>
+                                                    <a href="#"><i class="fa fa-underline"></i> </a>
+                                                 </div>
+                                             <div class="text_tools">
+                                                    <a href="#"><i class="fa fa-align-left"></i> </a>
+                                                  <a href="#"><i class="fa fa-align-center"></i></a>
+                                                    <a href="#"><i class="fa fa-align-right"></i> </a>
+                                                 <a href="#"><i class="fa fa-align-justify"></i> </a>
+                                                 </div>
+                                            <div class="text_tools">
+                                                    <a href="#"><i class="fa fa-indent"></i> </a>
+                                                  <a href="#"><i class="fa fa-outdent"></i></a> 
+                                                 </div>
+                                            <div class="text_tools">
+                                                    <a href="#"><i class="fa fa-list-ul"></i> </a>
+                                                  <a href="#"><i class="fa fa-list-ol"></i></a> 
+                                                 </div>
+                                            <div class="text_tools">
+                                                    <a href="#"><i class="fa fa-link"></i> </a>
+                                                  <a href="#"><i class="fa fa-image"></i></a> 
+                                                <a href="#"><i class="fa fa-minus"></i></a> 
+                                             </div>
+                                             <div class="text_tools">
+                                                    <a href="#"><i class="fa fa-remove"></i> </a> 
+                                             </div>
+                                            <div class="form-group">
+                                                <textarea class="form-control" [ngClass]="(album_form.touched)?( album_form.get('description').invalid)?'has_error_class':'no_error_class':''" class="form-control" placeholder="Enter Description" formControlName="description"></textarea>
+                                            </div>
+                                         </div>
+                                     </div> 
+                                </div> 
+                            </div>
+                        </div>
+                          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                            <div class="track_form_editer">
+                                <div class="row"> 
+                                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="track_form_editer">
+                                            <div class="file_upload">
+                                                <button class="button" type="button" *ngIf="!image">
+                                                    <i class="fa fa-file-movie-o"></i>
+                                                </button>
+                                                <img [src]="image" alt="" class="image-exercise" *ngIf="image"><br>
+                                                <p> Artwork Dimension <br> Preferred: 1500x1500px, Minimum: 500x500px</p> 
+                                                <p> Got Photoshop? Make your own using our free template. </p>
+                                        <a type="button" data-toggle="modal" data-target="#uploadArtWork" class="button1">Upload Cover Artwork </a>
+
+                                        <li class="redclass" *ngIf="album_form.touched && album_form?.controls.image?.errors?.required">Plz select image</li>
+                                        <li class="redclass" *ngIf="album_form.touched && album_form?.controls.image?.errors?.image">Invalid Image</li>
+                                              
+                                            </div> 
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div> 
+            </div>
+         
+              
+        </div>
+</section>
+<div class="bottom_btn">
+    <button type="submit" class="btn_save bg_gray1">Cancel</button>
+    <button type="submit" class="btn_save bg_red" [disabled]="api_calling">Save Changes</button>
+</div>
+</form>

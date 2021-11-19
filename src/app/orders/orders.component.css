@@ -1,0 +1,89 @@
+.img-circle {
+    border-radius: 50%;width: 83px;height: 82px;
+}
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.btn--browse{
+    
+    margin: 10px 0 0 0;
+    border: 1px solid #8e7e47;
+    background: #8e7e47;
+    color: #fff;
+    height: 42px;
+	padding: 9px 40px;
+}
+
+.f-input{
+	height: 42px;
+	background-color: #8e7e47;
+	border: 1px solid gray;
+	width: 100%;
+	max-width: 400px;
+	float: left;
+	padding: 0 14px;
+}
+
+
+html { margin: 50px;}
+
+.dropzone-wrapper {
+  border: 2px dashed #91b0b3;
+  color: #92b0b3;
+  position: relative;
+  height: 187px;
+}
+ 
+.dropzone-desc {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  width: 40%;
+  top: 50px;
+  font-size: 16px;
+}
+ 
+.dropzone,
+.dropzone:focus {
+  position: absolute;
+  outline: none !important;
+  width: 100%;
+  height: 150px;
+  cursor: pointer;
+  opacity: 0;
+}
+ 
+.dropzone-wrapper:hover,
+.dropzone-wrapper.dragover {
+  background: #ecf0f5;
+}
+ 
+.preview-zone {
+  text-align: center;
+}
+ 
+.preview-zone .box {
+  box-shadow: none;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+ 
+.btn-primary {
+  background-color: crimson;
+  border: 1px solid #212121;
+}

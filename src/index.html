@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Trill Icons</title>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" src="assets/js/jquery-1.12.0.min.js"></script> -->
+
+
+    <script src="https://js.stripe.com/v2/"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <link rel="icon" href="assets/images/favicon.png" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/css/lsb.css" />
+    <link rel="stylesheet" href="assets/css/style.css?v1.7" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <link rel="stylesheet" href="assets/css/animate.css" />
+    <link rel="stylesheet" href="assets/css/font-awesome-animation.css" />
+    <link rel="stylesheet" href="assets/css/font-awesome-animation.min.css" />
+    <link rel="stylesheet" href="assets/css/animate.css" />
+	
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs7BPG6kc9uliPgx00yMacAHo-DdC4JQQ&libraries=places&language=en&&region=kw">
+    </script>
+
+    <style>
+        .error {
+            color: #fb0000;
+        }
+        
+        .success {
+            color: #2bac4b;
+        }
+        
+        .hideElemnt {
+            display: none;
+        }
+        
+        .showElemnt {
+            display: block;
+        }
+        
+        .disabledbutton {
+            pointer-events: none;
+            opacity: 0.4;
+        }
+        
+        #preloader {
+            display: flex;
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+        }
+        
+        .cdk-overlay-container {
+            position: fixed;
+            color: #fff;
+            top: 10%;
+            left: 35%;
+            color: #9f9f9f;
+            background-color: #000;
+            border-radius: 5px;
+            text-align: center;
+            height: 50px;
+            bottom: 0px;
+        }
+        
+        .mat-simple-snackbar-action button {
+            max-height: 36px;
+            min-width: 0;
+            background: #000;
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        .mat-simple-snackbar {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            line-height: 20px !important;
+            opacity: 1 !important;
+            /* margin-top: -8px !important;*/
+        }
+        
+        .mat-snack-bar-container {
+            border: 1px solid hsla(0, 0%, 100%, .15);
+            border-right: 2px solid hsla(0, 0%, 100%, .15);
+            border-radius: 5px !important;
+            text-align: center !important;
+            padding: 18px !important;
+            min-height: 0px !important;
+            background: #fff;
+        }
+        
+        .mat-datepicker-content .mat-calendar {
+            width: 296px !important;
+            background: #fff !important;
+        }
+        
+        .mat-datepicker-content {
+            display: block;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
+            background: #fff !important;
+        }
+        /*
+.cdk-visually-hidden{
+    display: none;
+}*/
+        
+        .hedimg-circle {
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+        }
+        
+        .cdk-visually-hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--<div id="preloader"><img src="assets/assets/assets/assets/images/bx_loader.gif" width="150px"></div>-->
+
+    
+    <app-root></app-root>
+   
+
+    <!-- whatsapp -->
+    <!--<div class="whatsap">
+        <a href="https://api.whatsapp.com/send?phone=91" class="social-icon whatsapp" target="_blank">
+               <i class="fa fa-whatsapp"></i> 
+    </a>
+            </div>-->
+    <!-- Modal -->
+
+    <!-- Modal end -->
+
+    <script type="text/javascript" src="assets/js/owl.carousel.js"></script>
+    <script type="text/javascript" src="assets/js/selectordie.js"></script>
+    <script type="text/javascript" src="assets/js/custom.js"></script>
+    <script type="text/javascript" src="assets/js/wow.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-ui-time-range.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script>
+        function AllowNumbersOnly(e) {
+
+            var code = (e.which) ? e.which : e.keyCode;
+            if (code > 31 && (code < 48 || code > 57)) {
+
+                e.preventDefault();
+            }
+
+        }
+        $(function() {
+            // $('.file-upload').file_upload();
+            $(".check_all").click(function() {
+
+                $(".multiple_select_checkBox").prop('checked', $(this).prop('checked'));
+                isCheckboxchecked();
+            });
+
+            $(".multiple_select_checkBox").click(function() {
+                isCheckboxchecked();
+            });
+            $(".btnSubmitTrigger").click(function() {
+                $(".multi_delete_form").submit();
+            });
+
+            $(".addtooffer").click(function() {
+                $(".addtooffer").submit();
+            });
+
+        });
+        setTimeout(function() {
+            $(".alert").hide();
+        }, 5000);
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 400,
+            step: 5,
+            values: [0, 400],
+            slide: function(e, ui) {
+                var hours1 = Math.floor(ui.values[0]);
+
+                $('.slider-time').html(hours1);
+
+                var hours2 = Math.floor(ui.values[1]);
+
+                $('.slider-time2').html(hours2);
+            }
+        });
+    </script>
+    <script>
+        wow = new WOW({
+            boxClass: 'wow', // default
+            animateClass: 'animated', // default
+            offset: 0, // default
+            mobile: false, // default
+            live: true // default
+        })
+        wow.init();
+    </script>
+
+
+
+    <script>
+        (function() {
+            $("#filter-btn").on("click", function() {
+                $("#mobile-filter").slideToggle("2000");
+            });
+
+        })();
+    </script>
+
+    <script>
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            startDate: new Date()
+        });
+
+        //         $(document).on('click','.add_atr', function () {
+
+        // var html='<div class="form-group">';	
+        //     html+='<div class="col-sm-5 col-xs-12">';
+        //         html+=' <div class="form-group">';
+        //             html+='<label>WHAT IS THE NAME OF THE SAMPLE/LOOP?</label>';
+
+        //             html+='<input class="form-control" type="text" formControlName="title[]"  placeholder="Sample Title">';
+        //             html+='</div>';
+        //             html+='</div>';
+        //             html+='<div class="col-sm-5 col-xs-12">';
+        //             html+='<div class="form-group">';
+        //                     html+='<label>WHERE DID YOU GET THIS SAMPLE?</label>';
+        //                     html+='<input class="form-control" type="text" formControlName="source[]" placeholder="Sample Source">';
+        //                     html+='</div>';
+        //                     html+='</div>';
+        //                     html+='<div class="col-sm-2 col-xs-12">';
+        //                     html+='<div class="form-group">';
+        //                     html+='<div class="remove_user">';
+        //                     html+='<a href="javascript:void(0)" class="remove_atr">';
+        //                     html+='<img src="assets/images/remove-use-image.png" alt=""> </a>';
+        //                     html+='</div>';
+        //                     html+='</div>';
+        //                     html+=' </div>';
+
+        // $('.atr_group').append(html);
+        // });		
+
+        /*
+        $(document).on('click','.remove_atr', function () {
+        $(this).parent().parent().parent().parent().remove();
+          
+        });*/
+    </script>
+</body>
+
+</html>

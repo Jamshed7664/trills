@@ -1,0 +1,47 @@
+a.button1{
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    border-radius: 3px;
+    border: 1px solid #8e7e47;
+    background: #8e7e47;
+    color: #fff;
+    /* padding: 10px 37px; */
+    margin-top: 23px !important;
+    opacity: 1;
+    margin: 0px auto;
+    width: auto;
+    padding: 10px;
+}
+
+a.selecbtn{
+  display: inline-block;
+  text-align: center;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid #8e7e47;
+  background: #8e7e47;
+  color: #fff;
+  /* padding: 10px 37px; 
+  margin-top: 23px !important;*/
+  opacity: 1;
+  margin: 0px auto;
+  width: auto;
+}
+
+.main_box_for_youtube_list {
+    padding: 0 0 10px;
+}
+.collaborator_list{
+    overflow-y: auto;
+    max-height: 200px;
+    display: inline-block;
+    width: 100%;
+}
+.track-albm-url {
+    padding-right: 70px;
+}

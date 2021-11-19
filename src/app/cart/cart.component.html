@@ -1,0 +1,335 @@
+<section class="wrap bg-black">
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Card Details</h4>
+                </div>
+                <div class="modal-body">
+                    <form novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest" style="display: block;">
+						<div class="row">
+							<div class="col-xs-7 col-sm-9">
+								<div class="form-group">
+									<input type="text" formControlName="name" placeholder="Jane Doe" class="form-control">
+								</div>
+							</div>
+							<div class="col-xs-5 col-sm-3">
+								<ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+								<button type="submit" *ngIf="!paymentcapturing" class="btn btn-default btn-block">
+								  makepayment
+								</button>
+							</div>
+						</div>
+						
+                        
+                        <span *ngIf="msg" class="row paymentMsg">{{msg}}</span>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="container" *ngIf="cart_items?.length == 0">
+        <div class="noproductinyourcart text-center">
+            <h4 style="color:#fff">No Tracks in your cart</h4>
+        </div>
+    </div>
+
+    <div class="container" *ngIf="cart_items?.length > 0">
+        <div class="row">
+            <div class="col-md-9 col-lg-8">
+                <div class="form-cart" *ngFor="let cart_item of cart_items; let i = index">
+                    <div class="row cart-header-media">
+                        <div class="col-sm-11 col-xs-10">
+                            <div class="media">
+                                <div class="media-left">
+                                    <div class="cart-media-img">
+                                        <img src="{{cart_item.artist_image}}" />
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    <h3><a routerLink="/p/{{CartService.getSellerProfileUrl(cart_item)}}">{{cart_item.artist_name}}</a> </h3>
+                                </div>
+								<div class="media-right">
+									<div class="item-count">
+										<h5>{{cart_item.artist_products_count}} Item : {{currency}}{{cart_item.artist_products}}</h5>
+									</div>
+								</div>
+															</div>
+                        </div>
+                        
+                        <div class="col-xs-2 col-sm-1">
+                            <a href="javascript:void(0)" (click)="removedFrom_cart(cart_item.artist_prd_ids)" class="close-btn"><img src="assets/images/close-iocn.png" /></a>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <div class="table" id="results">
+                            <div class="theader">
+                                <div class="table_header"></div>
+                                <div class="table_header">Item</div>
+                                <div class="table_header">Price</div>
+                                <div class="table_header"></div>
+                                <div class="table_header"></div>
+                            </div>
+
+                            <div class="table_row" *ngFor="let inner_list of cart_item.artist_pr ; let m=index">
+								
+                                <div class="table_small">
+                                    <div class="table_cell">Item</div>
+                                    <div class="table_cell"><img class="item-table-img img-responsive" src="{{inner_list.image}}" alt="">
+										<div class="playhover">
+											<a href="javascript:void(0)" (click)="CartService.setAllTracks(cart_item.artist_pr,'tracks', m)" ><i class="fa fa-play-circle-o"></i></a>
+										</div>
+									</div>
+                                </div>
+                                <div class="table_small">
+                                    <div class="table_cell"></div>
+                                    <div class="table_cell cart-tile">
+                                        <h5><a routerLink="/details/{{CartService.getDetailsUrl(inner_list)}}">{{inner_list.track_name}} </a></h5>
+                                        <p>{{inner_list.track}} | {{inner_list.license_for_wav}} {{inner_list.license_for_stems}} 
+										<ng-container *ngIf="inner_list.license_for_mp3">
+											{{inner_list.license_for_mp3}} ({{inner_list.untagged}} {{inner_list.untagged_with}})
+										</ng-container ></p>
+										<p>{{inner_list.license_name}}</p>
+										<p>Downloadable 
+											{{inner_list.license_for_wav}} {{inner_list.license_for_stems}} 
+											<ng-container *ngIf="inner_list.license_for_mp3">
+												{{inner_list.license_for_mp3}} ({{inner_list.untagged}}  {{inner_list.untagged_with}})
+											</ng-container >
+										</p>
+									</div>
+                                </div>
+                                <div class="table_small">
+                                    <div class="table_cell">Price</div>
+                                    <div class="table_cell">
+                                        <p class="inr-price">{{currency}}{{inner_list.total}}/</p>
+                                    </div>
+                                </div>
+
+                                <div class="table_small">
+                                    <div class="table_cell"></div>
+                                    <div class="table_cell">
+                                        <div class="review-btn"><a href="javascript:void(0)" (click)="open_close_modal(2,0,1,inner_list)">Review license</a></div>
+                                    </div>
+                                </div>
+                                <div class="table_small">
+                                    <div class="table_cell"></div>
+                                    <div class="table_cell">
+                                        <a href="javascript:void(0)" (click)="removedFrom_cart(inner_list.product_id)" class="close-btn"><img src="assets/images/close-iocn.png" /></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <p class="promocode" *ngIf="cart_item.artist_discount_code"><a href="javascript:void(0)">promo code :{{cart_item.artist_discount_code}}
+                            <a href="javascript:void(0)" (click)="removeCPm(i,cart_item)"  class="close-btn"><img src="assets/images/close-iocn.png" /></a>
+
+                            </a>
+                        </p>
+                        <p class="promocode" *ngIf="!cart_item.artist_discount_code"><a href="javascript:void(0)" (click)="open_modal_for_promo(3,cart_item)">Got promo code? {{cart_item.artist_discount_code}}</a></p>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="col-md-3 col-lg-4 cart-col-rgt">
+                <div class="order-summary">
+
+
+
+
+                    <h4 class="title-shopping-cart">Cart Summary</h4>
+                    <div class="media cart-summary-item" *ngFor="let cart_item of cart_items">
+                        <div class="media-left">
+                            <div class="cart-summary-img"><img src="{{cart_item.artist_image}}" /></div>
+                        </div>
+                        <div class="media-body">
+                            <h4>{{cart_item.artist_name}}</h4>
+                        </div>
+                        <div class="media-right">
+                            <h4>{{currency}}{{cart_item.artist_products}}</h4>
+                            <span class="artistDiscunt" *ngIf="cart_item.artist_discount_code">Discount : {{currency}}{{cart_item.artist_discount}}</span>
+                        </div>
+                    </div>
+
+
+                    <div class="checkout-element-content">
+                        <p class="order-left">Total Gross <strong>{{currency}}{{sub_total}}</strong></p>
+                        <p class="order-left">Discount <strong>{{currency}}{{discount}}  </strong></p>
+                        <p class="order-left totalpay">Total <strong>{{currency}}{{grand_total}}</strong></p>
+                    </div>
+                    <!-- <p class="promocode"><a href="javascript:void(0)">Got promo code?</a></p> -->
+                    <ul class="btn-group cart-btn-group">
+                        <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+
+                        <!-- <li><a href="javascript:void(0)">Checkout via Paypal</a></li> -->
+                        <li><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal">Checkout via Stripe </a></li>
+                    </ul>
+                    <p class="cart-poilcy">Please read our
+                        <a *ngFor="let prow of pages | slice:3:4" routerLink="/pages/{{prow.pageurl}}"> {{prow.title}} </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="myModalprocess3" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Apply Coupon</h4>
+            </div>
+            <div class="modal-body">
+                <form action="">
+					<label for="email">Enter Coupon:</label>
+					<div class="row">
+					
+						<div class="col-xs-7 col-sm-9">
+							<div class="form-group">
+								<input type="email" class="form-control" #cpnCode id="cpnBox">
+							</div>
+						</div>
+						<div class="col-xs-5 col-sm-3">
+							 <button type="button" class="btn btn-default btn-block" (click)="applyCPN(cpnCode.value)">Apply</button>
+						</div>
+					</div>
+				</form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="myModalprocess2" class="modal fade" role="dialog" *ngIf="licenses">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">License Preview</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-md-12 lncsDiv">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">LICENSE KEY FEATURES
+
+                            </div>
+
+                            <div class="panel-body licenseBody">
+
+                                <div class="row">
+									<div class="col-md-12" *ngIf="licenses.distribution_copies">
+                                            <p>NUMBER OF DISTRIBUTION COPIES {{licenses.distribution_copies}}</p>
+                                        </div>
+                                        <div class="col-md-6" *ngIf="licenses.free_downloads">
+                                            <p>NUMBER OF FREE DOWNLOADS {{licenses.free_downloads}}</p>
+                                        </div>
+
+                                        <div class="col-md-6" *ngIf="licenses.audio_streams">
+                                            <p>NUMBER OF AUDIO STREAMS {{licenses.audio_streams}}</p>
+                                        </div>
+
+                                        <div class="col-md-6" *ngIf="licenses.music_video">
+                                            <p>NUMBER OF MUSIC VIDEOS {{licenses.music_video}}</p>
+                                        </div>
+
+                                        <div class="col-md-6" *ngIf="licenses.non_monetized_video_streams">
+                                            <p>NUMBER OF NON-MONETIZED VIDEO STREAMS {{licenses.non_monetized_video_streams}}</p>
+                                        </div>
+
+                                        <div class="col-md-6" *ngIf="licenses.monetized_video_streams">
+                                            <p>NUMBER OF MONETIZED VIDEO STREAMS {{licenses.monetized_video_streams}}</p>
+                                        </div>
+										
+										<div class="col-md-6" *ngIf="licenses.broadcasting_right">
+                                            <p>BROADCASTING RIGHTS {{licenses.broadcasting_right}}</p>
+                                        </div>
+
+                                        <div class="col-md-6" *ngIf="licenses.radio_stations">
+                                            <p>NUMBER OF RADIO STATIONS {{licenses.radio_stations}}</p>
+                                        </div>
+
+                                        <div class="col-md-6" *ngIf="licenses.allow_profit">
+                                            <p>ALLOW FOR PROFIT PERFORMANCES {{licenses.allow_profit}}</p>
+                                        </div>
+
+                                        <div class="col-md-6" *ngIf="licenses.not_profit">
+                                            <p>NOT FOR PROFIT PERFORMANCES {{licenses.not_profit}}</p>
+                                        </div>
+                                    <!--<div class="col-md-6">
+                                        Used for Music Recording
+                                    </div>
+                                    <div class="col-md-6">
+                                        Distribute up to 3000 copies
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        250000 Online Audio Streams
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        Music Video
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        For Profit Live Performances
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        Radio Broadcasting rights (2 Stations)
+                                    </div>-->
+                                </div>
+
+                                <br><br>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p>{{licenses.description}}</p>
+                                    </div>
+
+                                </div>
+
+                                
+
+
+                            </div>
+                            <div class="license-ag">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p>{{licenses.full_customization}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

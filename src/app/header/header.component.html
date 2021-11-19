@@ -1,0 +1,314 @@
+<header>
+    <nav class="navbar navbar-default" data-spy="affix" data-offset-top="97">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mymenuNavbar">-->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mymenuNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+                <a class="navbar-brand" routerLink="/"><img src="assets/images/logo.png" /></a>
+            </div>
+            <div class="collapse navbar-collapse" id="mymenuNavbar">
+                <ul class="nav navbar-nav nav-menu">
+                    <li><a routerLink="/">Home</a></li>
+					<li><a routerLink="/feeds">Feed</a></li>
+                    <li class="dropdown"><a data-toggle="dropdown" href="javascript:void(0)">Tracks 
+            <span class="fa fa-angle-down"></span></a>
+                        <ul class="dropdown-menu drop-menu">
+                            <li class="dropdown-submenu" *ngFor="let nrow of navData">
+                                <a data-toggle="dorpdown" routerLink="/search" [queryParams]="{ 'type':'tracks','filters': 'cat'+nrow.url}">
+                                    <img src="{{nrow.image}}" /> {{nrow.name | uppercase}}
+                                    <span class="fa fa-angle-right" *ngIf="nrow.subgenre?.length > 0"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li *ngFor="let chilnav of nrow.subgenre" class=""><a routerLink="/search" [queryParams]="{ 'type':'tracks','filters': 'cat'+nrow.url,'subgenre':'scat'+chilnav.url}">{{chilnav.name | uppercase}}</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li><a routerLink="/search" [queryParams]="{ 'type':'albums'}">Albums </a> </li>
+                    <li><a routerLink="/search" [queryParams]="{ 'type':'services'}">Services </a></li>
+
+                    <!-- <li><a routerLink="/trending-beats">Trending Beats </a> </li>
+                    <li><a routerLink="/most-sold-beats">Most Sold Beats </a></li> -->
+                </ul>
+
+            </div>
+
+
+
+            <div class="rightmenubar">
+                <ul class="nav navbar-nav navbar-right nav-rgt">
+                    <li class="selling" *ngIf="!currentUser"><a routerLink="/account"><span class="hidden-xs">Start Selling</span> <span class="hidden-lg hidden-md hidden-sm">
+            <img src="assets/images/sell-icon.png"/></span></a></li>
+
+					<ng-container *ngIf="currentUser">
+                    <li class="dropdown selling" *ngIf="currentUser.registerType==1">
+                        <a href="#" class="dropdown-toggle selling" data-toggle="dropdown"><span class="hidden-xs"><i class="fa fa-plus"></i> Upload</span> <span class="hidden-lg hidden-md hidden-sm">
+                </span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="javascript:void(0)" data-toggle="modal" data-target="#uploadArt" class=""> Upload New  </a> </li>
+                            <li class="canvas_open filter_drop_btn"><a href="javascript:void(0)" (click)="myUpload_modal()"> My Uploads  </a> </li>
+                        </ul>
+                    </li>
+					</ng-container>
+                    <li class="hdr-login"><a routerLink="/login" *ngIf="!currentUser"><span class="hidden-xs">Log In/ Sign Up</span> 
+              <span class="hidden-lg hidden-md hidden-sm">
+                <img src="assets/images/login-icon.png"/>
+              </span></a></li>
+                    <li class="dropdown" *ngIf="currentUser">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{currentUser.profileimg}}" class="hedimg-circle" alt=""> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <div class="bottom-border">
+                                <li align="center" class=""><img class="img-responsive imgclass hedimg-circle" src="{{currentUser.profileimg}}">
+                                    <div class="user_name">
+                                        <h2>{{currentUser.name}} <span *ngIf="currentUser.registerType==1">Free</span></h2>
+                                    </div>
+                                </li>
+                            </div>
+                            
+							<!--<li *ngIf="registerType==2"><a routerLink="/orders" class=" "><span class="fa fa-shopping-cart"></span> Your Orders</a> </li>-->
+							<li *ngIf="currentUser.registerType==2"><a routerLink="/profile" class=" "><span class="fa fa-user"></span> My Dashboard</a> </li>
+                            
+							<li *ngIf="currentUser.registerType==1"><a routerLink="/account" class=" "><span class="fa fa-shopping-cart"></span> Your Orders</a> </li>
+							<li *ngIf="currentUser.registerType==1"><a routerLink="/dashboard" class=" "><span class="fa fa-user"></span> My Dashboard</a> </li>
+                            <li *ngIf="currentUser.registerType==1"><a routerLink="/account" class=" "><span class="fa fa-gear"></span>Account settings </a> </li>
+                            <li *ngIf="currentUser.registerType==1"><a routerLink="/account" class=" "><span class="fa fa-envelope-o"></span>   Message  </a> </li>
+                            <li *ngIf="currentUser.registerType==1"><a routerLink="/account" class=" "><span class="fa fa-bell-o"></span> Notifications  </a> </li>
+                            <li><a (click)="logout()" style="cursor:pointer;" class=" "><span class="fa fa-power-off"></span>  Logout  </a> </li>
+                        </ul>
+                    </li>
+
+
+
+                    <li class="cart">
+                        <a routerLink="/cart"><img src="assets/images/shopping-icon.png" /><span>{{items}}</span> </a>
+                    </li>
+                </ul>
+                <div class="header-search search-box">
+                    <input type="text" class="form-control" placeholder="Try “Hip-hop beat”" id="searchBoxTop" value="{{search}}" />
+                    <button type="submit" class="btn btn-search"><img src="assets/images/search-iocn.png"/></button>
+                    <div class="dropdown track-drop">
+                        <select class="btn btn-default dropdown-toggle" id="searchBoxTopVale">
+                            <option value="all" 
+                            [attr.selected]="getSearchType('all')"
+                            >All</option>
+                            <option value="playlist"
+                            [attr.selected]="getSearchType('playlist')"
+                            >Sound Kits</option>
+                            
+                            <option value="musicians"
+                            [attr.selected]="getSearchType('musicians')"
+                            >Musicians</option>
+                            <option value="tracks"
+                            [attr.selected]="getSearchType('tracks')"
+                            >Tracks</option>
+                            <option value="albums"
+                            [attr.selected]="getSearchType('albums')"
+                            >Albums</option>
+                            <option value="services"
+                            [attr.selected]="getSearchType('services')"
+                            >Services</option>
+                            <option value="sound-kits"
+                            [attr.selected]="getSearchType('sound-kits')"
+                            >Sound Kits</option>
+
+                          
+                            </select>
+							<div class="form-icon"><span class="fa fa-angle-down"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="off_canvars_overlay"></div>
+<div class="filter_rgtbar Offcanvas_menu_wrapper">
+    <div id="content-4" class="custom-scrollbar-js p-2">
+        <h4>My Uploads
+            <div class="canvas_close closebtn" (click)="modal_close()">✕</div>
+        </h4>
+        <a class="btn btn-warning burlywood-btn" href="#"><i class="fa fa-plus"></i> Create media</a>
+        <div class="sidebar_box_main">
+            <div class="sidebar_box" *ngIf="allimages?.length > 0">
+                <div class="box-title">
+                    <h5>Art files</h5>
+                </div>
+                <div class="box_content imgfile">
+                    <ul class="list-unstyled">
+                        <li *ngFor="let imgrow of allimages"><a href="javascript:void(0)">{{imgrow.image}}</a>
+                            <span class="closedata" (click)="selectGallery(imgrow.id,1)">✕</span>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar_box" *ngIf="alluploaded?.length > 0">
+                <div class="box-title">
+                    <h5>MP3 Files</h5>
+                </div>
+                <div class="box_content musiclist">
+                    <ul class="list-unstyled">
+                        <li class="" *ngFor="let mrow of alluploaded">
+                            <a href="javascript:void(0)">{{mrow.image}}</a>
+                            <span class="closedata" (click)="selectMusic(mrow.id,1)">✕</span>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar_box" *ngIf="stemslist?.length > 0">
+                <div class="box-title">
+                    <h5>Zip/rar files</h5>
+                </div>
+                <div class="box_content zipfile">
+                    <ul class="list-unstyled">
+                        <li *ngFor="let imgrow of stemslist"><a href="javascript:void(0)">{{imgrow.image}}</a> <span class="closedata" (click)="selectMusic(imgrow.id,1)">✕</span> </li>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!---Image Uploaded-->
+<div class="track_model">
+    <div class="upload_new_pic">
+        <div id="uploadArt" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-md mainallupload">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">My Upload</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body alluploadleft">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
+
+                                    <li class="active">
+                                        <a href="#upload-file" data-toggle="tab">
+                                            <img class="alluploadicon" src="assets/images/upload-file-icon.png" alt="">Upload File</a>
+                                        <span class="badge" *ngIf="images?.length > 0">{{images?.length}}</span>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <div class="col-sm-9 alluploadpop">
+                                <div class="tab-content">
+
+                                    <div class="tab-pane text-style fade in active" id="upload-file">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h3>Upload File</h3>
+                                            </div>
+                                            <div class="col-md-12">
+
+                                                <ul>
+                                                    <li *ngFor="let url of images;let index = index">
+                                                        <i class="fa fa-image"></i> {{url.name}}
+                                                        <a href="javascript:void(0)" (click)="removeSelectedFile(index,1)"><span class="closedata">✕</span></a>
+                                                    </li>
+
+
+                                                </ul>
+
+                                                <div class="dropzone-wrapper">
+                                                    <div class="dropzone-desc">
+                                                        <img src="assets/images/upload-file-icon.png" alt="">
+                                                        <p class="white">Choose an image file or drag it here.</p>
+                                                    </div>
+                                                    <input type="file" #fileInput (change)="fileChange($event)" id="file" name="filename" multiple="" class="file-upload dropzone">
+
+                                                </div>
+                                                <div class="upload_file">
+                                                    <h1>Upload files from your computer (or drag them here)</h1>
+
+
+                                                    <div class="fileUpload btn btn--browse">
+                                                        <span>Select File</span>
+                                                        <input type="file" multiple="" class="upload" #fileInput (change)="fileChange($event)" id="file" name="filename">
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="modal-footer" *ngIf="images?.length > 0">
+                                            <a href="javascript:void(0)" class="button1" style="background-color:#080808;" (click)="removeSelectedFile(index,2)">Deselect All</a>&nbsp;&nbsp;
+                                            <a href="javascript:void(0)" class="button1" (click)="allUpload()">Upload ({{images?.length}})</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!---Media Popup-->
+
+        <div id="mediaWork" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-center">New Upload</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
+
+                                    <li class="active"><a href="#upload-file1" data-toggle="tab"><span class="fa fa-key"></span> Upload File </a></li>
+
+                                </ul>
+                            </div>
+
+                            <div class="col-sm-9">
+                                <div class="tab-content">
+
+                                    <div class="tab-pane text-style fade in active" id="upload-file1">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h3>Upload File</h3>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="dropzone-wrapper">
+                                                    <div class="dropzone-desc">
+                                                        <img src="assets/images/upload-file-icon.png" alt="">
+                                                        <p>Upload files from your computer (Or drag them here)</p>
+                                                    </div>
+                                                    <input type="file" #fileInput id="customFile" name="filename" class="file-upload dropzone">
+
+                                                </div>
+                                                <div class="upload_file">
+                                                    <h1>Upload files from your computer (Or drag them here)</h1>
+                                                    <div class="fileUpload btn btn--browse">
+                                                        <span>Select File</span>
+                                                        <input type="file" class="upload" #fileInput id="customFile" name="filename">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

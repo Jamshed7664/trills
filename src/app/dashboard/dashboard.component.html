@@ -1,0 +1,371 @@
+<section class="search_bar_section">
+    <div class="container-fluid" *ngIf="currentUser.registerType==1">
+        <div class="row">
+            <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
+                <div class="track_box mb100">
+                    <h2>QUICK STATS
+                        <ul class="nav navbar-nav nav-rgt dashboard_filter">
+                            <!--<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">This Week  <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href=" " class=" "> Today</a> </li>
+                                    <li><a href=" " class=" ">  Yesterday </a> </li>
+                                    <li><a href="#" class=" ">  This Week  </a> </li>
+                                    <li><a href="#" class=" ">  This Month   </a> </li>
+                                    <li><a href="#" class=" ">  Last 7 Days   </a> </li>
+                                    <li><a href="#" class=" ">  Last 14 Days   </a> </li>
+                                    <li><a href="#" class=" ">  Last 21 Days   </a> </li>
+                                    <li><a href="#" class=" ">  Last 30 Days   </a> </li>
+                                </ul>
+                            </li>-->
+							<select class="form-control _select_arrow" (change)="filterDataBy($event.target.value)">
+								<option value="" [selected]="filterData==''">Select</option>
+								<option value="1" [selected]="filterData=='1'">Today</option>
+								<option value="2" [selected]="filterData=='2'">Yesterday</option>
+								<option value="3" [selected]="filterData=='3'">This Week</option>
+								<option value="4" [selected]="filterData=='4'">This Month</option>
+								<option value="5" [selected]="filterData=='5'">Last 7 Days</option>
+								<option value="6" [selected]="filterData=='6'">Last 14 Days</option>
+								<option value="7" [selected]="filterData=='7'">Last 21 Days</option>
+								<option value="8" [selected]="filterData=='8'">Last 30 Days</option>
+							</select>
+                        </ul>
+                    </h2>
+
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                <div class="track_box text-right">
+                    <a href="#"><i class="fa fa-signal"></i> Show all status</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="dashboard && dashboard.total">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="trach_colom">
+                    <i class="fa fa-usd"></i>
+                    <h2><strong>{{dashboard.total.sales}}</strong> Total sales</h2>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="trach_colom">
+                    <i class="fa fa-user-plus"></i>
+                    <h2><strong>{{dashboard.total.followers}}</strong> New Followers</h2>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="trach_colom">
+                    <i class="fa fa-play"> </i>
+                    <h2><strong>{{dashboard.total.plays}}</strong> Plays</h2>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="trach_colom">
+                    <i class="fa fa-comment-o"> </i>
+                    <h2> <strong>{{dashboard.total.comments}}</strong> Comments</h2>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="trach_colom">
+                    <i class="fa fa-refresh"> </i>
+                    <h2> <strong>{{dashboard.total.repost}}</strong> Repost</h2>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="trach_colom">
+                    <i class="fa fa-gavel"> </i>
+                    <h2> <strong>{{dashboard.total.negotiations}}</strong> Negotiations</h2>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="trach_colom">
+                    <i class="fa fa-download"> </i>
+                    <h2> <strong>{{dashboard.total.downloads}}</strong> Downloads</h2>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="trach_colom">
+                    <i class="fa fa-bullhorn"></i>
+                    <h2> <strong>{{dashboard.total.tracks}}</strong> Number of Tracks</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-9 col-md-9 col-lg-9">
+                <div class="track_box mt50">
+                    <h2>DASHBOARD </h2>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                <div class="track_box text-right mt50">
+                    <a href="#"><i class="fa fa"></i> Customize</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-7 col-lg-6">
+                <div class="dashboard_banner">
+                    <img src="assets/images/dashboard-banner.png" alt="">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-7 col-lg-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="dashboard_contet">
+                            <h2>Getting Started
+                                <div class="dropdown listing-table-drop">
+                                    <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><a class="dot_line" href="#"><i class="fa fa-ellipsis-h"></i> </a></button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="#"><i class="fa fa-eye-slash"></i> Hide Panel</a></li>
+                                    </ul>
+                                </div>
+                            </h2>
+
+                            <div class="dashboard_box">
+                                <a href="#">
+                                    <i class="fa fa-star-o"></i>
+                                    <h2>Set Up Pro page </h2>
+                                </a>
+                            </div>
+                            <div class="dashboard_box">
+                                <a routerLink="/account" [queryParams]="{g: 'embed'}"><i class="fa fa-play"> </i>
+                                   <h2>Set Up Embedded player  </h2></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dashboard_contet">
+                            <h2>Find Your Drafts
+                                <div class="dropdown listing-table-drop">
+                                    <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><a class="dot_line" href="#"><i class="fa fa-ellipsis-h"></i> </a></button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="#"><i class="fa fa-eye-slash"></i> Hide Panel</a></li>
+                                    </ul>
+                                </div>
+                            </h2>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="dashboard_contet">
+                    <h2>Add New Content
+                        <div class="dropdown listing-table-drop">
+                            <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><a class="dot_line" href="#"><i class="fa fa-ellipsis-h"></i> </a></button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="#"><i class="fa fa-eye-slash"></i> Hide Panel</a></li>
+                            </ul>
+                        </div>
+                    </h2>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a routerLink="/tracks/my-tracks">
+                                <div class="dashboard_box">
+                                    <span class="fa fa-music"></span>
+                                    <h3>Create Track </h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a routerLink="/albums">
+                                <div class="dashboard_box">
+                                    <span class="fa fa-picture-o"></span>
+                                    <h3>Create Album </h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a routerLink="/services">
+                                <div class="dashboard_box">
+                                    <span class="fa fa-group"></span>
+                                    <h3>Create Service </h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a routerLink="/licenses">
+                                <div class="dashboard_box">
+                                    <span class="fa fa-gift"></span>
+                                    <h3>Create Packs </h3>
+                                </div>
+                            </a>
+                        </div>
+                        <!--<div class="col-md-4">
+                            <a routerLink="/myblogs">
+                                <div class="dashboard_box">
+                                    <span class="fa fa-gift"></span>
+                                    <h3>Blogs </h3>
+                                </div>
+                            </a>
+                        </div>-->
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="dashboard_contet ">
+                    <div class="media_box">
+                        <h2>Latest Sales
+                            <div class="dropdown listing-table-drop">
+                                <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><a class="dot_line" href="#"><i class="fa fa-ellipsis-h"></i> </a></button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="fa fa-eye-slash"></i> Hide Panel</a></li>
+                                </ul>
+                            </div>
+                        </h2>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Order</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Total</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>September 10, 2019</td>
+                                        <td>Processing</td>
+                                        <td><i class="fa fa-inr"></i> 23.900/- </td>
+                                        <td><a class="btn btn-secondary" href="cart.php">view</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>October 4, 2019</td>
+                                        <td>Processing</td>
+                                        <td><i class="fa fa-inr"></i> 23.900/- </td>
+                                        <td><a class="btn btn-secondary" href="cart.php">view</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>October 4, 2019</td>
+                                        <td>Processing</td>
+                                        <td><i class="fa fa-inr"></i> 23.900/- </td>
+                                        <td><a class="btn btn-secondary" href="cart.php">view</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-7 col-lg-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="dashboard_contet">
+                            <h2>Recent Messages
+                                <div class="dropdown listing-table-drop">
+                                    <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><a class="dot_line" href="#"><i class="fa fa-ellipsis-h"></i> </a></button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="#"><i class="fa fa-eye-slash"></i> Hide Panel</a></li>
+                                    </ul>
+                                </div>
+                            </h2>
+                            <div class="message_box">
+                                <div class="img_message">
+                                    <img src="images/client.png" alt="">
+                                    <span>13 Oct, 2020, 8:45PM - Shahrukh </span>
+                                </div>
+                                <div class="message_info">
+                                    <p>Hey fam, hope you're keeping safe in these crazy times! Just reaching out in case you're looking for beats. If so, hit my page, I might have something for you.</p>
+                                </div>
+                                <div class="message_reply">
+                                    <a href="#"><i class="fa fa-reply"></i>Reply </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dashboard_contet">
+                            <h2>Recent Notifications
+                                <div class="dropdown listing-table-drop">
+                                    <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><a class="dot_line" href="#"><i class="fa fa-ellipsis-h"></i> </a></button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="#"><i class="fa fa-power-off"></i> Hide Panel</a></li>
+                                    </ul>
+                                </div>
+                            </h2>
+                            <div class="notifications_info">
+                                <p>You have no recent notifications...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-7 col-lg-6">
+                <div class="dashboard_contet">
+                    <h2>Opportunities
+                        <div class="dropdown listing-table-drop">
+                            <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><a class="dot_line" href="#"><i class="fa fa-ellipsis-h"></i> </a></button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="#"><i class="fa fa-eye-slash"></i> Hide Panel</a></li>
+                            </ul>
+                        </div>
+                    </h2>
+                    <div class="div_scroll">
+                        <div class="opportunities">
+                            <span><img src="images/client.png" alt=""> </span>
+                            <h3>Work with The on The Market</h3>
+                            <p> Hey fam, hope you're keeping safe in these crazy times! Just reaching out in case you're looking for beats. If so, hit my page, I might have something for you. </p>
+                        </div>
+                        <div class="opportunities">
+                            <span><img src="images/client.png" alt=""> </span>
+                            <h3>Work with The on The Market</h3>
+                            <p> Hey fam, hope you're keeping safe in these crazy times! Just reaching out in case you're looking for beats. If so, hit my page, I might have something for you. </p>
+                        </div>
+                        <div class="opportunities">
+                            <span><img src="images/client.png" alt=""> </span>
+                            <h3>Work with The on The Market</h3>
+                            <p> Hey fam, hope you're keeping safe in these crazy times! Just reaching out in case you're looking for beats. If so, hit my page, I might have something for you. </p>
+                        </div>
+                    </div>
+                    <div class="all_btn">
+                        <a href="#">Show All Opportunities</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-7 col-lg-6">
+                <div class="dashboard_contet">
+                    <h2>Blog
+                        <div class="dropdown listing-table-drop">
+                            <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><a class="dot_line" href="#"><i class="fa fa-ellipsis-h"></i> </a></button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="#"><i class="fa fa-eye-slash"></i> Hide Panel</a></li>
+                            </ul>
+                        </div>
+                    </h2>
+                    <div class="div_scroll">
+                        <div class="opportunities" *ngFor="let blog of blogs">
+                            <span><img src="{{currentUser.profileimg}}" alt=""> </span>
+                            <h3>{{blog.name}}</h3>
+                            <p [innerHtml]="blog.description"></p>
+                        </div>
+                        
+                    </div>
+                    <div class="all_btn">
+                        <a routerLink="/myblogs">More Blog</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="container-fluid" *ngIf="currentUser.registerType==2">
+		<h2 style="color:#fff">Buyer Dashboard</h2>
+	</div>
+</section>

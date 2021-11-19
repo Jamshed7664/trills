@@ -1,0 +1,154 @@
+<section class="media_section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="media_page">
+                <div class="tabbable-panel">
+                    <div class="tabbable-line">
+                        <ul class="nav nav-tabs">
+                            <li><a href="javascript:void(0)" routerLink="/tracks/my-tracks">My Tracks </a></li>
+                            <!--<li><a href="#future" data-toggle="tab">Future Releases </a></li>-->
+                            <li><a href="javascript:void(0)" routerLink="/tracks/future-releases">Future Releases </a>
+                            </li>
+                            <li class="active"><a href="javascript:void(0)" routerLink="/tracks/drafts">Drafts </a></li>
+                        </ul>
+                        <div class="tab-content">
+
+
+                            <div class="tab-pane active in fade" id="drafts">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                                        <div class="fliter_track">
+                                            <div class="form-group">
+                                                <input type="search" class="form-control" placeholder="Fliter track">
+                                                <span class="fa fa-search"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+                                        <div class="fliter_track">
+                                            <button type="submit" class="filter_btn">Arrange Traclists Order</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+                                        <div class="fliter_track">
+                                            <button type="submit" class="filter_btn" (click)="selectedDelete()">Selected
+                                                Deleted</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" *ngIf="list?.length > 0">
+                                    <div class="main_track_list">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-xs-3 col-sm-4 col-md-3 col-lg-2">
+                                                    <div class="all_select">
+                                                        <label class="container">
+                                                            <input type="checkbox" class="check_all" [(ngModel)]="checkAll" (change)="onCheckAll()">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-3 col-sm-4 col-md-3 col-lg-4">
+                                                    <div class="all_select">
+                                                        <h3>Track</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-3 col-sm-4 col-md-3 col-lg-2">
+                                                    <div class="all_select">
+                                                        <h3>Available Formats</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-3 col-sm-4 col-md-3 col-lg-4">
+                                                    <div class="all_select">
+                                                        <h3>Release Date</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="my_track_list" *ngFor="let row of list | paginate: { id: 'listing_pagination',
+                                      itemsPerPage: 12,
+                                      currentPage: page,
+                                      totalItems: totalRec  }; let i=index">
+                                            <a href="javascript:void(0)">
+                                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-7">
+                                                    <div class="row">
+                                                        <div class="col-xs-7 col-sm-6 col-md-4 col-lg-8">
+                                                            <div class="number_of">
+                                                                <p>{{i+1}}</p>
+                                                                <span class="fa fa-play" (click)="playTrack(row, i)"></span>
+                                                            </div>
+                                                            <div class="check_box">
+                                                                <label class="container">
+                                                                    <input type="checkbox"
+                                                                        class="checkbox multiple_select_checkBox checkedProduct"
+                                                                        name="checkbox[]" [checked]="checkAll" (change)="onChangeSingleCheckbox($event, row)" value="{{row.id}}">
+
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="image_with-text">
+                                                                <h2><span><img src="{{row.image}}" alt=""></span>
+                                                                    {{row.name | uppercase}}</h2>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-5 col-sm-6 col-md-4 col-lg-4">
+                                                            <div class="formats_box">
+                                                                <button type="submit" *ngIf="(row.wav!='')">War</button>
+                                                                <button type="submit" *ngIf="(row.mp3!='')">Mp3</button>
+                                                                <button type="submit" *ngIf="(row.zip!='')">zip</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-5">
+                                                    <div class="row">
+                                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-7">
+                                                            <div class="release_date">
+                                                                <h3>{{row.release_date}}</h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-5">
+                                                            <div class="release_date new_tracklist">
+                                                                <button type="submit">
+                                                                    <a routerLink="/tracks/edit/{{row.id}}">
+                                                                        <span class="fa fa-edit"></span></a></button>
+
+                                                                <a class="remove" href="javascript:void(0)" mat-button
+                                                                    (click)="delete(row.id)">
+                                                                    <span class="fa fa-remove"></span></a>
+
+                                                                <div class="dropdown listing-table-drop">
+                                                                    <button class="dropdown-toggle" type="button"
+                                                                        data-toggle="dropdown">
+                                                                        <img src="assets/images/navgation-dot.png" />
+                                                                    </button>
+                                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                                        <li><a
+                                                                                routerLink="/details/{{CartService.getDetailsUrl(row)}}">Track
+                                                                                Details</a></li>
+                                                                    </ul>
+                                                                </div>
+
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true"
+                                            (pageChange)="getPage($event)">
+
+                                        </pagination-controls>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

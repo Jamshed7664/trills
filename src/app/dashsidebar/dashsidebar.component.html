@@ -1,0 +1,50 @@
+<section class="profile-sec">
+	<div class="container">
+        <div class="row">
+             <div class="col-sm-12 col-md-9 col-lg-8">
+        <div class="media profile-hedr-media">
+            <div class="media-left">
+            <div class="profile-hdr-img">
+                <img src="assets/images/pro-img10.jpg"/>
+                </div>
+            </div>
+            <div class="media-body">
+            <h3>Shirtless Bikeman</h3>
+            <p>Tour de France</p>
+             <ul class="list-inline profile-social-links">
+            <li><div class="listint-shopping-btn"><a href="#"><img src="assets/images/user.png"/> Follow</a></div></li>
+            <li><a class="btn btn-default black-btn"><img src="assets/images/chat-iocn.png"/> Message</a></li>
+                 <li><a class="btn btn-default black-btn"><img src="assets/images/navgation-dot0.png"/></a></li>
+            <li><div class="listint-shopping-btn"><a href="#"><img src="assets/images/bulk.png"> Bulk deals</a></div></li>
+                <li><a class="socil_link" href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a class="socil_link" href="#"><i class="fa fa-youtube-play"></i></a></li>
+                <li><a class="socil_link" href="#"><i class="fa fa-instagram"></i></a></li>
+            </ul>
+            </div>
+            </div>
+            </div>
+       <div class="clearfix visible-sm"></div>
+        <div class="col-sm-12 col-md-3 col-lg-4">
+            <ul class="list-inline profile-likes">
+            <li><a href="">191 <span>Followers</span></a></li>
+            <li><a href="">8.7k <span>Plays</span></a></li>
+            <li><a href="">113 <span>Tracks</span></a></li>
+            </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="tab-wrap">
+<div class="container">
+    <ul class="list-inline profile-tab">
+    <li [ngClass]="(page_name=='1')?'active':''"><a routerLink="/feed">Feed </a></li>
+    <li [ngClass]="(page_name=='2')?'active':''"><a routerLink="/tracks">Tracks</a></li>
+    <li [ngClass]="(page_name=='3')?'active':''"><a routerLink="/videos">Videos </a></li>
+    <li [ngClass]="(page_name=='4')?'active':''"><a routerLink="/about">About </a></li>
+    <li [ngClass]="(page_name=='5')?'active':''"><a routerLink="/comments">Comments </a></li>
+    <li [ngClass]="(page_name=='6')?'active':''"><a routerLink="/reviews">Reviews</a></li>
+    </ul>
+    </div>
+</section>
+

@@ -1,0 +1,109 @@
+<section class="inner-section">
+    <div class="container-fluid">
+        <div class="inner-banner">
+            <a href="#">Dashboard</a> <span>&gt;</span> <a href="javascript:void(0)">Create Playlist</a>
+        </div>
+    </div>
+</section>
+
+<form class="" method="Post" (submit)="createPlaylist($event)" [formGroup]="playlist_form">
+    <section class="track_editer_section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="title">General Information </h3>
+                    <div class="main_bg">
+                         
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                            <div class="track_form_editer">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Playlist Title</label>
+                                            <input type="text" class="form-control" [ngClass]="(playlist_form.touched)?( playlist_form.get('name').invalid)?'has_error_class':'no_error_class':''" placeholder="Playlist Title" formControlName="name">
+                                        </div>
+                                    </div>
+                                     
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                                        <div class="form-group">
+                                            <label>DESCRIPTION</label>
+                                            <textarea [ngClass]="(playlist_form.touched)?( playlist_form.get('description').invalid)?'has_error_class':'no_error_class':''" class="form-control" placeholder="Enter Description" formControlName="description"></textarea>
+                                        </div>
+                                    </div>
+                                     
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+             
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="title">Playlist Tracks </h3>
+                    <div class="main_bg">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label>TRACK FINDER</label>
+                                            <input type="search" class="form-control" placeholder="Search" (input)="searchPosts($event.target.value)">
+                                            <code><i class="fa fa-search"></i> </code>
+                                            <ng-container *ngIf="searchData?.length > 0">
+                                                <div class="row albumtracks">
+                                                    <div class="col-md-9">Tracks</div>
+                                                    <div class="col-md-3"></div>
+
+                                                </div>
+                                                <div class="row albumtracks" *ngFor="let blogPost1 of searchData">
+                                                    <div class="col-md-9">{{blogPost1.title}} </div>
+                                                    <div class="col-md-3 customPointer" (click)="addTracks(blogPost1)"><i class="fa fa-plus "></i> Add</div>
+
+                                                </div>
+
+                                            </ng-container>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label>Playlist TRACKS</label>
+                                            <div class="tab_dashbord">
+
+                                                <ul>
+                                                    <li class="dashbord_btn" *ngFor="let tagrow of playlist_form.get('tracks').value; let j = index;">
+                                                        # {{tagrow.title}}
+                                                        <a href="javascript:void(0)" (click)="deleteTracks(j)">
+                                                            <i class="fa fa-times"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             
+        </div>
+    </section>
+
+    <div class="bottom_btn">
+        <button type="submit" class="btn_save bg_gray1">Cancel</button>
+        <button type="submit" class="btn_save bg_red" [disabled]="api_calling">Save Changes</button>
+    </div>
+</form>

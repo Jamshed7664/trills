@@ -1,0 +1,125 @@
+<section class="inner-section">
+    <div class="container-fluid">
+        <div class="inner-banner">
+            <a href="javascript:void(0)">Dashboard</a> <span>&gt;</span> <a href="javascript:void(0)">Album</a>
+        </div>
+    </div>
+</section>
+
+<section class="media_section">
+    <div class="container-fluid">
+
+	
+		<div class="main_heading text-right">
+			<a class="btn btn_plus" routerLink="/create-album"><i class="fa fa-plus"></i></a>
+		</div>
+        <div class="row">
+            <div class="media_page">
+                <div class="tabbable-panel">
+                    <div class="tabbable-line">
+                        <ul class="nav nav-tabs">
+                            <li [ngClass]="{'active': list_type === 'active'}" (click)="chnageListType('active')"><a href="javascript:void(0)" data-toggle="tab" aria-expanded="false">Active </a></li>
+                            <li [ngClass]="{'active': list_type === 'list'}" (click)="chnageListType('list')"><a href="javascript:void(0)" data-toggle="tab" aria-expanded="true">List</a></li>
+                            <li [ngClass]="{'active': list_type === 'drafts'}" (click)="chnageListType('drafts')"><a href="javascript:void(0)" data-toggle="tab" aria-expanded="false">Drafts </a></li>
+
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade" id="active" [ngClass]="{'active in': list_type === 'active'}">
+                                <!-- <div class="row">
+                                    <div class="col-lg-push-3 col-md-6">
+                                        <div class="media_page_box">
+                                            <i class="fa fa-group"></i>
+                                            <p>Services are only available on UNLIMITED and MARKETPLACE Subscription Accounts </p>
+                                            <a class="upgrade_btn" href="service-metadata-editor.php">+ Create a service here </a>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="service_table">
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>ID </th>
+                                                        <th>Album TITLE </th>
+                                                        <th>Album TYPE </th>
+                                                        <th> </th>
+                                                    </tr>
+                                                    <tr *ngFor="let product of products">
+                                                        <td>{{product.id}}</td>
+                                                        <td>{{product.name}}</td>
+                                                        <td>{{product.track_type}}</td>
+                                                        <td>
+                                                            <a routerLink="/create-album" [queryParams]="{ 'albm': product.id}"><i class="fa fa-edit"></i> </a>&nbsp;|&nbsp;
+                                                            <a href="javascript:void(0)" (click)="deleteService(product)"><i class="fa fa-remove"></i> </a>
+
+                                                        </td>
+
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade " id="list" [ngClass]="{'active in': list_type === 'list'}">
+                                <ul class="list-inline video-item servicelst">
+                                    <li class="col-sm-6 col-md-3 col-xs-6" *ngFor="let product of products">
+                                        <div class="item-box">
+                                            <div class="thumbnail tmb">
+                                                <a routerLink="/create-album" [queryParams]="{ 'albm': product.id}"><img src="{{product.image}}"></a>
+                                            </div>
+                                            <div class="item-dec">
+                                                <h5><a routerLink="/create-album" [queryParams]="{ 'albm': product.id}">{{product.name}}</a></h5>
+                                                <p>{{product.track_type}}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+
+
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade " id="drafts" [ngClass]="{'active in': list_type === 'drafts'}">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="service_table">
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>ID </th>
+                                                        <th>Album TITLE </th>
+                                                        <th>Album TYPE </th>
+                                                        <th> </th>
+                                                    </tr>
+                                                    <tr *ngFor="let product of products">
+                                                        <td>{{product.id}}</td>
+                                                        <td>{{product.name}}</td>
+                                                        <td>{{product.track_type}}</td>
+                                                        <td>
+                                                            <a routerLink="/create-album" [queryParams]="{ 'albm': product.id}"><i class="fa fa-edit"></i> </a>&nbsp;|&nbsp;
+                                                            <a href="javascript:void(0)" (click)="deleteService(product)"><i class="fa fa-remove"></i> </a>
+
+                                                        </td>
+
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

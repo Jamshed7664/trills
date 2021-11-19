@@ -1,0 +1,186 @@
+/* You can add global styles to this file, and also import other style files */
+
+.pagination {
+    background: white !important;
+}
+
+.lncsDiv {
+    max-height: 390px !important;
+    overflow-y: scroll;
+}
+
+a.hideElement {
+    display: none;
+}
+
+.has_error_class {
+    border: 1px solid red !important;
+}
+
+.no_error_class {
+    border: 1px solid green !important;
+}
+
+.redclass {
+    color: red;
+    list-style-type: none;
+}
+
+.cdk-overlay-container {
+    z-index: 999999 !important;
+    height: 100px!important;
+}
+
+li.dashbord_btn {
+    padding: 5px 23px;
+    font-size: 14px;
+    line-height: 23px;
+    color: #ab9898;
+    border: 1px solid #ab9898;
+    display: inline-block;
+    margin: 10px 9px 10px 0;
+    border-radius: 30px;
+    transition: all 0.6s ease 0s;
+    text-align: left;
+}
+
+.selectML {
+    height: 120px !important;
+}
+
+.row.albumtracks {
+    color: white;
+}
+
+.customPointer {
+    cursor: pointer;
+}
+
+a.aTagwhite {
+    color: white !important;
+}
+
+.artistDiscunt {
+    color: white !important;
+}
+
+.modal-content {
+    background-color: #2a2a2a;
+    /*border: 2px solid white;*/
+    color: white;
+}
+
+.panel-default>.panel-heading {
+    color: white!important;
+    background-color: #191919 !important;
+    border-color: #ddd!important;
+}
+
+.thumbnail.tmb.customRound {
+    border-radius: 105px !important;
+}
+
+mat-expansion-panel.mat-expansion-panel.ng-tns-c9-0.mat-expanded.mat-expansion-panel-spacing {
+    background-color: white !important;
+}
+
+mat-expansion-panel {
+    background-color: white !important;
+}
+
+.ngx-d-flex {
+    background-color: white !important;
+}
+
+.mat-slider:not(.mat-slider-disabled):not(.mat-slider-sliding) .mat-slider-thumb,
+.mat-slider:not(.mat-slider-disabled):not(.mat-slider-sliding) .mat-slider-thumb-label {
+    cursor: -webkit-grab;
+    cursor: grab;
+    color: red;
+    background-color: red;
+}
+.volume-slider:not(.mat-slider-disabled):not(.mat-slider-sliding) .mat-slider-thumb {
+    cursor: -webkit-grab;
+    cursor: grab;
+    color: red;
+    background-color: white;
+}
+
+.mat-slider-horizontal .mat-slider-track-wrapper {
+    height: 2px;
+    width: 100%;
+    background-color: white;
+}
+
+marquee.ng-star-inserted {
+    color: white;
+}
+
+.mp3player {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 99999;
+    height: 85px;
+    left: 0;
+}
+
+.playerCursor {
+    cursor: pointer;
+}
+
+.ngx-pagination {
+    padding: 0;
+    background: #333;
+    margin-bottom: 0 !important;
+}
+
+.ngx-pagination li {
+    margin: 0 5px;
+}
+
+.ngx-pagination .current {
+    background: #8e7e47 !important;
+    padding: 5px !important;
+    width: 30px;
+    text-align: center;
+}
+
+.licenseBody {
+    color: black;
+}
+.MyFileUplaodsSection {
+    width: 50px;
+}
+.commentsDiv{
+    overflow-y: auto;
+    max-height:500px;
+}
+.chatsDiv{
+    overflow-y: auto;
+    max-height:400px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    opacity:0;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    opacity:0;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+    opacity:0;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+    opacity: 1;
+  }
+  

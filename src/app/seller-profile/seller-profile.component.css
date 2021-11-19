@@ -1,0 +1,106 @@
+.servicelst p {
+    color: #9f9d9d;
+}
+
+.reposticon {
+    width: 15px;
+}
+
+.servicedetailpage .video-likes {
+    display: inline-block;
+    /*margin-left: 10px;*/
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.servicedetailpage .listint-shopping-btn {
+    display: inline-block;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.servicedetailpage .commentboxpop {
+    position: relative;
+    margin-top: 25px;
+}
+
+.servicedetailpage .commentboxpop input {
+    background: #3b3a3a;
+    border: none;
+    height: 45px;
+}
+
+.servicedetailpage .commentboxpop .btn {
+    font-size: 14px;
+    position: absolute;
+    right: 5px;
+    top: 6px;
+    background: #252525;
+    border-color: #252525;
+}
+
+.whitecolr {
+    color: #fff;
+}
+
+.servicedetailpage .dec-txt {
+    margin-top: 40px;
+}
+
+.servicedetailpage h3 {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.servicedetailpage h3 a {
+    color: #8e7e47;
+}
+
+.servicedetailpage h2 {
+    margin: 20px 0;
+}
+
+.servicedetailpage .listing-table-drop .dropdown-menu {
+    padding: 4px 8px;
+}
+
+.albmdetailtext ul.albumdata {
+    width: 100%;
+    padding: 0;
+    padding-left: 0;
+}
+
+.albumdata li {
+    color: #707070;
+    margin-bottom: 10px;
+    list-style: none;
+    font-weight: 300;
+    line-height: 24px;
+}
+
+.albumdata li i {
+    height: 26px;
+    width: 26px;
+    border: solid 2px #fff;
+    display: inline-block;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 10px;
+    padding: 7px 7px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.albmdetailtext p {
+    color: #707070;
+    font-weight: 400;
+}
+
+.albmdetailtext ul {
+    padding-left: 15px;
+}
+
+.albmdetailtext ul li {
+    color: #707070;
+    margin-bottom: 5px;
+}

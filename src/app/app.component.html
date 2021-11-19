@@ -1,0 +1,89 @@
+<!--<app-header></app-header>
+<courses></courses>
+<app-footer></app-footer>-->
+<app-loader *ngIf="!!loading"></app-loader>
+<app-header></app-header>
+<section class="breadcrumb_section" *ngIf="title">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="breadcrumb">
+                  <a routerLink="/"> Home</a> <span>|</span> <a class="active_dark">{{title}}</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
+<!-- <div class="col-md-2" [formGroup]="addForm">
+	<div class="form-group">
+		<label class="label-control">Items</label>
+		<br>
+		<label class="switch">
+    <input type="checkbox" class="form-control" formControlName="items">
+    <span class="slider round">
+      <span class="on">
+        {{addForm.value.items_value}}
+      </span> 
+      <span class="off">
+        {{addForm.value.items_value}}
+      </span>
+    </span>
+    </label>
+		
+		<table>
+			<thead>
+				<button (click)="onAddRow()" *ngIf="addForm.get('rows')">add row</button>
+			</thead>
+			<tbody>
+				<tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
+          <td>
+            name : <input [formControl]="row.get('name')">
+          </td>
+          <td>
+            description : <input [formControl]="row.get('description')">
+          </td>
+          <td>
+            qty : <input [formControl]="row.get('qty')">
+          </td>
+          <td>
+            <button (click)="onRemoveRow(index)">Remove</button>
+          </td>
+				</tr>
+			</tbody>
+		</table>
+
+
+	</div>
+</div> 
+
+<pre>{{rows.value | json}}</pre>-->
+
+<!--<flash-messages></flash-messages>-->
+<!-- <div class="loading-overlay" *ngIf="loading">
+  <img src="assets/assets/assets/assets/images/bx_loader.gif" 
+  style="display: flex;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255,255,255,.9);
+  z-index: 999999;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;">
+ 
+</div> -->
+
+
+
+  <alert></alert>
+
+<router-outlet></router-outlet>
+
+<app-footer></app-footer>

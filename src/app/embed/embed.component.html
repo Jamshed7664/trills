@@ -1,0 +1,176 @@
+<section class="wrap bg-black">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- <div class="media_page"> -->
+            <div class="">
+                <div class="row">
+                     
+                    <!-- TRACK SECTION -->
+                    <div class="product-listing col-xs-12 col-sm-12 col-md-9 col-lg-9" *ngIf="searchType=='tracks'">
+                        
+
+
+                        <div class="title-header">
+                            <h2 class="white">Tracks</h2>
+                        </div>
+
+                        <div class="listing-table">
+                            <div class="">
+                                <div class="table" id="results">
+
+                                    <div class="table_row" *ngFor="let product of
+                                        products | paginate: { id: 'listing_pagination',
+                                        itemsPerPage: 1,
+                                        currentPage: page,
+                                        totalItems: totalRec }; let i = index">
+                                        <div class="table_small">
+                                            <div class="table_cell">Item</div>
+                                            <div class="table_cell"><img (click)="CartService.setSingleTrack(product.id,'tracks', i)" class="playerCursor item-table-img
+                                                    img-responsive" src="{{product.artist_image}}" alt=""></div>
+                                        </div>
+                                        <div class="table_small">
+                                            <div class="table_cell"></div>
+                                            <div class="table_cell cart-tile">
+                                                <a routerLink="/details/{{CartService.getDetailsUrl(product)}}">
+                                                    <h5>{{product.name}}</h5>
+                                                </a>
+                                                <p>by {{product.artist_name}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="table_small">
+                                            <div class="table_cell"></div>
+                                            <div class="table_cell">{{product.track_type}}</div>
+                                        </div>
+                                        <div class="table_small">
+                                            <div class="table_cell"></div>
+                                            <div class="table_cell">{{product.BPM}} BPM</div>
+                                        </div>
+                                        <div class="table_small">
+                                            <div class="table_cell"></div>
+                                            <div class="table_cell">{{product.total_playes}} plays
+                                            </div>
+                                        </div>
+                                        <div class="table_small">
+                                            <div class="table_cell"></div>
+                                            <div class="table_cell">
+                                                <div class="download-btn" *ngIf="product.download_options!='1'">
+                                                    <a href="#"><img src="assets/images/download-icon.png" /></a>
+                                                </div>
+                                                <div class="share-btn ml5">
+                                                    <a href="#"><img src="assets/images/share-icon.png" /></a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="table_small">
+                                            <div class="table_cell"></div>
+                                            <div class="table_cell">
+                                                <div class="listint-shopping-btn">
+                                                    <a (click)="add_to_cart(1,product)" class="hideElement"><img src="assets/images/share-icon0.png" /> {{currency}} {{product.price}}</a>
+                                                    <a (click)="open_close_modal(1,0,1,product)"><img src="assets/images/share-icon0.png" />{{currency}} {{product.price}}</a>
+                                                </div>
+                                                <div class="dropdown
+                                                    listing-table-drop">
+                                                    <button class="btn btn-default
+                                                        dropdown-toggle" type="button" data-toggle="dropdown"><img
+                                                            src="assets/images/navgation-dot.png"
+                                                            /></button>
+                                                    <ul class="dropdown-menu
+                                                        dropdown-menu-right">
+                                                        <li><a  href="javascript:void(0)" (click)="likeunLike(product,i)">  {{ product.isIamLiking ? 'Undo Like' : 'Like'}}</a></li>
+                                                        <li><a href="#">Repost</a></li>
+                                                        <li><a routerLink="/details/{{CartService.getDetailsUrl(product)}}">Comments</a></li>
+                                                        <li><a href="#">Add to playlist</a></li>
+                                                        <li><a href="#">Free download</a></li>
+                                                        <li><a routerLink="/details/{{CartService.getDetailsUrl(product)}}">Go to track</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pagination custom_paginate">
+                            <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" previousLabel="Pre" nextLabel="Next" (pageChange)="getPage($event)"></pagination-controls>
+                        </div>
+                    </div>
+                    <!-- TRACK SECTION -->
+
+                    <!-- <div class="page-header _header_title" *ngIf="products?.length == 0 && searchType!='all'"  >
+                        <h3>No records found</h3>
+                    </div> -->
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div id="myModalprocess1" class="modal fade" role="dialog" *ngIf="selected_product">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Choose license type</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="item-table-img img-responsive" src="{{selected_product.artist_image}}" alt="">
+                    </div>
+                    <div class="col-md-9 lncsDiv">
+                        <div class="panel panel-default" *ngFor="let license of licenses ">
+                            <div class="panel-heading">{{license.name}}
+                                <br>
+                                <span>MP3</span>
+                                <div class="listint-shopping-btn addTocartInModal">
+                                    <a (click)="add_to_cart2(1,selected_product,license.id)"><img src="assets/images/share-icon0.png" /> {{currency}} {{selected_product.price+license.default_track_price}}</a>
+                                </div>
+                            </div>
+
+                            <div class="panel-body">
+                                <a href="#demo{{license.id}}" class="btn btn-info" data-toggle="collapse">See usage terms</a>
+                                <div id="demo{{license.id}}" class="collapse">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            Used for Music Recording
+                                        </div>
+                                        <div class="col-md-6">
+                                            Distribute up to 3000 copies
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            250000 Online Audio Streams
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            Music Video
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            For Profit Live Performances
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            Radio Broadcasting rights (2 Stations)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>You can also:</p>
+                <p>Negotiate the Price</p>
+            </div>
+
+        </div>
+
+    </div>
+</div>

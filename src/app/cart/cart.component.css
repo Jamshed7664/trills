@@ -1,0 +1,19 @@
+.row.noproductinyourcart {
+    color: white;
+    font-size: 22px;
+}
+span.row.paymentMsg {
+    color: white;
+    font-size: 21px;
+}
+.cart-btn-group li {
+    list-style: none;
+    display: inline-block;
+    width: 100%;
+}
+
+.listing-table .download-btn, .share-btn {
+    display: inline-block;
+    margin: 2px;
+}
+

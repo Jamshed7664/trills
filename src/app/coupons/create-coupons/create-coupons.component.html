@@ -1,0 +1,57 @@
+<section class="inner-section">
+    <div class="container-fluid">
+        <div class="inner-banner">
+            <a href="#">Dashboard</a> <span>&gt;</span> <a href="javascript:void(0)">Create Coupons</a>
+        </div>
+    </div>
+</section>
+
+<form class="" method="Post" (submit)="createCoupons($event)" [formGroup]="coupon_form">
+    <section class="track_editer_section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="title">General Information </h3>
+                    <div class="main_bg">
+                         
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                            <div class="track_form_editer">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Coupon Name</label>
+                                            <input type="text" class="form-control" [ngClass]="(coupon_form.touched)?( coupon_form.get('name').invalid)?'has_error_class':'no_error_class':''" placeholder="Coupon Name" formControlName="name">
+                                        </div>
+                                    </div>
+                                </div>
+								<div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Coupon price</label>
+                                            <input type="text" class="form-control" [ngClass]="(coupon_form.touched)?( coupon_form.get('price').invalid)?'has_error_class':'no_error_class':''" placeholder="Coupon Price" formControlName="price">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                                        <div class="form-group">
+                                            <label>DESCRIPTION</label>
+                                            <textarea [ngClass]="(coupon_form.touched)?( coupon_form.get('description').invalid)?'has_error_class':'no_error_class':''" class="form-control" placeholder="Enter Description" formControlName="description"></textarea>
+                                        </div>
+                                    </div>
+                                     
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             
+        </div>
+    </section>
+
+    <div class="bottom_btn">
+        <button type="submit" class="btn_save bg_gray1">Cancel</button>
+        <button type="submit" class="btn_save bg_red" [disabled]="api_calling">Save Changes</button>
+    </div>
+</form>

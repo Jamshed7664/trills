@@ -1,0 +1,33 @@
+
+<section class="wrap bg-black">
+    <div class="container-fluid">
+        <div class="owl-carousel-wrap">
+            <div class="row">
+                <div class="col-xs-8 col-sm-8">
+                    <div class="title-header">
+                        <h2 class="white">{{title}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+			<div class="col-md-3 col-sm-4 col-xs-12" *ngFor="let trrow of trending">
+				<div class="item" >
+                    <div class="item-box">
+                        <div class="thumbnail tmb">
+                            <a routerLink="/details/{{CartService.getDetailsUrl(trrow)}}">
+								<img src="{{trrow.image}}" />
+							</a>
+                        </div>
+                        <div class="item-dec">
+                            <h5>{{trrow.track_type}}</h5>
+                            <p><img src="assets/images/music-icon.png" /> {{trrow.totaltrack}} Tracks</p>
+                        </div>
+                    </div>
+                </div>
+			</div>
+                
+            </div>
+        </div>
+		
+	</div>
+</section> 

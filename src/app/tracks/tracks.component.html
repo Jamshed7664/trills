@@ -1,0 +1,602 @@
+
+<app-dashsidebar [current_page]="2"></app-dashsidebar>
+
+<section class="wrap bg-black">
+	<div class="container-fluid">
+        <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 sidebar__inner">
+              <div class="sidebar_listing">
+<div class="filter">
+  <h6><i class="fa fa-filter"></i> Filter by 
+      <span id="filter-btn">
+<i class="fa fa-navicon"></i></span>
+      <div class="clearall">         
+                    <a href="#">Clear All</a>
+            </div> </h6>  
+</div>    
+<div id="mobile-filter">
+        <aside class="sidebar-wrapper">
+		<div class="sidebar-box">
+        <div class="box-title"><h5 class="showFire" data-toggle="collapse" data-target="#catemenu1">Genres  </h5></div>
+        <div id="catemenu1" class="box-content last_li_hidden collapse in">
+        <ul class="category-list list-unstyled">
+			<li>
+				<label class="common-customCheckbox vertical-filters-label">
+					<input type="checkbox" class="price-input" value="Maggin Jade"> All Genres
+					<div class="common-checkboxIndicator"></div>
+				</label>
+			</li>
+			<li>
+				<label class="common-customCheckbox vertical-filters-label">
+					<input type="checkbox" value="" class="price-input"> Hip HOP
+					<div class="common-checkboxIndicator"></div>
+				</label>
+			</li>
+			<li>
+				<label class="common-customCheckbox vertical-filters-label">
+					<input type="checkbox" value="" class="price-input"> Pop
+					<div class="common-checkboxIndicator"></div>
+				</label>
+			</li>
+            <li>
+				<label class="common-customCheckbox vertical-filters-label">
+					<input type="checkbox" value="" class="price-input"> R&B
+					<div class="common-checkboxIndicator"></div>
+				</label>
+            </li>
+                <li>
+                <label class="common-customCheckbox vertical-filters-label">
+					<input type="checkbox" value="" class="price-input"> Rock
+					<div class="common-checkboxIndicator"></div>
+				</label>
+                
+			</li>
+        </ul>
+            <p class="showmore"><a href="#">+ Show more 6</a></p>
+        </div>
+        </div>
+            <hr class="listing-sider-hr"/>
+            <div class="sidebar-box">
+						<div class="box-title">
+							<h5 class="showFire" data-toggle="collapse" data-target="#catemenu0">BPM </h5>
+						</div>
+						<div id="catemenu0" class="box-content last_li_hidden collapse in">
+							<div class="wrapper mg_top40 mg_bottom40">
+								<div class="sliders_step1">
+									<div id="slider-range"></div>
+								</div>
+								<div class="extra-controls form-inline">
+									<div id="time-range" class="row">
+										<div class="col-md-6 col-xs-6"><span class="slider-time">0</span></div>
+										<div class="col-md-6 col-xs-6"><span class="slider-time2">400</span></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+            <hr class="listing-sider-hr"/>
+		<div class="sidebar-box">
+        <div class="box-title"><h5 data-toggle="collapse" data-target="#catemenu4">Moods </h5></div>
+        <div id="catemenu4" class="box-content last_li_hidden collapse in">
+        <ul class="category-list list-unstyled">
+			
+			<li>
+				<label class="common-customCheckbox vertical-filters-label">
+					<input type="checkbox" value="" class="price-input"> All 
+					<div class="common-checkboxIndicator"></div>
+				</label>
+			</li>
+			<li>
+				<label class="common-customCheckbox vertical-filters-label">
+					<input type="checkbox" value="" class="price-input"> Accomplished
+					<div class="common-checkboxIndicator"></div>
+				</label>
+			</li>
+			<li>
+				<label class="common-customCheckbox vertical-filters-label">
+					<input type="checkbox" value="" class="price-input"> Adored
+					<div class="common-checkboxIndicator"></div>
+				</label>
+			</li>
+            <li>
+				<label class="common-customCheckbox vertical-filters-label">
+					<input type="checkbox" value="" class="price-input"> Angry
+					<div class="common-checkboxIndicator"></div>
+				</label>
+			</li>
+            <li>
+				<label class="common-customCheckbox vertical-filters-label">
+					<input type="checkbox" value="" class="price-input"> Annoyed
+					<div class="common-checkboxIndicator"></div>
+				</label>
+			</li>
+        </ul>
+            <p class="showmore"><a href="#">+ Show more 6</a></p>
+        </div>
+        </div>
+             <hr class="listing-sider-hr"/>
+            <div class="sidebar-box">
+        <div class="box-title"><h5 data-toggle="collapse" data-target="#catemenu4">Track Type </h5></div>
+        <div id="catemenu4" class="box-content last_li_hidden collapse in">
+        <ul class="category-list list-unstyled">
+			
+			<li>
+				<label class="common-customCheckbox vertical-filters-label">
+					<input type="checkbox" value="" class="price-input"> All types
+					<div class="common-checkboxIndicator"></div>
+				</label>
+			</li>
+			<li>
+				<label class="common-customCheckbox vertical-filters-label">
+					<input type="checkbox" value="" class="price-input"> Beats
+					<div class="common-checkboxIndicator"></div>
+				</label>
+			</li>
+			<li>
+				<label class="common-customCheckbox vertical-filters-label">
+					<input type="checkbox" value="" class="price-input"> Beats with chorus
+					<div class="common-checkboxIndicator"></div>
+				</label>
+			</li>
+            <li>
+				<label class="common-customCheckbox vertical-filters-label">
+					<input type="checkbox" value="" class="price-input"> Vocals
+					<div class="common-checkboxIndicator"></div>
+				</label>
+			</li>
+            <li>
+				<label class="common-customCheckbox vertical-filters-label">
+					<input type="checkbox" value="" class="price-input"> Song reference
+					<div class="common-checkboxIndicator"></div>
+				</label>
+			</li>
+            <li>
+				<label class="common-customCheckbox vertical-filters-label">
+					<input type="checkbox" value="" class="price-input"> Songs
+					<div class="common-checkboxIndicator"></div>
+				</label>
+			</li>
+        </ul>
+            <p class="showmore"><a href="#">+ Show more 6</a></p>
+        </div>
+        </div>
+        </aside>    
+</div>    
+</div>    
+  
+</div>    
+    <div class="clearfix visible-sm"></div>
+			<div class="product-listing col-xs-12 col-sm-12 col-md-9 col-lg-9">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group shortby">
+                        <h5>Short By</h5>
+                    <select class="form-control _select_arrow">
+                        <option>Top selling</option>
+                        <option>Popular</option>
+                        <option>Newest</option>
+                        <option>Price : High to Low</option>
+                        <option>Price : Low to High</option>
+                        </select>
+                        <div class="form_icon"><i class="fa fa-angle-down"></i></div>
+                    </div>
+                    </div>
+                </div>
+            <div class="listing-table tracks-table">
+                <div class="">
+							<div class="table" id="results">
+                                <div class="table_row">								
+								<div class="table_small">
+									<div class="table_cell">Item</div>
+									<div class="table_cell"><img class="item-table-img img-responsive" src="images/pro-img9.jpg" alt=""></div>
+								</div>
+								<div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell cart-tile"><h5>Summer State of Mind</h5>
+                                    <p>by Pacific Sitts</p>
+                                    </div>
+								</div>
+								<div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">Beats</div>
+								</div>
+                                   <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">60 BPM</div>
+								</div>
+                                  <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">199.95 plays</div>
+								</div>
+                                  <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell"><div class="download-btn"><a href="#"><img src="images/download-icon.png"/></a>
+                                      </div>
+                                      <div class="share-btn"><a href="#"><img src="images/share-icon.png"/></a></div>
+                                      </div>
+								</div>
+                                  
+                                  <div class="table_small">
+                                      <div class="table_cell"></div>
+								  <div class="table_cell">
+                                      <div class="listint-shopping-btn"><a href="#"><img src="images/share-icon0.png"/> Rs. 290</a></div>
+                                      <div class="dropdown listing-table-drop">
+  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="images/navgation-dot.png"/></button>
+  <ul class="dropdown-menu dropdown-menu-right">
+    <li><a href="#">Like</a></li>
+    <li><a href="#">Repost</a></li>
+    <li><a href="#">Comments</a></li>
+    <li><a href="#">Add to playlist</a></li>
+    <li><a href="#">Free download</a></li>
+    <li><a href="#">Go to track</a></li>
+  </ul>
+</div>
+                                       </div>
+                                      
+								</div>
+                                  
+							  </div>
+                                <div class="table_row">								
+								<div class="table_small">
+									<div class="table_cell">Item</div>
+									<div class="table_cell"><img class="item-table-img img-responsive" src="images/pro-img9.jpg" alt=""></div>
+								</div>
+								<div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell cart-tile"><h5>Summer State of Mind</h5>
+                                    <p>by Pacific Sitts</p>
+                                    </div>
+								</div>
+								<div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">Beats</div>
+								</div>
+                                   <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">60 BPM</div>
+								</div>
+                                  <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">199.95 plays</div>
+								</div>
+                                  <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell"><div class="download-btn"><a href="#"><img src="images/download-icon.png"/></a>
+                                      </div>
+                                      <div class="share-btn"><a href="#"><img src="images/share-icon.png"/></a></div>
+                                      </div>
+								</div>
+                                  
+                                  <div class="table_small">
+                                      <div class="table_cell"></div>
+								  <div class="table_cell">
+                                      <div class="listint-shopping-btn"><a href="#"><img src="images/share-icon0.png"/> Rs. 290</a></div>
+                                      <div class="dropdown listing-table-drop">
+  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="images/navgation-dot.png"/></button>
+  <ul class="dropdown-menu dropdown-menu-right">
+    <li><a href="#">Like</a></li>
+    <li><a href="#">Repost</a></li>
+    <li><a href="#">Comments</a></li>
+    <li><a href="#">Add to playlist</a></li>
+    <li><a href="#">Free download</a></li>
+    <li><a href="#">Go to track</a></li>
+  </ul>
+</div>
+                                       </div>
+                                      
+								</div>
+                                  
+							  </div>
+							  <div class="table_row">								
+								<div class="table_small">
+									<div class="table_cell">Item</div>
+									<div class="table_cell"><img class="item-table-img img-responsive" src="images/pro-img9.jpg" alt=""></div>
+								</div>
+								<div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell cart-tile"><h5>Summer State of Mind</h5>
+                                    <p>by Pacific Sitts</p>
+                                    </div>
+								</div>
+								<div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">Beats</div>
+								</div>
+                                   <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">60 BPM</div>
+								</div>
+                                  <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">199.95 plays</div>
+								</div>
+                                  <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell"><div class="download-btn"><a href="#"><img src="images/download-icon.png"/></a>
+                                      </div>
+                                      <div class="share-btn"><a href="#"><img src="images/share-icon.png"/></a></div>
+                                      </div>
+								</div>
+                                  
+                                  <div class="table_small">
+                                      <div class="table_cell"></div>
+								  <div class="table_cell">
+                                      <div class="listint-shopping-btn"><a href="#"><img src="images/share-icon0.png"/> Rs. 290</a></div>
+                                      <div class="dropdown listing-table-drop">
+  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="images/navgation-dot.png"/></button>
+  <ul class="dropdown-menu dropdown-menu-right">
+    <li><a href="#">Like</a></li>
+    <li><a href="#">Repost</a></li>
+    <li><a href="#">Comments</a></li>
+    <li><a href="#">Add to playlist</a></li>
+    <li><a href="#">Free download</a></li>
+    <li><a href="#">Go to track</a></li>
+  </ul>
+</div>
+                                       </div>
+                                      
+								</div>
+                                  
+							  </div>
+                                <div class="table_row">								
+								<div class="table_small">
+									<div class="table_cell">Item</div>
+									<div class="table_cell"><img class="item-table-img img-responsive" src="images/pro-img9.jpg" alt=""></div>
+								</div>
+								<div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell cart-tile"><h5>Summer State of Mind</h5>
+                                    <p>by Pacific Sitts</p>
+                                    </div>
+								</div>
+								<div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">Beats</div>
+								</div>
+                                   <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">60 BPM</div>
+								</div>
+                                  <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">199.95 plays</div>
+								</div>
+                                  <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell"><div class="download-btn"><a href="#"><img src="images/download-icon.png"/></a>
+                                      </div>
+                                      <div class="share-btn"><a href="#"><img src="images/share-icon.png"/></a></div>
+                                      </div>
+								</div>
+                                  
+                                  <div class="table_small">
+                                      <div class="table_cell"></div>
+								  <div class="table_cell">
+                                      <div class="listint-shopping-btn"><a href="#"><img src="images/share-icon0.png"/> Rs. 290</a></div>
+                                      <div class="dropdown listing-table-drop">
+  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="images/navgation-dot.png"/></button>
+  <ul class="dropdown-menu dropdown-menu-right">
+    <li><a href="#">Like</a></li>
+    <li><a href="#">Repost</a></li>
+    <li><a href="#">Comments</a></li>
+    <li><a href="#">Add to playlist</a></li>
+    <li><a href="#">Free download</a></li>
+    <li><a href="#">Go to track</a></li>
+  </ul>
+</div>
+                                       </div>
+                                      
+								</div>
+                                  
+							  </div>
+                                <div class="table_row">								
+								<div class="table_small">
+									<div class="table_cell">Item</div>
+									<div class="table_cell"><img class="item-table-img img-responsive" src="images/pro-img9.jpg" alt=""></div>
+								</div>
+								<div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell cart-tile"><h5>Summer State of Mind</h5>
+                                    <p>by Pacific Sitts</p>
+                                    </div>
+								</div>
+								<div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">Beats</div>
+								</div>
+                                   <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">60 BPM</div>
+								</div>
+                                  <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">199.95 plays</div>
+								</div>
+                                  <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell"><div class="download-btn"><a href="#"><img src="images/download-icon.png"/></a>
+                                      </div>
+                                      <div class="share-btn"><a href="#"><img src="images/share-icon.png"/></a></div>
+                                      </div>
+								</div>
+                                  
+                                  <div class="table_small">
+                                      <div class="table_cell"></div>
+								  <div class="table_cell">
+                                      <div class="listint-shopping-btn"><a href="#"><img src="images/share-icon0.png"/> Rs. 290</a></div>
+                                      <div class="dropdown listing-table-drop">
+  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="images/navgation-dot.png"/></button>
+  <ul class="dropdown-menu dropdown-menu-right">
+    <li><a href="#">Like</a></li>
+    <li><a href="#">Repost</a></li>
+    <li><a href="#">Comments</a></li>
+    <li><a href="#">Add to playlist</a></li>
+    <li><a href="#">Free download</a></li>
+    <li><a href="#">Go to track</a></li>
+  </ul>
+</div>
+                                       </div>
+                                      
+								</div>
+                                  
+							  </div>
+                                <div class="table_row">								
+								<div class="table_small">
+									<div class="table_cell">Item</div>
+									<div class="table_cell"><img class="item-table-img img-responsive" src="images/pro-img9.jpg" alt=""></div>
+								</div>
+								<div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell cart-tile"><h5>Summer State of Mind</h5>
+                                    <p>by Pacific Sitts</p>
+                                    </div>
+								</div>
+								<div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">Beats</div>
+								</div>
+                                   <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">60 BPM</div>
+								</div>
+                                  <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">199.95 plays</div>
+								</div>
+                                  <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell"><div class="download-btn"><a href="#"><img src="images/download-icon.png"/></a>
+                                      </div>
+                                      <div class="share-btn"><a href="#"><img src="images/share-icon.png"/></a></div>
+                                      </div>
+								</div>
+                                  
+                                  <div class="table_small">
+                                      <div class="table_cell"></div>
+								  <div class="table_cell">
+                                      <div class="listint-shopping-btn"><a href="#"><img src="images/share-icon0.png"/> Rs. 290</a></div>
+                                      <div class="dropdown listing-table-drop">
+  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="images/navgation-dot.png"/></button>
+  <ul class="dropdown-menu dropdown-menu-right">
+    <li><a href="#">Like</a></li>
+    <li><a href="#">Repost</a></li>
+    <li><a href="#">Comments</a></li>
+    <li><a href="#">Add to playlist</a></li>
+    <li><a href="#">Free download</a></li>
+    <li><a href="#">Go to track</a></li>
+  </ul>
+</div>
+                                       </div>
+                                      
+								</div>
+                                  
+							  </div>
+                                <div class="table_row">								
+								<div class="table_small">
+									<div class="table_cell">Item</div>
+									<div class="table_cell"><img class="item-table-img img-responsive" src="images/pro-img9.jpg" alt=""></div>
+								</div>
+								<div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell cart-tile"><h5>Summer State of Mind</h5>
+                                    <p>by Pacific Sitts</p>
+                                    </div>
+								</div>
+								<div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">Beats</div>
+								</div>
+                                   <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">60 BPM</div>
+								</div>
+                                  <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">199.95 plays</div>
+								</div>
+                                  <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell"><div class="download-btn"><a href="#"><img src="images/download-icon.png"/></a>
+                                      </div>
+                                      <div class="share-btn"><a href="#"><img src="images/share-icon.png"/></a></div>
+                                      </div>
+								</div>
+                                  
+                                  <div class="table_small">
+                                      <div class="table_cell"></div>
+								  <div class="table_cell">
+                                      <div class="listint-shopping-btn"><a href="#"><img src="images/share-icon0.png"/> Rs. 290</a></div>
+                                      <div class="dropdown listing-table-drop">
+  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="images/navgation-dot.png"/></button>
+  <ul class="dropdown-menu dropdown-menu-right">
+    <li><a href="#">Like</a></li>
+    <li><a href="#">Repost</a></li>
+    <li><a href="#">Comments</a></li>
+    <li><a href="#">Add to playlist</a></li>
+    <li><a href="#">Free download</a></li>
+    <li><a href="#">Go to track</a></li>
+  </ul>
+</div>
+                                       </div>
+                                      
+								</div>
+                                  
+							  </div>
+                                <div class="table_row">								
+								<div class="table_small">
+									<div class="table_cell">Item</div>
+									<div class="table_cell"><img class="item-table-img img-responsive" src="images/pro-img9.jpg" alt=""></div>
+								</div>
+								<div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell cart-tile"><h5>Summer State of Mind</h5>
+                                    <p>by Pacific Sitts</p>
+                                    </div>
+								</div>
+								<div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">Beats</div>
+								</div>
+                                   <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">60 BPM</div>
+								</div>
+                                  <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell">199.95 plays</div>
+								</div>
+                                  <div class="table_small">
+								  <div class="table_cell"></div>
+								  <div class="table_cell"><div class="download-btn"><a href="#"><img src="images/download-icon.png"/></a>
+                                      </div>
+                                      <div class="share-btn"><a href="#"><img src="images/share-icon.png"/></a></div>
+                                      </div>
+								</div>
+                                  
+                                  <div class="table_small">
+                                      <div class="table_cell"></div>
+								  <div class="table_cell">
+                                      <div class="listint-shopping-btn"><a href="#"><img src="images/share-icon0.png"/> Rs. 290</a></div>
+                                      <div class="dropdown listing-table-drop">
+  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="images/navgation-dot.png"/></button>
+  <ul class="dropdown-menu dropdown-menu-right">
+    <li><a href="#">Like</a></li>
+    <li><a href="#">Repost</a></li>
+    <li><a href="#">Comments</a></li>
+    <li><a href="#">Add to playlist</a></li>
+    <li><a href="#">Free download</a></li>
+    <li><a href="#">Go to track</a></li>
+  </ul>
+</div>
+                                       </div>
+                                      
+								</div>
+                                  
+							  </div>
+							</div>
+							</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
