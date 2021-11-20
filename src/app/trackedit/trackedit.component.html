@@ -44,15 +44,12 @@
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
                                         <div class="form-group">
                                             <label>Title</label>
-                                            <input type="text" maxlength="51" formControlName="name"
-                                                class="form-control" placeholder="New track">
+                                            <input type="text" class="form-control" formControlName="name" placeholder="New track">
                                             <!--<span *ngIf="DataForm.touched && DataForm.name?.errors?.required">Title is required</span>
                                               <span *ngIf="DataForm.name.errors.minlength && DataForm.name.errors.maxlength">6 out of 50 Maximum characters allowed</span>-->
-                                            <small class="redclass"
-                                                *ngIf="submitted && df.name?.touched && df.name?.errors?.required">Title
+                                            <small class="redclass" *ngIf="submitted && df.name?.touched && df.name?.errors?.required">Title
                                                 is required</small>
-                                            <small class="redclass"
-                                                *ngIf="submitted && df.name?.errors && df.name?.errors?.maxlength">Maximum
+                                            <small class="redclass" *ngIf="submitted && df.name?.errors && df.name?.errors?.maxlength">Maximum
                                                 50 characters
                                                 allowed</small>
                                         </div>
@@ -61,8 +58,7 @@
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-9">
                                         <div class="form-group">
                                             <label>TAGS* (3)</label>
-                                            <input type="text" id="tagtitle" [(ngModel)]="tagtitle"
-                                                formControlName="tagtitle" class="form-control" placeholder="Tags">
+                                            <input type="text" id="tagtitle" [(ngModel)]="tagtitle" formControlName="tagtitle" class="form-control" placeholder="Tags">
                                             <code>0/25</code>
                                             <div class="tab_dashbord">
                                                 <ul class="track_edit_ul">
@@ -85,15 +81,13 @@
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                         <div class="form-group">
                                             <label>Track Type*</label>
-                                            <select type="text" formControlName="track_type" class="form-control"
-                                                id="track_type">
+                                            <select type="text" formControlName="track_type" class="form-control" id="track_type">
                                                 <!--<option value="">Track Type </option>-->
                                                 <option value="{{trow.name}}" *ngFor="let trow of tracktypelist">
                                                     {{trow.name | uppercase}} </option>
 
                                             </select>
-                                            <div *ngIf="submitted && df.track_type?.errors && ( df.track_type?.touched)"
-                                                class="redclass text-danger">
+                                            <div *ngIf="submitted && df.track_type?.errors && ( df.track_type?.touched)" class="redclass text-danger">
                                                 <small *ngIf="df.track_type.errors?.required">This Field is
                                                     required.</small>
                                             </div>
@@ -105,15 +99,9 @@
                                             <!-- <input type="text" formControlName="release_date" class="form-control datepicker" placeholder="New track">  -->
 
                                             <mat-form-field>
-                                                <input matInput [ngxMatDatetimePicker]="picker" placeholder=""
-                                                    name="release_date" formControlName="release_date" [min]="minDate"
-                                                    [max]="maxDate" [disabled]="disabled" readonly />
+                                                <input matInput [ngxMatDatetimePicker]="picker" placeholder="" name="release_date" formControlName="release_date" [min]="minDate" [max]="maxDate" [disabled]="disabled" readonly />
                                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                                <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners"
-                                                    [showSeconds]="showSeconds" [stepHour]="stepHour"
-                                                    [stepMinute]="stepMinute" [stepSecond]="stepSecond"
-                                                    [touchUi]="touchUi" [color]="color"
-                                                    [enableMeridian]="enableMeridian">
+                                                <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds" [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond" [touchUi]="touchUi" [color]="color" [enableMeridian]="enableMeridian">
                                                 </ngx-mat-datetime-picker>
                                             </mat-form-field>
 
@@ -131,9 +119,7 @@
                                         <div class="copy_link">
                                             <div class="form-group">
                                                 <label>URL OF YOUR TRACK</label>
-                                                <input type="text" readonly class="form-control"
-                                                    formControlName="track_url" value=""
-                                                    placeholder="www.trillicons.com">
+                                                <input type="text" readonly class="form-control" formControlName="track_url" value="" placeholder="www.trillicons.com">
                                                 <code><a href="javascript:void(0)" (click)="copyMessage(baseurl+'/beat/'+id)" title="click to copy">Copy</a> </code>
                                             </div>
                                         </div>
@@ -147,8 +133,7 @@
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                         <h2>AUDIO FILES FOR DOWNLOAD</h2>
                                         <div [ngClass]="isMp3Selected?'file_box active':'file_box'">
-                                            <a id="myBtn" class="trigger-button" type="submit" data-toggle="modal"
-                                                data-target="#mediaWorkTrack">
+                                            <a id="myBtn" class="trigger-button" type="submit" data-toggle="modal" data-target="#mediaWorkTrack">
                                                 <i class="fa fa-music"></i>
                                                 <h1>Un-Tagged WAV or MP3</h1>
                                                 <p>.WAV (or .MP3)</p>
@@ -164,10 +149,9 @@
                                         </div>
                                         <h2>AUDIO FILE FOR STREAMING (Optional)</h2>
                                         <div [ngClass]="isStreamSelected?'file_box active':'file_box'">
-                                            <a id="myBtn" class="trigger-button" type="submit" data-toggle="modal"
-                                                data-target="#mediaWorkTrackStream">
+                                            <a id="myBtn" class="trigger-button" type="submit" data-toggle="modal" data-target="#mediaWorkTrackStream">
                                                 <i class="fa fa-music"></i>
-                                                <h1>Un-Tagged WAV or MP3</h1>
+                                                <h1>Tagged MP3</h1>
                                                 <p>.WAV (or .MP3)</p>
                                             </a>
                                         </div>
@@ -176,14 +160,12 @@
                                         <div class="track_form_editer">
                                             <div class="file_upload">
 
-                                                <img src="{{image}}"
-                                                    style="height: 150px;width: 150px; border: 5px solid #8e7e47 ;box-shadow: 0 1px #ff8e7e47;">
+                                                <img src="{{image}}" style="height: 150px;width: 150px; object-fit: cover; border: 5px solid #8e7e47 ;box-shadow: 0 1px #ff8e7e47;">
 
                                                 <p> Artwork Dimension <br> Preferred: 1500x1500px, Minimum: 500x500px
                                                 </p>
                                                 <p> Got Photoshop? Make your own using our free template. </p>
-                                                <a type="submit" data-toggle="modal" data-target="#uploadArtWork"
-                                                    class="button1"> Upload Artwork </a>
+                                                <a type="submit" data-toggle="modal" data-target="#uploadArtWork" class="button1"> Upload Artwork </a>
                                             </div>
                                         </div>
                                     </div>
@@ -227,25 +209,18 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="payment_account">
-                                    <p>Please visit section and connect your PayPal or Stripe account in order for you
-                                        to be able to setup a price for this track.</p>
+                                    <p>Please visit section and connect your PayPal or Stripe account in order for you to be able to setup a price for this track.</p>
 
                                     <div formArrayName="licenseslist">
-                                        <div class="row"
-                                            *ngFor="let licenserow of DataForm.get('licenseslist')['controls']; let i=index;">
+                                        <div class="row" *ngFor="let licenserow of DataForm.get('licenseslist')['controls']; let i=index;">
                                             <div [formGroupName]="i">
                                                 <div class="form-group">
                                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
                                                         <div class="form-group">
-                                                            <input type="hidden" formControlName="licenseId"
-                                                                id="{{'licenseId'+i}}" class="form-control" />
-                                                            <input type="hidden" formControlName="licenseName"
-                                                                id="{{'licenseName'+i}}" class="form-control" />
-                                                            <label
-                                                                for="license-{{i}}">{{licenserow.get('licenseName').value}}</label>
-                                                            <input type="text" id="license-{{i}}"
-                                                                formControlName="licensePrice" class="form-control"
-                                                                placeholder="29.95" />
+                                                            <input type="hidden" formControlName="licenseId" id="{{'licenseId'+i}}" class="form-control" />
+                                                            <input type="hidden" formControlName="licenseName" id="{{'licenseName'+i}}" class="form-control" />
+                                                            <label for="license-{{i}}">{{licenserow.get('licenseName').value}}</label>
+                                                            <input type="text" id="license-{{i}}" formControlName="licensePrice" class="form-control" placeholder="29.95" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -310,8 +285,7 @@
                                         </label>
                                     </div>
                                     <h2>REQUIRE DOWNLOADERS TO</h2>
-                                    <div class="row"
-                                        [ngClass]="(DataForm?.controls.download_options.value==1 || DataForm?.controls.guest_downloads.value==1)?'disabledbutton':''">
+                                    <div class="row" [ngClass]="(DataForm?.controls.download_options.value==1 || DataForm?.controls.guest_downloads.value==1)?'disabledbutton':''">
                                         <div class="col-md-3">
                                             <div class="radio_checkbox_item">
                                                 <label class="radio-inline">
@@ -324,24 +298,21 @@
                                                 </label>
                                             </div>
                                             <div class="download_button">
-                                                <label class="container"
-                                                    [ngClass]="(DataForm?.controls.require_downloaders.value==1)?'disabledbutton':''">
+                                                <label class="container" [ngClass]="(DataForm?.controls.require_downloaders.value==1)?'disabledbutton':''">
                                                     <input type="checkbox" value="1" formControlName="social_twitter"
                                                         [checked]="DataForm?.controls.social_twitter.value=='1'?true:false">Twitter
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
                                             <div class="download_button">
-                                                <label class="container"
-                                                    [ngClass]="(DataForm?.controls.require_downloaders.value==1)?'disabledbutton':''">
+                                                <label class="container" [ngClass]="(DataForm?.controls.require_downloaders.value==1)?'disabledbutton':''">
                                                     <input type="checkbox" value="1" formControlName="social_sound"
                                                         [checked]="DataForm?.controls.social_sound.value=='1'?true:false">SoundCloud
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
                                             <div class="download_button">
-                                                <label class="container"
-                                                    [ngClass]="(DataForm?.controls.require_downloaders.value==1)?'disabledbutton':''">
+                                                <label class="container" [ngClass]="(DataForm?.controls.require_downloaders.value==1)?'disabledbutton':''">
                                                     <input type="checkbox" value="1" formControlName="social_trill"
                                                         [checked]="DataForm?.controls.social_trill.value=='1'?true:false">Trill
                                                     Icons
@@ -360,8 +331,7 @@
                                                         [checked]="DataForm?.controls.require_downloaders.value==2?true:false">Social
                                                     Follow
                                                 </label>
-                                                <div
-                                                    [ngClass]="(DataForm?.controls.require_downloaders.value==1)?'disabledbutton':''">
+                                                <div [ngClass]="(DataForm?.controls.require_downloaders.value==1)?'disabledbutton':''">
                                                     <button type="submit" class="twitter_btn bg_twitter">
                                                         Connect with Twitter
                                                     </button>
@@ -399,23 +369,19 @@
                                                     <div class="col-md-5">
                                                         <div class="form-group">
                                                             <label>WHAT IS THE NAME OF THE SAMPLE/LOOP?</label>
-                                                            <input formControlName="title" class="form-control"
-                                                                placeholder="Sample Title">
+                                                            <input formControlName="title" class="form-control" placeholder="Sample Title">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-5">
                                                         <div class="form-group">
                                                             <label>WHERE DID YOU GET THIS SAMPLE? </label>
-                                                            <input formControlName="source" class="form-control"
-                                                                placeholder="Sample Source">
+                                                            <input formControlName="source" class="form-control" placeholder="Sample Source">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <div class="remove_user">
-                                                                <a href="javascript:void(0)" class="remove_atr"
-                                                                    (click)="onRemoveRow(i)"><img
-                                                                        src="assets/images/remove-use-image.png" alt="">
+                                                                <a href="javascript:void(0)" class="remove_atr" (click)="onRemoveRow(i)"><img src="assets/images/remove-use-image.png" alt="">
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -514,8 +480,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>DESCRIPTION</label>
-                                            <textarea class="form-control" formControlName="description"
-                                                placeholder="Enter Description"></textarea>
+                                            <textarea class="form-control" formControlName="description" placeholder="Enter Description"></textarea>
                                             <span>0 out of 120 Maximum characters allowed</span>
                                         </div>
                                     </div>
@@ -547,8 +512,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>BPM(Beats per minute)</label>
-                                            <input type="number" formControlName="BPM" class="form-control"
-                                                placeholder="BPM">
+                                            <input type="number" formControlName="BPM" class="form-control" placeholder="BPM">
                                             <!-- <select class="form-control" formControlName="BPM">
                                                         <option> 0</option>
                                                     </select> -->
@@ -616,25 +580,20 @@
 
                                         </div>
                                         <div formArrayName="collaborators">
-                                            <div class="border_line"
-                                                *ngFor="let item of collaborators.controls; let collaboratorIndex=index"
-                                                [formGroupName]="collaboratorIndex">
+                                            <div class="border_line" *ngFor="let item of collaborators.controls; let collaboratorIndex=index" [formGroupName]="collaboratorIndex">
                                                 <div class="row">
                                                     <div class="col-md-11 col-xs-12">
                                                         <div class="row">
                                                             <div class="col-md-3">
                                                                 <div class="collaborators">
                                                                     <!--<h2>COLLABORATOR</h2>-->
-                                                                    <p><input type="text" class="form-control"
-                                                                            formControlName="collaboratorUser"
-                                                                            [readonly]="true" /></p>
+                                                                    <p><input type="text" class="form-control" formControlName="collaboratorUser" [readonly]="true" /></p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="collaborators">
                                                                     <!--<h2>ROLE</h2>-->
-                                                                    <p><select class="form-control"
-                                                                            formControlName="collaboratorRole">
+                                                                    <p><select class="form-control" formControlName="collaboratorRole">
                                                                             <option value="master">master</option>
                                                                         </select></p>
                                                                 </div>
@@ -642,18 +601,14 @@
                                                             <div class="col-md-3">
                                                                 <div class="collaborators">
                                                                     <!--<h2>PROFIT SHARE </h2>-->
-                                                                    <p><input type="text" class="form-control"
-                                                                            formControlName="collaboratorProfit"
-                                                                            (change)="onKeyUpProfit($event,collaboratorIndex)" /><span>%</span>
+                                                                    <p><input type="text" class="form-control" formControlName="collaboratorProfit" (change)="onKeyUpProfit($event,collaboratorIndex)" /><span>%</span>
                                                                     </p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="collaborators">
                                                                     <!--<h2>PUBLISHING % </h2>-->
-                                                                    <p><input type="text" class="form-control"
-                                                                            formControlName="collaboratorPublishing"
-                                                                            (change)="onKeyUpPublishing($event,collaboratorIndex)" /><span>%</span>
+                                                                    <p><input type="text" class="form-control" formControlName="collaboratorPublishing" (change)="onKeyUpPublishing($event,collaboratorIndex)" /><span>%</span>
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -661,8 +616,7 @@
                                                     </div>
                                                     <div class="col-md-1 col-xs-12">
                                                         <div class="location-delete">
-                                                            <i (click)="removeCollaborator(collaboratorIndex)"
-                                                                class="fa fa-trash text-danger"></i>
+                                                            <i (click)="removeCollaborator(collaboratorIndex)" class="fa fa-trash text-danger"></i>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -670,8 +624,7 @@
                                         </div>
                                         <div class="col-md-12 mb20">
                                             <div class="text-center">
-                                                <a data-toggle="modal" data-target="#exampleModal1" type="submit"
-                                                    class="button1">
+                                                <a data-toggle="modal" data-target="#exampleModal1" type="submit" class="button1">
                                                     Add Collaborators
                                                 </a>
 
@@ -683,15 +636,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="collaborators">
-                                    <p>Before you add Collaborators, please make sure that you & your Collaborators meet
-                                        the requirements below:</p>
+                                    <p>Before you add Collaborators, please make sure that you & your Collaborators meet the requirements below:</p>
                                     <ul>
                                         <li> - You must be the "Primary Contributor" to add Collaborators</li>
 
                                         <li> - Make sure you Follow each other.</li>
 
-                                        <li> - Your Collaborator has to be a BeatStars Registered Member and at least
-                                            subscribed to a "FREE" Subscription Account</li>
+                                        <li> - Your Collaborator has to be a BeatStars Registered Member and at least subscribed to a "FREE" Subscription Account</li>
 
                                         <li> - Needs to have their PayPal Email Address properly Setup</li>
 
@@ -716,20 +667,18 @@
                                         <div class="main_box_for_youtube_list" *ngFor="let vrow of videos">
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
                                                 <div class="youtube_vide0_list1">
-                                                   <a [href]="vrow.youtubelink" target="_blank"><i class="fa fa-youtube-play"></i> {{vrow.title}}</a> 
+                                                    <a [href]="vrow.youtubelink" target="_blank"><i class="fa fa-youtube-play"></i> {{vrow.title}}</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="youtube_vide0_list">
-                                                    <a href="javascript:void(0);" (click)="deleteVideo(vrow.id)"
-                                                        class="delete_youtube_list"><i class="fa fa-trash-o"></i> </a>
+                                                    <a href="javascript:void(0);" (click)="deleteVideo(vrow.id)" class="delete_youtube_list"><i class="fa fa-trash-o"></i> </a>
                                                 </div>
                                             </div>
                                         </div>
 
                                     </div>
-                                    <p>Only link videos that are related to this Track. Following examples are: Video
-                                        Promotions or Official Music Video. </p>
+                                    <p>Only link videos that are related to this Track. Following examples are: Video Promotions or Official Music Video. </p>
                                     <div class="col-md-12 col-xs-12 text-center">
                                         <a type="submit" data-toggle="modal" data-target="#myModal" class="button1">Add
                                             a YouTube video URL</a>
@@ -755,8 +704,7 @@
 <!-- Modal rar / zip-->
 <div class="track_editer_popup">
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
 
@@ -774,35 +722,29 @@
                     <div class="fileUpload btn btn--browse" *ngIf="stemslist?.length==0">
                         <span>Upload a .zip (or .rar) file</span>
 
-                        <input type="file" class="upload" #fileInput (change)="fileChangeEventSteam($event,2)"
-                            id="customFile" name="filename">
+                        <input type="file" class="upload" #fileInput (change)="fileChangeEventSteam($event,2)" id="customFile" name="filename">
                     </div>
                     <!--<span *ngIf="track_stems_rarzip!=''">{{track_stems_rarzip}}</span>-->
                     <!-- <button type="submit" class="trigger-button" data-target="#SteamMedialbum" data-toggle="modal">Upload a .zip (or .rar) file</button>  -->
-                    <button *ngIf="stemslist?.length>0" type="submit" class="trigger-button"
-                        (click)="changeSection123()">Upload a .zip (or .rar) file</button>
+                    <button *ngIf="stemslist?.length>0" type="submit" class="trigger-button" (click)="changeSection123()">Upload a .zip (or .rar) file</button>
                     <span>We recommend WAV 24-bit depth or higher for the actual stem files. To learn more
                         <!-- <a
                             routerLink="">click here</a>  -->
                     </span>
                     <code>OR</code>
-                    <p>If you have uploaded your track stem .ZIP (or .RAR) file to a file sharing website such as Google
-                        Drive, Dropbox, Amazon S3, OneDrive, etc. you may alternatively paste the download URL link into
-                        the text box below: </p>
+                    <p>If you have uploaded your track stem .ZIP (or .RAR) file to a file sharing website such as Google Drive, Dropbox, Amazon S3, OneDrive, etc. you may alternatively paste the download URL link into the text box below: </p>
                     <form method="Post" (submit)="saveSteam()" [formGroup]="form01_zip">
                         <div class="row">
 
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="track_stems_url"
-                                        formControlName="track_stems_url" placeholder="Enter track sterm URl">
+                                    <input type="text" class="form-control" id="track_stems_url" formControlName="track_stems_url" placeholder="Enter track sterm URl">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>TRACK STEM PASSWORD (OPTIONAL)</label>
-                                    <input type="password" id="track_stems_pswurl" formControlName="track_stems_pswurl"
-                                        class="form-control" placeholder="Enter track sterm URl's password">
+                                    <input type="password" id="track_stems_pswurl" formControlName="track_stems_pswurl" class="form-control" placeholder="Enter track sterm URl's password">
                                 </div>
                             </div>
 
@@ -836,20 +778,16 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
-                                        <li [ngClass]="(stemslist?.length > 0)?'active':''"
-                                            *ngIf="stemslist?.length > 0"><a href="#myfile11" data-toggle="tab"> My File
+                                        <li [ngClass]="(stemslist?.length > 0)?'active':''" *ngIf="stemslist?.length > 0"><a href="#myfile11" data-toggle="tab"> My File
                                             </a></li>
-                                        <li [ngClass]="(stemslist?.length > 0)?'':'active'"><a href="#upload-file11"
-                                                data-toggle="tab"> Upload File </a></li>
+                                        <li [ngClass]="(stemslist?.length > 0)?'':'active'"><a href="#upload-file11" data-toggle="tab"> Upload File </a></li>
 
                                     </ul>
                                 </div>
 
                                 <div class="col-sm-9">
                                     <div class="tab-content">
-                                        <div role="tabpanel"
-                                            [ngClass]="(stemslist?.length > 0)?'tab-pane fade in active':'tab-pane fade'"
-                                            *ngIf="stemslist?.length > 0" id="myfile11">
+                                        <div role="tabpanel" [ngClass]="(stemslist?.length > 0)?'tab-pane fade in active':'tab-pane fade'" *ngIf="stemslist?.length > 0" id="myfile11">
                                             <div class="row">
                                                 <!-- <div class="col-md-12">
                                     <h3>My File</h3>
@@ -869,12 +807,8 @@
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="youtube_vide0_list">
-                                                            <a href="javascript:void(0);" class="selecbtn btn-xs"
-                                                                (click)="selectMusic(imgrow.id,2)"
-                                                                *ngIf="imgrow?.default_image ==0">Select </a>
-                                                            <a href="javascript:void(0);" class="selecbtn btn-xs"
-                                                                (click)="selectMusic(imgrow.id,2)"
-                                                                *ngIf="imgrow?.default_image ==1">Selected </a>
+                                                            <a href="javascript:void(0);" class="selecbtn btn-xs" (click)="selectMusic(imgrow.id,2)" *ngIf="imgrow?.default_image ==0">Select </a>
+                                                            <a href="javascript:void(0);" class="selecbtn btn-xs" (click)="selectMusic(imgrow.id,2)" *ngIf="imgrow?.default_image ==1">Selected </a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -882,8 +816,7 @@
 
                                             </div>
                                         </div>
-                                        <div [ngClass]="(stemslist?.length > 0)?'tab-pane text-style fade ':'tab-pane text-style fade in active'"
-                                            id="upload-file11">
+                                        <div [ngClass]="(stemslist?.length > 0)?'tab-pane text-style fade ':'tab-pane text-style fade in active'" id="upload-file11">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <h3>Upload File</h3>
@@ -894,18 +827,14 @@
                                                             <img src="assets/images/upload-file-icon.png" alt="">
                                                             <p>Upload files from your computer (Or drag them here)</p>
                                                         </div>
-                                                        <input type="file" #fileInput
-                                                            (change)="fileChangeEventSteam($event,2)" id="customFile"
-                                                            name="filename" class="file-upload dropzone">
+                                                        <input type="file" #fileInput (change)="fileChangeEventSteam($event,2)" id="customFile" name="filename" class="file-upload dropzone">
 
                                                     </div>
                                                     <div class="upload_file1">
                                                         <p>Upload files from your computer (Or drag them here)</p>
                                                         <div class="fileUpload btn btn--browse">
                                                             <span>Upload a .zip (or .rar) file</span>
-                                                            <input type="file" class="upload" #fileInput
-                                                                (change)="fileChangeEventSteam($event,2)"
-                                                                id="customFile" name="filename">
+                                                            <input type="file" class="upload" #fileInput (change)="fileChangeEventSteam($event,2)" id="customFile" name="filename">
                                                         </div>
 
                                                     </div>
@@ -928,8 +857,7 @@
 
 <!--Collaborators--->
 <div class="track_editer_popup">
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog pop_center1" style="width: 478px;" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -944,8 +872,7 @@
                         <div class="">
                             <div class="form-group">
 
-                                <input type="text" class="form-control" (input)="onSearchChange($event.target.value)"
-                                    placeholder="Username or Email">
+                                <input type="text" class="form-control" (input)="onSearchChange($event.target.value)" placeholder="Username or Email">
                             </div>
                         </div>
                         <div class="collaborator_list">
@@ -962,11 +889,9 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="youtube_vide0_list">
-                                        <a href="javascript:void(0);" class="btn btn-xs btn-dark"
-                                            *ngIf="crow.requesttype=='Pending'"> Action Required</a>
+                                        <a href="javascript:void(0);" class="btn btn-xs btn-dark" *ngIf="crow.requesttype=='Pending'"> Action Required</a>
                                         <!--<a href="javascript:void(0);" class="selecbtn btn-xs" (click)="requestSend(crow.id,0)" *ngIf="crow.requesttype!='Pending'"> Add User  </a>-->
-                                        <a href="javascript:void(0);" class="selecbtn btn-xs"
-                                            (click)="addCollaborator(crow.id,crow.name)"> Add User </a>
+                                        <a href="javascript:void(0);" class="selecbtn btn-xs" (click)="addCollaborator(crow.id,crow.name)"> Add User </a>
                                     </div>
                                 </div>
                             </div>
@@ -1002,36 +927,31 @@
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <label>ENTER VIDEO URL</label>
-                                            <input type="text" id="video_link" formControlName="video_link"
-                                                placeholder="Paste URL" class="form-control">
+                                            <input type="text" id="video_link" formControlName="video_link" placeholder="Paste URL" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <a href="javascript:void(0)" class="button1 button_imp"
-                                            (click)="importVideo()">import</a>
+                                        <a href="javascript:void(0)" class="button1 button_imp" (click)="importVideo()">import</a>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>VIDEO TITLE</label>
-                                            <input type="text" id="video_title" formControlName="video_title"
-                                                placeholder="Video title" class="form-control">
+                                            <input type="text" id="video_title" formControlName="video_title" placeholder="Video title" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>DESCRIPTION</label>
-                                            <textarea type="text" id="video_description"
-                                                formControlName="video_description" placeholder="type.."
-                                                class="form-control"></textarea>
+                                            <textarea type="text" id="video_description" formControlName="video_description" placeholder="type.." class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="upload_youtube_video" *ngIf="!!youtubeLink">
-                                    
+
                                     <!-- <i *ngIf="thumbnail_url==''" class="fa fa-youtube-play"></i>
                                     <img *ngIf="thumbnail_url" src="{{thumbnail_url}}" alt="">
                                     <video *ngIf="thumbnail_url" src="{{youtubeLink}}"></video> -->
@@ -1068,10 +988,7 @@
                             <span class="" id="loading"></span>
                         </div>
                     </div>
-                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
-                        [aspectRatio]="4 / 3" format="png" (imageCropped)="imageCropped($event)"
-                        (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
-                        (loadImageFailed)="loadImageFailed()"></image-cropper>
+                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
                     <button type="submit" class="cancel_btn" data-dismiss="modal" aria-label="Close">Cancel</button>
                     <button type="submit" class="btn btn-primary" (click)="saveImage()">Save</button>
                 </div>
@@ -1091,20 +1008,16 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
-                                    <li [ngClass]="(alluploaded?.length > 0)?'active':''"
-                                        *ngIf="alluploaded?.length > 0"><a href="#myfile" data-toggle="tab"><span
+                                    <li [ngClass]="(alluploaded?.length > 0)?'active':''" *ngIf="alluploaded?.length > 0"><a href="#myfile" data-toggle="tab"><span
                                                 class="fa fa-file"></span> My File </a></li>
-                                    <li [ngClass]="(alluploaded?.length > 0)?'':'active'"><a href="#upload-file-img"
-                                            data-toggle="tab"><span class="fa fa-key"></span> Upload File </a></li>
+                                    <li [ngClass]="(alluploaded?.length > 0)?'':'active'"><a href="#upload-file-img" data-toggle="tab"><span class="fa fa-key"></span> Upload File </a></li>
 
                                 </ul>
                             </div>
 
                             <div class="col-sm-9">
                                 <div class="tab-content">
-                                    <div role="tabpanel"
-                                        [ngClass]="(alluploaded?.length > 0)?'tab-pane fade in active':'tab-pane fade'"
-                                        *ngIf="alluploaded?.length > 0" id="myfile">
+                                    <div role="tabpanel" [ngClass]="(alluploaded?.length > 0)?'tab-pane fade in active':'tab-pane fade'" *ngIf="alluploaded?.length > 0" id="myfile">
                                         <div class="row">
                                             <div class="main_box_for_youtube_list" *ngFor="let imgrow of alluploaded">
                                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
@@ -1119,11 +1032,8 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="youtube_vide0_list">
-                                                        <a *ngIf="imgrow.default_image==0" href="javascript:void(0);"
-                                                            class="selecbtn btn-xs"
-                                                            (click)="selectGallery(imgrow.id,0)">Select </a>
-                                                        <a *ngIf="imgrow.default_image==1" href="javascript:void(0);"
-                                                            class="selecbtn btn-xs">Selected </a>
+                                                        <a *ngIf="imgrow.default_image==0" href="javascript:void(0);" class="selecbtn btn-xs" (click)="selectGallery(imgrow.id,0)">Select </a>
+                                                        <a *ngIf="imgrow.default_image==1" href="javascript:void(0);" class="selecbtn btn-xs">Selected </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1131,8 +1041,7 @@
 
                                         </div>
                                     </div>
-                                    <div [ngClass]="(alluploaded?.length > 0)?'tab-pane text-style fade ':'tab-pane text-style fade in active'"
-                                        id="upload-file-img">
+                                    <div [ngClass]="(alluploaded?.length > 0)?'tab-pane text-style fade ':'tab-pane text-style fade in active'" id="upload-file-img">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <h3>Upload File</h3>
@@ -1143,8 +1052,7 @@
                                                         <img src="assets/images/upload-file-icon.png" alt="">
                                                         <p>Choose an image file or drag it here.</p>
                                                     </div>
-                                                    <input type="file" #fileInput (change)="fileChangeEvent($event)"
-                                                        id="customFile" name="filename" class="file-upload dropzone">
+                                                    <input type="file" #fileInput (change)="fileChangeEvent($event)" id="customFile" name="filename" class="file-upload dropzone">
 
                                                 </div>
                                                 <div class="upload_file">
@@ -1153,9 +1061,7 @@
 
                                                     <div class="fileUpload btn btn--browse">
                                                         <span>Select File</span>
-                                                        <input type="file" class="upload" #fileInput
-                                                            (change)="fileChangeEvent($event)" id="customFile"
-                                                            name="filename">
+                                                        <input type="file" class="upload" #fileInput (change)="fileChangeEvent($event)" id="customFile" name="filename">
                                                     </div>
 
                                                 </div>
@@ -1183,25 +1089,20 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
-                                    <li [ngClass]="(allmusicuploaded?.length > 0)?'active':''"
-                                        *ngIf="allmusicuploaded?.length > 0"><a href="#myfile12" data-toggle="tab"><span
+                                    <li [ngClass]="(allmusicuploaded?.length > 0)?'active':''" *ngIf="allmusicuploaded?.length > 0"><a href="#myfile12" data-toggle="tab"><span
                                                 class="fa fa-file"></span> My File </a></li>
-                                    <li [ngClass]="(allmusicuploaded?.length > 0)?'':'active'"><a href="#upload-file12"
-                                            data-toggle="tab"><span class="fa fa-key"></span> Upload File</a></li>
+                                    <li [ngClass]="(allmusicuploaded?.length > 0)?'':'active'"><a href="#upload-file12" data-toggle="tab"><span class="fa fa-key"></span> Upload File</a></li>
 
                                 </ul>
                             </div>
 
                             <div class="col-sm-9">
                                 <div class="tab-content">
-                                    <div role="tabpanel"
-                                        [ngClass]="(allmusicuploaded?.length > 0)?'tab-pane fade in active':'tab-pane fade'"
-                                        *ngIf="allmusicuploaded?.length > 0" id="myfile12">
+                                    <div role="tabpanel" [ngClass]="(allmusicuploaded?.length > 0)?'tab-pane fade in active':'tab-pane fade'" *ngIf="allmusicuploaded?.length > 0" id="myfile12">
                                         <div class="row">
 
 
-                                            <div class="main_box_for_youtube_list"
-                                                *ngFor="let imgrow of allmusicuploaded">
+                                            <div class="main_box_for_youtube_list" *ngFor="let imgrow of allmusicuploaded">
 
                                                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                                                     <div class="youtube_vide0_list">
@@ -1215,12 +1116,8 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="youtube_vide0_list">
-                                                        <a href="javascript:void(0);" class="selecbtn btn-xs"
-                                                            (click)="selectMusic(imgrow.id,'1')"
-                                                            *ngIf="imgrow.default_image ==0">Select </a>
-                                                        <a href="javascript:void(0);" class="selecbtn btn-xs"
-                                                            (click)="selectMusic(imgrow.id,'1')"
-                                                            *ngIf="imgrow.default_image ==1">Selected </a>
+                                                        <a href="javascript:void(0);" class="selecbtn btn-xs" (click)="selectMusic(imgrow.id,'1')" *ngIf="imgrow.default_image ==0">Select </a>
+                                                        <a href="javascript:void(0);" class="selecbtn btn-xs" (click)="selectMusic(imgrow.id,'1')" *ngIf="imgrow.default_image ==1">Selected </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1228,8 +1125,7 @@
 
                                         </div>
                                     </div>
-                                    <div [ngClass]="(allmusicuploaded?.length > 0)?'tab-pane text-style fade ':'tab-pane text-style fade in active'"
-                                        id="upload-file12">
+                                    <div [ngClass]="(allmusicuploaded?.length > 0)?'tab-pane text-style fade ':'tab-pane text-style fade in active'" id="upload-file12">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <h3>Upload File</h3>
@@ -1245,18 +1141,14 @@
                                                         <img src="assets/images/upload-file-icon.png" alt="">
                                                         <p>Upload files from your computer (Or drag them here)</p>
                                                     </div>
-                                                    <input type="file" #fileInput
-                                                        (change)="fileChangeEventMusic($event,1)" id="customFile"
-                                                        name="filename" class="file-upload dropzone">
+                                                    <input type="file" #fileInput (change)="fileChangeEventMusic($event,1)" id="customFile" name="filename" class="file-upload dropzone">
 
                                                 </div>
                                                 <div class="upload_file">
                                                     <h1>Upload files from your computer (Or drag them here)</h1>
                                                     <div class="fileUpload btn btn--browse">
                                                         <span>Select File</span>
-                                                        <input type="file" class="upload" #fileInput
-                                                            (change)="fileChangeEventMusic($event,1)" id="customFile"
-                                                            name="filename">
+                                                        <input type="file" class="upload" #fileInput (change)="fileChangeEventMusic($event,1)" id="customFile" name="filename">
                                                     </div>
 
                                                 </div>
@@ -1284,11 +1176,8 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
-                                    <li [ngClass]="(allmusicuploadedstream?.length > 0)?'active':''"
-                                        *ngIf="allmusicuploadedstream?.length > 0"><a href="#myfile13"
-                                            data-toggle="tab"><span class="fa fa-file"></span> My File </a></li>
-                                    <li [ngClass]="(allmusicuploadedstream?.length > 0)?'':'active'"><a
-                                            href="#upload-file13" data-toggle="tab"><span class="fa fa-key"></span>
+                                    <li [ngClass]="(allmusicuploadedstream?.length > 0)?'active':''" *ngIf="allmusicuploadedstream?.length > 0"><a href="#myfile13" data-toggle="tab"><span class="fa fa-file"></span> My File </a></li>
+                                    <li [ngClass]="(allmusicuploadedstream?.length > 0)?'':'active'"><a href="#upload-file13" data-toggle="tab"><span class="fa fa-key"></span>
                                             Upload File</a></li>
 
                                 </ul>
@@ -1296,14 +1185,11 @@
 
                             <div class="col-sm-9">
                                 <div class="tab-content">
-                                    <div role="tabpanel"
-                                        [ngClass]="(allmusicuploadedstream?.length > 0)?'tab-pane fade in active':'tab-pane fade'"
-                                        *ngIf="allmusicuploadedstream?.length > 0" id="myfile13">
+                                    <div role="tabpanel" [ngClass]="(allmusicuploadedstream?.length > 0)?'tab-pane fade in active':'tab-pane fade'" *ngIf="allmusicuploadedstream?.length > 0" id="myfile13">
                                         <div class="row">
 
 
-                                            <div class="main_box_for_youtube_list"
-                                                *ngFor="let imgrow of allmusicuploadedstream">
+                                            <div class="main_box_for_youtube_list" *ngFor="let imgrow of allmusicuploadedstream">
 
                                                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                                                     <div class="youtube_vide0_list">
@@ -1317,12 +1203,8 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="youtube_vide0_list">
-                                                        <a href="javascript:void(0);" class="selecbtn btn-xs"
-                                                            (click)="selectMusic(imgrow.id,'3')"
-                                                            *ngIf="imgrow?.default_image ==0">Select </a>
-                                                        <a href="javascript:void(0);" class="selecbtn btn-xs"
-                                                            (click)="selectMusic(imgrow.id,'3')"
-                                                            *ngIf="imgrow?.default_image ==1">Selected </a>
+                                                        <a href="javascript:void(0);" class="selecbtn btn-xs" (click)="selectMusic(imgrow.id,'3')" *ngIf="imgrow?.default_image ==0">Select </a>
+                                                        <a href="javascript:void(0);" class="selecbtn btn-xs" (click)="selectMusic(imgrow.id,'3')" *ngIf="imgrow?.default_image ==1">Selected </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1330,8 +1212,7 @@
 
                                         </div>
                                     </div>
-                                    <div [ngClass]="(allmusicuploadedstream?.length > 0)?'tab-pane text-style fade ':'tab-pane text-style fade in active'"
-                                        id="upload-file13">
+                                    <div [ngClass]="(allmusicuploadedstream?.length > 0)?'tab-pane text-style fade ':'tab-pane text-style fade in active'" id="upload-file13">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <h3>Upload File</h3>
@@ -1347,18 +1228,14 @@
                                                         <img src="assets/images/upload-file-icon.png" alt="">
                                                         <p>Upload files from your computer (Or drag them here)</p>
                                                     </div>
-                                                    <input type="file" #fileInput
-                                                        (change)="fileChangeEventMusic($event,3)" id="customFile"
-                                                        name="filename" class="file-upload dropzone">
+                                                    <input type="file" #fileInput (change)="fileChangeEventMusic($event,3)" id="customFile" name="filename" class="file-upload dropzone">
 
                                                 </div>
                                                 <div class="upload_file">
                                                     <h1>Upload files from your computer (Or drag them here)</h1>
                                                     <div class="fileUpload btn btn--browse">
                                                         <span>Select File</span>
-                                                        <input type="file" class="upload" #fileInput
-                                                            (change)="fileChangeEventMusic($event,3)" id="customFile"
-                                                            name="filename">
+                                                        <input type="file" class="upload" #fileInput (change)="fileChangeEventMusic($event,3)" id="customFile" name="filename">
                                                     </div>
 
                                                 </div>

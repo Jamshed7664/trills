@@ -143,7 +143,7 @@
                                                 <button class="button" type="button" *ngIf="!image">
                                                     <i class="fa fa-file-movie-o"></i>
                                                 </button>
-                                                <img [src]="image" alt="" class="image-exercise" *ngIf="image"><br>
+                                                <img [src]="image" alt="" class="image-exercise" *ngIf="image" style="object-fit: cover;"><br>
                                                 <p> Artwork Dimension <br> Preferred: 1500x1500px, Minimum: 500x500px</p>
                                                 <p> Got Photoshop? Make your own using our free template. </p>
                                                 <a type="button" data-toggle="modal" data-target="#uploadArtWork" class="button1">Upload Cover Artwork </a>
@@ -197,7 +197,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                          <div class="border_line" *ngFor="let collab of collabs">
+                                        <div class="border_line" *ngFor="let collab of collabs">
                                             <div class="col-md-3">
                                                 <div class="collaborators">
                                                     <h2>COLLABORATOR</h2>
@@ -272,39 +272,39 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Find Collaborator</h4>
             </div>
-              <div class="modal-body">
-                    <div class="row">
+            <div class="modal-body">
+                <div class="row">
 
-                        <div class="col-md-12">
-                            <div class="form-group">
-                            
-                                <input type="text" class="form-control" (input)="onSearchChange($event.target.value)" placeholder="Username or Email">
-                            </div>
-                        </div>
-                        <div class="main_box_for_youtube_list" *ngFor="let crow of searchText">
-                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                <div class="youtube_vide0_list">
-                                    <img src="{{crow.image}}" class="hedimg-circle" alt="">
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                <div class="youtube_vide0_list">
-                                    {{crow.name}}
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="youtube_vide0_list">
-                                    <a href="javascript:void(0);" class="btn btn-xs btn-dark" *ngIf="crow.requesttype=='Pending'"> Action Required</a>
-                                    <a href="javascript:void(0);" class="selecbtn btn-xs" (click)="requestSend(crow.id,0)" *ngIf="crow.requesttype!='Pending'"> Add User  </a>
-                                </div>
-                            </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+
+                            <input type="text" class="form-control" (input)="onSearchChange($event.target.value)" placeholder="Username or Email">
                         </div>
                     </div>
-                    <div class="cancel_box">
-
-                        <button type="submit" class="cancel_btn" data-dismiss="modal" aria-label="Close">Close</button>
+                    <div class="main_box_for_youtube_list" *ngFor="let crow of searchText">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            <div class="youtube_vide0_list">
+                                <img src="{{crow.image}}" class="hedimg-circle" alt="">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            <div class="youtube_vide0_list">
+                                {{crow.name}}
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="youtube_vide0_list">
+                                <a href="javascript:void(0);" class="btn btn-xs btn-dark" *ngIf="crow.requesttype=='Pending'"> Action Required</a>
+                                <a href="javascript:void(0);" class="selecbtn btn-xs" (click)="requestSend(crow.id,0)" *ngIf="crow.requesttype!='Pending'"> Add User  </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="cancel_box">
+
+                    <button type="submit" class="cancel_btn" data-dismiss="modal" aria-label="Close">Close</button>
+                </div>
+            </div>
 
         </div>
 

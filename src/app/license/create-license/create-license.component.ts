@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators,FormControl,FormArray} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
-import { AlertService} from 'src/app/common_service/alert.service';
+import { AlertService } from 'src/app/common_service/alert.service';
 import { AuthService } from 'src/app/common_service/auth.service';
 import { CrudService } from 'src/app/common_service/crud.service';
 import { ConfigService } from 'src/app/common_service/ConfigService.service';
@@ -11,11 +11,11 @@ import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Http, Headers } from '@angular/http';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-  import { Observable } from 'rxjs/Observable';
-  import 'rxjs/add/operator/map';
-  import 'rxjs/add/operator/debounceTime';
-  import 'rxjs/add/operator/distinctUntilChanged';
-  import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
 declare var $: any;
 
 @Component({
@@ -23,13 +23,13 @@ declare var $: any;
   templateUrl: './create-license.component.html',
   styleUrls: ['./create-license.component.css']
 })
-export class CreateLicenseComponent implements  OnInit {
-  licenseCreate=0;
-  api_calling=false;
+export class CreateLicenseComponent implements OnInit {
+  licenseCreate = 0;
+  api_calling = false;
   check1: any;
   check2: any;
   check3: any;
-  customization:any=`This Non-Exclusive {LICENSE_NAME} License Agreement (the “Agreement”), having been made on and effective as of {CONTRACT_DATE} (the “Effective Date”) by and between {TRACK_OWNER_FULLNAME} p/k/a {PRODUCER_ALIAS} (the “Producer” or “Licensor”); and {CUSTOMER_FULLNAME} residing at {CUSTOMER_ADDRESS} (“You” or “Licensee”), sets forth the terms and conditions of the Licensee’s use, and the rights granted in, the Producer’s instrumental music file entitled {TRACK_TITLE} (the “Beat”) in consideration for Licensee’s payment of {TRACK_PRICE} (the “License Fee”), on a so-called “{LICENSE_NAME}” basis.
+  customization: any = `This Non-Exclusive {LICENSE_NAME} License Agreement (the “Agreement”), having been made on and effective as of {CONTRACT_DATE} (the “Effective Date”) by and between {TRACK_OWNER_FULLNAME} p/k/a {PRODUCER_ALIAS} (the “Producer” or “Licensor”); and {CUSTOMER_FULLNAME} residing at {CUSTOMER_ADDRESS} (“You” or “Licensee”), sets forth the terms and conditions of the Licensee’s use, and the rights granted in, the Producer’s instrumental music file entitled {TRACK_TITLE} (the “Beat”) in consideration for Licensee’s payment of {TRACK_PRICE} (the “License Fee”), on a so-called “{LICENSE_NAME}” basis.
     This Agreement is issued solely in connection with and for Licensee's use of the Beat pursuant and subject to all terms and conditions set forth herein.
       License Fee: The Licensee to shall make payment of the License Fee to Licensor on the date of this Agreement. All rights granted to Licensee by Producer in the Beat are conditional upon Licensee’s timely payment of the License Fee. The License Fee is a one-time payment for the rights granted to Licensee and this Agreement is not valid until the License Fee has been paid.
       Delivery of the Beat:
@@ -80,180 +80,192 @@ export class CreateLicenseComponent implements  OnInit {
   
       Miscellaneous: This Agreement constitutes the entire understanding of the parties and is intended as a final expression of their agreement and cannot be altered, modified, amended or waived, in whole or in part, except by written instrument (email being sufficient) signed by both parties hereto. This agreement supersedes all prior agreements between the parties, whether oral or written. Should any provision of this agreement be held to be void, invalid or inoperative, such decision shall not affect any other provision hereof, and the remainder of this agreement shall be effective as though such void, invalid or inoperative provision had not been contained herein. No failure by Licensor hereto to perform any of its obligations hereunder shall be deemed a material breach of this agreement until the Licensee gives Licensor written notice of its failure to perform, and such failure has not been corrected within thirty (30) days from and after the service of such notice, or, if such breach is not reasonably capable of being cured within such thirty (30) day period, Licensor does not commence to cure such breach within said time period, and proceed with reasonable diligence to complete the curing of such breach thereafter. This agreement shall be governed by and interpreted in accordance with the laws of the {STATE_PROVINCE_COUNTRY} applicable to agreements entered into and wholly performed in said State, without regard to any conflict of laws principles. You hereby agree that the exclusive jurisdiction and venue for any action, suit or proceeding based upon any matter, claim or controversy arising hereunder or relating hereto shall be in the state or federal courts located in the {STATE_PROVINCE_COUNTRY}. You shall not be entitled to any monies in connection with the Master(s) other than as specifically set forth herein. All notices pursuant to this agreement shall be in writing and shall be given by registered or certified mail, return receipt requested (prepaid) at the respective addresses hereinabove set forth or such other address or addresses as may be designated by either party. Such notices shall be deemed given when received. Any notice mailed will be deemed to have been received five (5) business days after it is mailed; any notice dispatched by expedited delivery service will be deemed to be received two (2) business days after it is dispatched. YOU ACKNOWLEDGE AND AGREE THAT YOU HAVE READ THIS AGREEMENT AND HAVE BEEN ADVISED BY US OF THE SIGNIFICANT IMPORTANCE OF RETAINING AN INDEPENDENT ATTORNEY OF YOUR CHOICE TO REVIEW THIS AGREEMENT ON YOUR BEHALF. YOU ACKNOWLEDGE AND AGREE THAT YOU HAVE HAD THE UNRESTRICTED OPPORTUNITY TO BE REPRESENTED BY AN INDEPENDENT ATTORNEY. IN THE EVENT OF YOUR FAILURE TO OBTAIN AN INDEPENDENT ATTORNEY OR WAIVER THEREOF, YOU HEREBY WARRANT AND REPRESENT THAT YOU WILL NOT ATTEMPT TO USE SUCH FAILURE AND/OR WAIVER as a basis to avoid any obligations under this agreement, or to invalidate this agreement or To render this agreement or any part thereof unenforceable. This agreement may be executed in counterparts, each of which shall be deemed an original, and said counterparts shall constitute one and the same instrument. In addition, a signed copy of this agreement transmitted by facsimile or scanned into an image file and transmitted via email shall, for all purposes, be treated as if it was delivered containing an original manual signature of the party whose signature appears thereon and shall be binding upon such party as though an originally signed document had been delivered. Notwithstanding the foregoing, in the event that you do not sign this Agreement, your acknowledgment that you have reviewed the terms and conditions of this Agreement and your payment of the License Fee shall serve as your signature and acceptance of the terms and conditions of this Agreement.
   `;
-  constructor( 
-     private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private postService: PostService,
     private authService: AuthService,
     private alertService: AlertService,
-    private CrudService:CrudService,
+    private CrudService: CrudService,
     private config: ConfigService,
     private http: Http) { }
-    
-    licenseForm = this.formBuilder.group({
-      name: ['', [
-        Validators.required,
-      ]],
-      minimum_offer_price: ['', [
-       Validators.required,
-      ]],
-      default_track_price: ['', [
-        Validators.required,
-       ]],
-       default_album_price: ['', [
-        Validators.required,
-       ]],
-       enable_license: ['no', [
-        Validators.required,
-       ]],
-       description: ['', [
-        Validators.required,
-       ]],
-       full_customization: [this.customization, [
-        Validators.required,
-       ]],
-       country: ['', [
-        Validators.required,
-       ]],
-       state_province: ['', [
-        Validators.required,
-       ]],
-       features: ['', [
-        Validators.required,
-       ]],
-       not_profit: ['', [
-        Validators.required,
-       ]],
-       allow_profit: ['', [
-        Validators.required,
-       ]],
-       radio_stations: ['', [
-        Validators.required,
-       ]],
-       broadcasting_right: ['', [
-        Validators.required,
-       ]],
-       monetized_video_streams: ['', [
-        Validators.required,
-       ]],
-       non_monetized_video_streams: ['', [
-        Validators.required,
-       ]],
-       music_video: ['', [
-        Validators.required,
-       ]],
-       audio_streams: ['', [
-        Validators.required,
-       ]],
-       free_downloads: ['', [
-        Validators.required,
-       ]],
-       distribution_copies: ['', [
-        Validators.required,
-       ]],
-       mp3_for: [0, [
-        Validators.required,
-       ]],
-       license_for: ['', [
-       ]]
 
+  licenseForm = this.formBuilder.group({
+    name: ['', [
+      Validators.required,
+    ]],
+    minimum_offer_price: ['', [
+      Validators.required,
+    ]],
+    default_track_price: ['', [
+      Validators.required,
+    ]],
+    default_album_price: ['', [
+      Validators.required,
+    ]],
+    enable_license: ['no', [
+      Validators.required,
+    ]],
+    description: ['', [
+      Validators.required,
+    ]],
+    full_customization: [this.customization, [
+      Validators.required,
+    ]],
+    country: ['', [
+      Validators.required,
+    ]],
+    state_province: ['', [
+      Validators.required,
+    ]],
+    features: ['', [
+      Validators.required,
+    ]],
+    not_profit: ['', [
+      Validators.required,
+    ]],
+    allow_profit: ['', [
+      Validators.required,
+    ]],
+    radio_stations: ['', [
+      Validators.required,
+    ]],
+    broadcasting_right: ['', [
+      Validators.required,
+    ]],
+    monetized_video_streams: ['', [
+      Validators.required,
+    ]],
+    non_monetized_video_streams: ['', [
+      Validators.required,
+    ]],
+    music_video: ['', [
+      Validators.required,
+    ]],
+    audio_streams: ['', [
+      Validators.required,
+    ]],
+    free_downloads: ['', [
+      Validators.required,
+    ]],
+    distribution_copies: ['', [
+      Validators.required,
+    ]],
+    mp3_for: [0, [
+      Validators.required,
+    ]],
+    license_for: ['', [
+    ]]
+
+  });
+  clickBox(e) {
+    var check = '';
+    var facilitiesid = new Array();
+    $(".mycustomCheckbox:checkbox:checked").each(function () {
+      facilitiesid.push($(this).attr('id'));
     });
-    clickBox(e) {
-        var check='';
-        var facilitiesid = new Array();
-        $( ".mycustomCheckbox:checkbox:checked" ).each( function()
-        {
-          facilitiesid.push( $(this).attr('id') );
-        });
 
-          if(facilitiesid.length>0){
-            check=facilitiesid.toString();
-          }else{
-            check='';
-          }
-          this.licenseForm.controls['license_for'].setValue(check);
+    if (facilitiesid.length > 0) {
+      check = facilitiesid.toString();
+    } else {
+      check = '';
     }
+    this.licenseForm.controls['license_for'].setValue(check);
+  }
 
-    checkselection(e){
-      var tags=this.licenseForm.controls['license_for'].value;
-      if(tags){
-        const tagArr= tags.split(",");  
-        if(tagArr.length>0){
-           const officersIds = tagArr.map((tagA) => tagA==e);
-           if(officersIds){
-            return true;
-          }else{
-            return false;
-          }
-        }                   
-        
-      }else{
-        return false;
-      }
-     
-      
-     
-    }
-    createlicense(e){
-      if(!this.licenseForm.valid){
-        this.licenseForm.markAsTouched();
-        this.postService.snakeMessage('Invalid Form','');
-           return ;
-      }
-      var url='createAlbum';
-      this.api_calling=true;
-      const formData = new FormData();
-          formData.append('name', this.licenseForm.controls['name'].value);
-          formData.append('minimum_offer_price', this.licenseForm.controls['minimum_offer_price'].value);
-          formData.append('default_track_price', this.licenseForm.controls['default_track_price'].value);
-          formData.append('default_album_price', this.licenseForm.controls['default_album_price'].value);
-          formData.append('enable_license', this.licenseForm.controls['enable_license'].value);
-          formData.append('description', this.licenseForm.controls['description'].value);
-          formData.append('full_customization', this.licenseForm.controls['full_customization'].value);
-          formData.append('country', this.licenseForm.controls['country'].value);
-          formData.append('state_province', this.licenseForm.controls['state_province'].value);
-          formData.append('features', this.licenseForm.controls['features'].value);
-
-          formData.append('not_profit', this.licenseForm.controls['not_profit'].value);
-          formData.append('allow_profit', this.licenseForm.controls['allow_profit'].value);
-          formData.append('radio_stations', this.licenseForm.controls['radio_stations'].value);
-          formData.append('broadcasting_right', this.licenseForm.controls['broadcasting_right'].value);
-
-          formData.append('monetized_video_streams', this.licenseForm.controls['monetized_video_streams'].value);
-          formData.append('non_monetized_video_streams', this.licenseForm.controls['non_monetized_video_streams'].value);
-          formData.append('music_video', this.licenseForm.controls['music_video'].value);
-          formData.append('audio_streams', this.licenseForm.controls['audio_streams'].value);
-          formData.append('free_downloads', this.licenseForm.controls['free_downloads'].value);
-          formData.append('distribution_copies', this.licenseForm.controls['distribution_copies'].value);
-          formData.append('mp3_for', this.licenseForm.controls['mp3_for'].value);
-          formData.append('license_for', this.licenseForm.controls['license_for'].value);
-      if (localStorage.getItem('Userid')) {
-        formData.append('Userid', localStorage.getItem('Userid'));
-      }
-
-     if( this.licenseCreate!=0){
-      formData.append('licenseId',this.licenseCreate.toString());
-       url='updateLicense';
-     }else{
-       url='createLicense';
-     }
-      this.CrudService.add(formData,url).subscribe(res => {
-          if (res.status) {
-            this.licenseCreate=res.data;
-            this.router.navigate(['/licenses'])
-            // this.router.navigate(
-            //   [],
-            //   {
-            //     relativeTo: this.route,
-            //     queryParams: { licenseId:  this.licenseCreate },
-            //     queryParamsHandling: 'merge'
-            //   });
-          }
-        this.postService.snakeMessage(res.msg,'');
-      });
-            this.api_calling=false;
+  checkselection(e) {
+    var tags = this.licenseForm.controls['license_for'].value;
+    if (tags) {
+      const tagArr = tags.split(",");
+      if (tagArr.length > 0) {
+        const officersIds = tagArr.map((tagA) => tagA == e);
+        if (officersIds) {
+          return true;
+        } else {
+          return false;
         }
+      }
+
+    } else {
+      return false;
+    }
+
+
+
+  }
+  resetContract() {
+   this.licenseForm.patchValue({
+    'full_customization' : this.customization
+   })
+  }
+  open_close_modal_share(open_modal_id) {
+
+    setTimeout(() => {
+      $('#myModalshare' + open_modal_id).modal('toggle');
+    }, 200);
+
+  }
+
+  createlicense(e) {
+    if (!this.licenseForm.valid) {
+      this.licenseForm.markAsTouched();
+      this.postService.snakeMessage('Invalid Form', '');
+      return;
+    }
+    var url = 'createAlbum';
+    this.api_calling = true;
+    const formData = new FormData();
+    formData.append('name', this.licenseForm.controls['name'].value);
+    formData.append('minimum_offer_price', this.licenseForm.controls['minimum_offer_price'].value);
+    formData.append('default_track_price', this.licenseForm.controls['default_track_price'].value);
+    formData.append('default_album_price', this.licenseForm.controls['default_album_price'].value);
+    formData.append('enable_license', this.licenseForm.controls['enable_license'].value);
+    formData.append('description', this.licenseForm.controls['description'].value);
+    formData.append('full_customization', this.licenseForm.controls['full_customization'].value);
+    formData.append('country', this.licenseForm.controls['country'].value);
+    formData.append('state_province', this.licenseForm.controls['state_province'].value);
+    formData.append('features', this.licenseForm.controls['features'].value);
+
+    formData.append('not_profit', this.licenseForm.controls['not_profit'].value);
+    formData.append('allow_profit', this.licenseForm.controls['allow_profit'].value);
+    formData.append('radio_stations', this.licenseForm.controls['radio_stations'].value);
+    formData.append('broadcasting_right', this.licenseForm.controls['broadcasting_right'].value);
+
+    formData.append('monetized_video_streams', this.licenseForm.controls['monetized_video_streams'].value);
+    formData.append('non_monetized_video_streams', this.licenseForm.controls['non_monetized_video_streams'].value);
+    formData.append('music_video', this.licenseForm.controls['music_video'].value);
+    formData.append('audio_streams', this.licenseForm.controls['audio_streams'].value);
+    formData.append('free_downloads', this.licenseForm.controls['free_downloads'].value);
+    formData.append('distribution_copies', this.licenseForm.controls['distribution_copies'].value);
+    formData.append('mp3_for', this.licenseForm.controls['mp3_for'].value);
+    formData.append('license_for', this.licenseForm.controls['license_for'].value);
+    if (localStorage.getItem('Userid')) {
+      formData.append('Userid', localStorage.getItem('Userid'));
+    }
+
+    if (this.licenseCreate != 0) {
+      formData.append('licenseId', this.licenseCreate.toString());
+      url = 'updateLicense';
+    } else {
+      url = 'createLicense';
+    }
+    this.CrudService.add(formData, url).subscribe(res => {
+      if (res.status) {
+        this.licenseCreate = res.data;
+        this.router.navigate(['/licenses'])
+        // this.router.navigate(
+        //   [],
+        //   {
+        //     relativeTo: this.route,
+        //     queryParams: { licenseId:  this.licenseCreate },
+        //     queryParamsHandling: 'merge'
+        //   });
+      }
+      this.postService.snakeMessage(res.msg, '');
+    });
+    this.api_calling = false;
+  }
   ngOnInit(): void {
 
     // this.licenseForm.valueChanges.pipe(debounceTime(3000) ).subscribe(value => {
@@ -264,42 +276,42 @@ export class CreateLicenseComponent implements  OnInit {
     //     this.postService.snakeMessage('Invalid Form','');
     //     return ;
     //   }
-       
+
     // }
     // );
 
     this.route.queryParams.subscribe(params => {
       if (params.hasOwnProperty('licenseId')) {
         this.licenseCreate = params['licenseId'];
-        this.CrudService.list({"licenseId":this.licenseCreate}, 'getlicenses').subscribe(res => {
-               if (res.status) {
-                         
-                    var rs=res.data;
-                    // delete rs.tags;
-                    // delete rs.tracks;
-                    // this.image=res.data.img_url;
-                    if(rs.license_for) {
-                     let lcFr =  rs.license_for.split(',');
-                     lcFr.forEach(element => {
-                       if(element == 1) {
-                         this.check1 = 1
-                       }else if(element == 2) {
-                        this.check2 = 2
-                      } else if(element == 3) {
-                        this.check3 = 3
-                      }
-                     });
-                    }
-              this.licenseForm.patchValue(rs);  
+        this.CrudService.list({ "licenseId": this.licenseCreate }, 'getlicenses').subscribe(res => {
+          if (res.status) {
+
+            var rs = res.data;
+            // delete rs.tags;
+            // delete rs.tracks;
+            // this.image=res.data.img_url;
+            if (rs.license_for) {
+              let lcFr = rs.license_for.split(',');
+              lcFr.forEach(element => {
+                if (element == 1) {
+                  this.check1 = 1
+                } else if (element == 2) {
+                  this.check2 = 2
+                } else if (element == 3) {
+                  this.check3 = 3
+                }
+              });
+            }
+            this.licenseForm.patchValue(rs);
           } else {
-            this.postService.snakeMessage(res.msg,'');
+            this.postService.snakeMessage(res.msg, '');
           }
         });
-      }else{
+      } else {
         // this.album_form.controls["image"].setValidators(Validators.required);
         // this.album_form.controls["image"].updateValueAndValidity();
       }
-  });
+    });
 
   }
 

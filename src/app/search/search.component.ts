@@ -49,7 +49,7 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
   description: any;
   versionId: any;
   intialtab: boolean = true;
-lyricId:any;
+  lyricId: any;
 
   moods: any = [
     { id: 1, name: 'Quickrly', url: 'Quickrly' },
@@ -114,6 +114,8 @@ lyricId:any;
 
   constructor(private router: Router, private serializer: UrlSerializer,
     public CartService: CartService,
+    private PostService: PostService,
+
     //public Socialshare: Socialshare,
     private formBuilder: FormBuilder,
     private CrudService: CrudService, private route: ActivatedRoute, private http: HttpClient,
@@ -368,13 +370,10 @@ lyricId:any;
   }
 
   open_close_modal_lyrics(open_modal_id, close_modal_id, qty, prd) {
-    console.log(prd)
     this.prdId = prd.id;
-
     this.description = null;
     this.onGetLyrics()
     this.selected_product_lyrics = prd;
-    console.log("ddddd", prd);
     setTimeout(() => {
       $('#myModalLyrics' + open_modal_id).modal('toggle');
     }, 300);
@@ -1052,7 +1051,7 @@ lyricId:any;
       this.lyricform.controls['name'].markAsTouched()
       this.lyricform.controls['description'].markAsTouched()
     } else {
-      if(this.isUpdate){
+      if (this.isUpdate) {
         const payload = {
           "Userid": localStorage.getItem('Userid'),
           "name": this.lyricform.controls['name'].value,
@@ -1062,8 +1061,9 @@ lyricId:any;
         this.CrudService.cretaeLyrics(payload).subscribe(res => {
           console.log(res);
           this.onGetLyrics();
+          this.postService.snakeMessage('Lyrics created successfully.', '')
         })
-      }else{
+      } else {
         const payload = {
           "Userid": localStorage.getItem('Userid'),
           "name": this.lyricform.controls['name'].value,
@@ -1074,41 +1074,55 @@ lyricId:any;
         this.CrudService.updatelyrics(payload).subscribe(res => {
           console.log(res);
           this.onGetLyrics();
+          this.postService.snakeMessage('Lyrics updated successfully.', '')
         })
       }
-     
+
     }
   }
+  isLyrics: boolean = false
   onAddLyric() {
     this.isUpdate = true;
     this.initiateLyricForm()
     this.versionId = null;
-    this.intialtab = false
+    this.intialtab = false;
+    this.isLyrics = true;
   }
   onversionClick(item: any) {
-    this.lyricId = item.id
-    this.isUpdate = false;
-    this.initiateLyricForm()
-    this.lyricform.patchValue({
-      name: item.name,
-      description: item.description
-    });
+    console.log('item is', item)
 
-    let x = this.versions.find(x => item.id == x.id);
-    this.description = x.description;
-    this.versionId = x.id;
-    this.intialtab = false
+    if (item == undefined) {
+      this.isUpdate = true;
+      this.lyricform.reset();
+    } else {
+      this.lyricId = item.id
+      this.isUpdate = false;
+      this.initiateLyricForm();
+      this.lyricform.patchValue({
+        name: item.name,
+        description: item.description
+      });
+      let x = this.versions.find(x => item.id == x.id);
+      this.description = x.description;
+      this.versionId = x.id;
+      this.intialtab = false
+    }
+
+
+
 
   }
 
 
   onGetLyrics() {
+    this.versions = []
     let payload = {
       "productId": this.prdId,
       "Userid": window.localStorage.getItem('Userid')
     }
     this.CrudService.getLyrics(payload).subscribe(res => {
       this.versions = res.data;
+      console.log('Version is', this.versions.length);
       this.onversionClick(this.versions[0])
 
     })

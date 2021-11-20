@@ -1,0 +1,19 @@
+.modal-content {
+    width: 994px !important;
+    margin: 0 auto !important;
+    height: 469px !important;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+}
+
+.modal-header {
+    background: #8e7e47 !important;
+    margin: 0;
+    width: 100%;
+}
+
+.cutomization-text {
+    line-height: 28px;
+    color: #9e9e9e;
+    font-size: 14px;
+}

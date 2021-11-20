@@ -120,6 +120,7 @@ export class TrackeditComponent implements OnInit, AfterViewInit  {
     public CrudService: CrudService,
     private config: ConfigService,
     private cartService: CartService,
+    private postService: PostService,
     private sanitizer: DomSanitizer) {
     this.baseurl = location.origin;
     if (!this.authService.currentUserValue) {
@@ -143,7 +144,7 @@ export class TrackeditComponent implements OnInit, AfterViewInit  {
   DataForm = this.formBuilder.group({
 
     tagtitle: '',
-    name: ['', [Validators.required, Validators.maxLength(50)]],
+    name: ['', [Validators.required]],
     track_type: ['', [Validators.required]],
     //track_time: '',
     release_date: '',
@@ -559,7 +560,7 @@ export class TrackeditComponent implements OnInit, AfterViewInit  {
       this.DataForm.patchValue(
         {
           id: this.info.id,
-          name: this.info.name,
+          name: '',
           /*track_time: this.info.track_time,*/
           release_date: date,
           not_for_sale: this.info.not_for_sale,
@@ -1046,9 +1047,20 @@ export class TrackeditComponent implements OnInit, AfterViewInit  {
   /**************Gallery Image Section */
 
   fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
-    $('#uploadArtWork').modal('hide');
-    $('#CropPhoto').modal('show');
+    let img = new Image()
+    img.src = window.URL.createObjectURL(event.target.files[0])
+    img.onload = () => {
+      if (img.naturalWidth < 500  || img.naturalHeight < 500) {
+        this.postService.snakeMessage('Minimum image size should be 500 x 500', '');
+      }else if(img.naturalWidth > 1500  || img.naturalHeight > 1500){
+        this.postService.snakeMessage('Maximum image size should be 1500 x 1500', '');
+      }else {
+         this.imageChangedEvent = event;
+       $('#uploadArtWork').modal('hide');
+       $('#CropPhoto').modal('show');
+      }
+    }
+  
   }
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
