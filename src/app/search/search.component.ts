@@ -1127,6 +1127,8 @@ export class SearchComponent implements OnInit, AfterViewInit, OnDestroy {
 
     })
   }
+
+   
 }
 
 

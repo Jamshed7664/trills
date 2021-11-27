@@ -560,7 +560,7 @@ export class TrackeditComponent implements OnInit, AfterViewInit  {
       this.DataForm.patchValue(
         {
           id: this.info.id,
-          name: '',
+          name: this.info.name,
           /*track_time: this.info.track_time,*/
           release_date: date,
           not_for_sale: this.info.not_for_sale,

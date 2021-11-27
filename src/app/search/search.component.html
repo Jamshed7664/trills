@@ -751,7 +751,7 @@
                             <form [formGroup]='lyricform' (ngSubmit)="onsubmitLyrics()">
                                 <div class="form-group">
                                     <label>LYRICS TITLE</label>
-                                    <input formControlName='name' type="text" class="form-control form_ctrl" id="name" placeholder="Lyrics for Direct | Buy 2 Get 1 FREE">
+                                    <input formControlName='name' type="text" class="form-control form_ctrl" id="name" placeholder="Lyrics for Direct">
                                     <small *ngIf="lyricform.get('name').invalid && lyricform.get('name').touched">Please enter lyrics name</small>
                                 </div>
                                 <div class="form-group">
